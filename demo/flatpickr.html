@@ -1,0 +1,133 @@
+<html>
+<head>
+    <title>Voorbeeld flatpickr</title>
+</head>
+
+<style>
+    body {
+        padding: 100px 200px !important;
+    }
+    p {
+        margin: 1em 0 !important;
+    }
+    input{
+        width: 200px !important;
+    }
+</style>
+<link href="../style.css" rel="stylesheet" type="text/css">
+<script type="module">
+
+    import "../node_modules/flatpickr/dist/flatpickr.js";
+
+    import "../node_modules/flatpickr/dist/l10n/nl.js";
+    import "../node_modules/flatpickr/dist/l10n/fr.js";
+    import "../node_modules/flatpickr/dist/l10n/de.js";
+
+    flatpickr(".basic", {locale:"nl"});
+
+    flatpickr("#inline", {inline:true, locale:"nl", defaultDate:"2019-12-01"});
+
+    flatpickr("#wrapped", {wrap:true,locale:"nl"});
+
+    flatpickr("#range", {mode:"range",locale:"nl"});
+
+    flatpickr("#multiple", {mode:"multiple",locale:"nl"});
+
+    flatpickr("#time", {enableTime:true ,noCalendar:true, dateFormat: "H:i", locale:"nl", time_24hr:true});
+
+    flatpickr("#datetime", {enableTime:true, locale:"nl"});
+
+    flatpickr("#datetimerange", {mode:"range", enableTime:true, locale:"nl"});
+
+    flatpickr("#human", {
+        enableTime:true,
+        locale:"nl",
+        altInput: true,
+        altFormat: "l j F Y \\o\\m H:i \\u\\u\\r",
+        dateFormat: "Y-m-d H-i"
+    });
+
+</script>
+
+
+
+<h1>flatpickr demo</h1>
+
+<p>
+    Inline datumveld<br/>
+    <input class="basic" type="text" placeholder="Kies een datum..." />
+</p>
+
+<p>
+    Datumveld met relative positioning <br/>
+    <input class="basic" type="text" style="position:relative;left:100px;" placeholder="Kies een datum..." />
+</p>
+
+<p>
+    Datumveld met toggle functie, clear functie en wrapper<br/>
+    <span id="wrapped">
+        <input type="text" placeholder="Kies een datum..." data-input> <!-- input is mandatory -->
+
+        <button data-toggle>
+            toggle
+        </button>
+
+        <button data-clear>
+            clear
+        </button>
+    </span>
+</p>
+
+<p>
+    Datumveld met preset datum en inline datepicker <br/>
+    <input id="inline" type="text" placeholder="Kies een datum..." />
+</p>
+
+<p>
+    Datum-range veld<br/>
+    <input id="range" type="text" placeholder="Kies een datum..." />
+</p>
+
+<p>
+    Meerdere datums veld<br/>
+    <input id="multiple" type="text" placeholder="Kies een datum..." />
+</p>
+
+<p>
+    Tijdveld<br/>
+    <input id="time" type="text" placeholder="Kies een tijd..." />
+</p>
+
+<p>
+    Datum- en tijdveld in één<br/>
+    <input id="datetime" type="text" placeholder="Kies een tijd..." />
+</p>
+
+<p>
+    Datum- en tijd-range<br/>
+    <input id="datetimerange" type="text" placeholder="Kies een tijd..." />
+</p>
+
+<p>
+    Tijd-range alleen (zonder datum) wordt niet ondersteund<br/>
+    Meerdere tijden (zonder datum) wordt niet ondersteund<br/>
+    Meerdere datums met tijd wordt ondersteund maar niet erg logisch<br/>
+</p>
+
+<p>
+    Datum en tijd in mensentaal<br/>
+    <input id="human" type="text" placeholder="Kies een tijd..." />
+</p>
+
+<input class="basic" type="text" style="position:fixed;top:20px;left:20px;" placeholder="fixed top left" />
+<input class="basic" type="text" style="position:fixed;bottom:20px;left:20px;" placeholder="fixed bottom left" />
+<input class="basic" type="text" style="position:fixed;top:20px;right:20px;" placeholder="fixed top right" />
+<input class="basic" type="text" style="position:fixed;bottom:20px;right:20px;" placeholder="fixed bottom right" />
+
+<div style="position:fixed;top:50%;right:50px;" >
+    <input class="basic" type="text" placeholder="inline inside fixed div" />
+</div>
+
+</body>
+
+</html>

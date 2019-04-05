@@ -1,0 +1,106 @@
+<html>
+<head>
+    <title>vl-datepicker voorbeeld</title>
+    <style>
+        p{
+            margin:2em !important;
+        }
+        vl-datepicker{
+            display: inline-block;
+            width:400px;
+        }
+    </style>
+</head>
+
+<script type="module" src="../vl-datepicker.src.js"></script>
+
+<body>
+
+<h1>vl-datepicker demo</h1>
+
+<p>
+    Datepicker zonder verdere attributen:<br/>
+    <vl-datepicker></vl-datepicker>
+</p>
+
+<p>
+    Datepicker met custom format en vandaag als vooringevulde datum:<br/>
+    <vl-datepicker format="d-m-Y" default-date='today'></vl-datepicker>
+</p>
+
+<p>
+    Datepicker met human-friendly format naast het achterliggende data format:<br/>
+    <vl-datepicker human-format="l j F Y \\o\\m H:i \\u\\u\\r"></vl-datepicker>
+</p>
+
+<p>
+    Datepicker met min/max datums:<br/>
+    <vl-datepicker human-format="j F Y" min-date="2019-05-10" max-date="2019-05-15"></vl-datepicker>
+</p>
+
+<p>
+    Datepicker met niet-beschikbare datums:<br/>
+    <vl-datepicker human-format="j F Y" min-date="2019-04-10" max-date="2019-06-15" disabled-dates='["2019-04-15","2019-04-17","2019-04-19",{"from": "2019-04-25", "to": "2019-05-06"}]'></vl-datepicker>
+</p>
+
+<p>
+    Date-rangepicker:<br/>
+    <vl-datepicker human-format="j F Y" type="date-range"></vl-datepicker>
+</p>
+
+<p>
+    Multiple-dates-picker:<br/>
+    <vl-datepicker human-format="j F Y" type="multiple-dates"></vl-datepicker>
+</p>
+
+<p>
+    Multiple-dates-picker met niet-beschikbare datums:<br/>
+    <vl-datepicker human-format="j F Y" type="multiple-dates" min-date="2019-04-10" max-date="2019-06-15" disabled-dates='["2019-04-15","2019-04-17","2019-04-19",{"from": "2019-04-25", "to": "2019-05-06"}]'></vl-datepicker>
+</p>
+
+<p>
+    Date-rangepicker met niet-beschikbare datums:<br/>
+    <vl-datepicker human-format="j F Y" type="date-range" min-date="2019-04-10" max-date="2019-06-15" disabled-dates='["2019-04-15","2019-04-17","2019-04-19",{"from": "2019-04-25", "to": "2019-05-06"}]'></vl-datepicker>
+</p>
+
+<p>
+    Timepicker:<br/>
+    <vl-datepicker type="time" human-format="H:i \\u\\u\\r" format="H:i"></vl-datepicker>
+</p>
+
+<p>
+    Timepicker met 24 uren en min/max:<br/>
+    <vl-datepicker type="time" human-format="H:i \\u\\u\\r" format="H:i" min-time="09:00" max-time="17:00" 24-hours></vl-datepicker>
+</p>
+
+<p>
+    Date-timepicker (met human-friendly format):<br/>
+    <vl-datepicker type="date-time" human-format="l j F Y \\o\\m H:i \\u\\u\\r"></vl-datepicker>
+</p>
+
+<p>
+    Date-time-rangepicker:<br/>
+    <vl-datepicker type="date-time-range"></vl-datepicker>
+</p>
+
+
+
+<p>Andere talen:</p>
+<p>
+    Frans:<br/>
+    <vl-datepicker locale="fr" human-format="l j F Y"></vl-datepicker>
+</p>
+
+<p>
+    Duits:<br/>
+    <vl-datepicker locale="de" human-format="l j F Y"></vl-datepicker>
+</p>
+
+<p>
+    Engels:<br/>
+    <vl-datepicker locale="en" human-format="l j F Y"></vl-datepicker>
+</p>
+
+</body>
+
+</html>
