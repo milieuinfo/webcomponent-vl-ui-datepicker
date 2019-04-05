@@ -20,10 +20,10 @@
     "@govflanders/vl-ui-util": "3.7.2",
     "@govflanders/vl-ui-datepicker": "3.7.2",
     "flatpickr": "4.5.7",
-    "vl-ui-core": "1.0.0"
+    "vl-ui-core": "1.1.2"
   },
   "peerDependencies": {
-    "vl-ui-core": "1.1.0"
+    "vl-ui-core": "1.1.2"
   },
   "devDependencies": {
     "wct-browser-legacy": "1.0.2",
