@@ -8,6 +8,8 @@ import "/node_modules/flatpickr/dist/l10n/de.js";
 (() => {
     const id = 'flatpickr-style';
     addStyle();
+    //nodig zolang de datepicker niet binnen de shadowDOM kan worden gehouden
+
 
     function addStyle() {
         if (!document.head.querySelector('#' + id)) {
@@ -52,44 +54,29 @@ export class VlDatepicker extends VlElement(HTMLElement) {
             </div>
         `);
 
-        this._options = { // defaults in lijn met Webuniversum component
+        // defaults in lijn met Webuniversum component
+        this._options = {
             locale: "nl",
-            format: "d.m.Y.",
+            dateFormat: "d-m-Y",
+            time_24hr: true,
             wrap: true
         };
-    }
 
-    connectedCallback() {
-        this.__createFlatpickr();
-    }
+        //@TODO: append datepicker inside shadowDOM for encapsulation, so that global CSS is not needed
+        //WARNING: causes positioning issue: https://github.com/flatpickr/flatpickr/issues/1024
+        //WARNING: may cause issues wrt z-index and stacking context
+        //this._options.appendTo = this._shadow.querySelector('#wrapper');
 
-    static get _observedAttributes() {
-        return [
-            'locale',           // nl (default) | en | fr | de
-            'format',           // bv. 'Y-m-d' -> 2019-12-31
-            'human-format',     // bv.  'l j F Y \\o\\m H:i \\u\\u\\r' -> woensdag 17 april 2019 om 12:00 uur
-            'default-date',
-            'selected-date',    // conform format (default Y-m-d)
-            'min-date',         // conform format (default Y-m-d)
-            'max-date',         // conform format (default Y-m-d)
-            'disabled-dates',   // JSON array of dates and date ranges. Note that JSON requires double quotes!
-            'min-time',
-            'max-time',
-            '24hr-time',        // true | false
-            'type'              // date (default) | time | date-time | date-range | date-time-range | multiple-dates
-        ];
-    }
 
-    attributeChangedCallback(attr, oldValue, newValue) {
-        super.attributeChangedCallback(attr, oldValue, newValue);
-        this.__createFlatpickr();
-    }
 
-    _typeChangedCallback(oldValue, newValue) {
-        // supported options: date | time | date-time | multiple-dates | date-range | date-time-range
-        // time range or multiple times is not supported by flatpickr
-        // multiple dates with times is supported but the experience is unconventional
-        switch(newValue) {
+        /**
+         * Options specific to the type of picker
+         * supported types: date | time | date-time | multiple-dates | date-range
+         * Time range and multiple times are not supported by flatpickr
+         * multiple dates with times and date-range with times are supported by flatpickr, but not in this component, because unconventional UX
+         */
+        const type = this.getAttribute('type');
+        switch(type) {
             case 'time':
                 this._options.enableTime = true;
                 this._options.noCalendar = true;
@@ -110,75 +97,92 @@ export class VlDatepicker extends VlElement(HTMLElement) {
                 this._options.mode = 'range';
                 break;
 
-            case 'date-time-range':
-                this._options.enableTime = true;
-                this._options.mode = 'range';
-                break;
-
             default:
                 break;
         }
+
     }
 
-    _localChangedCallback(oldValue, newValue) {
-        if (newValue){
-            this._options.locale = newValue;
-        }
+    connectedCallback() {
+
+        this.__createFlatpickr();
+    }
+
+    static get _observedAttributes() {
+        return [
+            'locale',           // nl (default) | en | fr | de
+            'format',           // bv. 'd-m-Y' -> 31-12-2019
+            'human-format',     // bv.  'l j F Y \\o\\m H:i \\u\\u\\r' -> woensdag 17 april 2019 om 12:00 uur
+            'default-date',    // conform format (default Y-m-d)
+            'min-date',         // conform format (default Y-m-d)
+            'max-date',         // conform format (default Y-m-d)
+            'disabled-dates',   // JSON array of dates and date ranges. Note that JSON requires double quotes!
+            'min-time',
+            'max-time',
+            'am-pm',            // true | false
+            'type'              // date (default) | time | date-time | date-range | multiple-dates
+        ];
+    }
+
+    attributeChangedCallback(attr, oldValue, newValue) {
+        super.attributeChangedCallback(attr, oldValue, newValue);
+        this.__createFlatpickr();
+    }
+
+    _typeChangedCallback(oldValue, newValue) {
+        console.error('The "type" attribute cannot be changed.');
+    }
+
+
+    _localeChangedCallback(oldValue, newValue) {
+
+        this._options.locale = (newValue) ? newValue : 'nl';
     }
 
     _formatChangedCallback(oldValue, newValue) {
-        if (newValue) {
-            this._options.dateFormat = newValue;
-        }
+
+        this._options.dateFormat = (newValue) ? newValue : 'd-m-Y';
     }
 
     _human_formatChangedCallback(oldValue, newValue) {
-        if(newValue) {
-            this._options.altInput = true;
-            this._options.altFormat = newValue;
-        }
+
+        this._options.altInput = !!(newValue);
+        this._options.altFormat = newValue;
     }
 
     _default_dateChangedCallback(oldValue, newValue) {
-        if (newValue) {
-            this._options.defaultDate = newValue;
-        }
+
+        this._options.defaultDate = newValue;
     }
 
     _min_dateChangedCallback(oldValue, newValue) {
-        if (newValue) {
-            this._options.minDate = newValue;
-        }
+
+        this._options.minDate = newValue;
     }
 
     _max_dateChangedCallback(oldValue, newValue) {
-        if (newValue) {
-            this._options.maxDate = newValue;
-        }
+
+        this._options.maxDate = newValue;
     }
 
     _min_timeChangedCallback(oldValue, newValue) {
-        if (newValue) {
-            this._options.minTime = newValue;
-        }
+
+        this._options.minTime = newValue;
     }
 
     _max_timeChangedCallback(oldValue, newValue) {
-        if (newValue) {
-            this._options.maxTime = newValue;
-        }
+
+        this._options.maxTime = newValue;
     }
 
-    _24_hoursChangedCallback(oldValue, newValue) {
-        if (newValue) {
-            this._options.time_24hr = true;
-        }
+    _am_pmChangedCallback(oldValue, newValue) {
+
+        this._options.time_24hr = (!this.hasAttribute('am-pm'));
     }
 
     _disabled_datesChangedCallback(oldValue, newValue) {
-        if (newValue) {
-            this._options.disable = JSON.parse(newValue);
-        }
+
+        this._options.disable = (newValue) ? JSON.parse(newValue) : null;
     }
 
     __createFlatpickr() {
