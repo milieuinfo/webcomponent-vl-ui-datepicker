@@ -18,6 +18,18 @@
 
 <h1>vl-datepicker demo</h1>
 
+<div style="position: absolute; top: 25%; left:40%;">
+    Datepicker in absolute positioned container:<br/>
+    <vl-datepicker></vl-datepicker>
+</div>
+
+<div style="position: fixed; top: 40%; left:40%;">
+    <p>
+    Datepicker in fixed positioned container (such as a modal):<br/>
+    <vl-datepicker></vl-datepicker>
+    </p>
+</div>
+
 <p>
     Datepicker zonder verdere attributen:<br/>
     <vl-datepicker></vl-datepicker>
@@ -25,22 +37,22 @@
 
 <p>
     Datepicker met custom format en vandaag als vooringevulde datum:<br/>
-    <vl-datepicker format="d-m-Y" default-date='today'></vl-datepicker>
+    <vl-datepicker format="d/m/Y" default-date='today'></vl-datepicker>
 </p>
 
 <p>
     Datepicker met human-friendly format naast het achterliggende data format:<br/>
-    <vl-datepicker human-format="l j F Y \\o\\m H:i \\u\\u\\r"></vl-datepicker>
+    <vl-datepicker human-format="l j F Y"></vl-datepicker>
 </p>
 
 <p>
     Datepicker met min/max datums:<br/>
-    <vl-datepicker human-format="j F Y" min-date="2019-05-10" max-date="2019-05-15"></vl-datepicker>
+    <vl-datepicker human-format="j F Y" min-date="10-05-2019" max-date="15-05-2019"></vl-datepicker>
 </p>
 
 <p>
     Datepicker met niet-beschikbare datums:<br/>
-    <vl-datepicker human-format="j F Y" min-date="2019-04-10" max-date="2019-06-15" disabled-dates='["2019-04-15","2019-04-17","2019-04-19",{"from": "2019-04-25", "to": "2019-05-06"}]'></vl-datepicker>
+    <vl-datepicker human-format="j F Y" format="Y-m-d" min-date="2019-04-10" max-date="2019-06-15" disabled-dates='["2019-04-15","2019-04-17","2019-04-19",{"from": "2019-04-25", "to": "2019-05-06"}]'></vl-datepicker>
 </p>
 
 <p>
@@ -55,32 +67,27 @@
 
 <p>
     Multiple-dates-picker met niet-beschikbare datums:<br/>
-    <vl-datepicker human-format="j F Y" type="multiple-dates" min-date="2019-04-10" max-date="2019-06-15" disabled-dates='["2019-04-15","2019-04-17","2019-04-19",{"from": "2019-04-25", "to": "2019-05-06"}]'></vl-datepicker>
+    <vl-datepicker human-format="j F Y" format="Y-m-d" type="multiple-dates" min-date="2019-04-10" max-date="2019-06-15" disabled-dates='["2019-04-15","2019-04-17","2019-04-19",{"from": "2019-04-25", "to": "2019-05-06"}]'></vl-datepicker>
 </p>
 
 <p>
     Date-rangepicker met niet-beschikbare datums:<br/>
-    <vl-datepicker human-format="j F Y" type="date-range" min-date="2019-04-10" max-date="2019-06-15" disabled-dates='["2019-04-15","2019-04-17","2019-04-19",{"from": "2019-04-25", "to": "2019-05-06"}]'></vl-datepicker>
+    <vl-datepicker human-format="j F Y" format="Y-m-d" type="date-range" min-date="2019-04-10" max-date="2019-06-15" disabled-dates='["2019-04-15","2019-04-17","2019-04-19",{"from": "2019-04-25", "to": "2019-05-06"}]'></vl-datepicker>
 </p>
 
 <p>
-    Timepicker:<br/>
+    Timepicker (standaard 24-uurs notatie):<br/>
     <vl-datepicker type="time" human-format="H:i \\u\\u\\r" format="H:i"></vl-datepicker>
 </p>
 
 <p>
-    Timepicker met 24 uren en min/max:<br/>
-    <vl-datepicker type="time" human-format="H:i \\u\\u\\r" format="H:i" min-time="09:00" max-time="17:00" 24-hours></vl-datepicker>
+    Timepicker met min/max (9:00-17:00) en am/pm notatie:<br/>
+    <vl-datepicker type="time" human-format="H:i \\u\\u\\r" format="H:i" min-time="09:00" max-time="17:00" am-pm></vl-datepicker>
 </p>
 
 <p>
     Date-timepicker (met human-friendly format):<br/>
     <vl-datepicker type="date-time" human-format="l j F Y \\o\\m H:i \\u\\u\\r"></vl-datepicker>
-</p>
-
-<p>
-    Date-time-rangepicker:<br/>
-    <vl-datepicker type="date-time-range"></vl-datepicker>
 </p>
 
 
@@ -98,7 +105,7 @@
 
 <p>
     Engels:<br/>
-    <vl-datepicker locale="en" human-format="l j F Y"></vl-datepicker>
+    <vl-datepicker locale="en" human-format="l F J, Y"></vl-datepicker>
 </p>
 
 </body>
