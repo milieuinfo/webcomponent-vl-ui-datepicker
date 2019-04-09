@@ -31,6 +31,22 @@ import "/node_modules/flatpickr/dist/l10n/de.js";
 /**
  * vl-datepicker
  *
+ * ### Custom attributen
+ * Attribuut | Type | Toelichting | Default en mogelijke waarden
+ * ----------|------|-------------|-----------------------------
+ * type | {string} | bepaalt het soort picker | 'date' (default), 'time', 'date-time', 'date-range' en 'multiple-dates'
+ * locale | {string} | bepaalt de taal en daaraan gekoppelde aspecten zoals eerste dag van de week | 'nl' (default), 'en', 'fr' en 'de'
+ * format |{string} | bepaalt het formaat van de datum/tijd waarde | default 'd-m-Y' (-> 31-12-2019)
+ * human-format | {string} | bepaalt hoe de gekozen datum/tijd weergegeven wordt | bv. 'l j F Y \\o\\m H:i \\u\\u\\r' (-> woensdag 17 april 2019 om 12:00 uur)
+ * default-date | {string} | een vooringestelde datum | conform het ingestelde format (bv. '03-10-2019') of 'today' voor vandaag
+ * min-date | {string} | een minimum datum | conform het ingestelde format (bv. '01-01-2019') of 'today' voor vandaag
+ * max-date | {string} | een maximum datum | conform het ingestelde format (bv. '31-12-2019') of 'today' voor vandaag
+ * disabled-dates | {string} | een set datums en datum-ranges als JSON array | /!\ JSON requires double quotes /!\
+ * disable-weekends | {boolean} | optie om weekeinden te disabelen | [geen waarde]
+ * min-time | {string} | conform het ingestelde format (bv. 09:00)
+ * max-time | {string} | conform het ingestelde format (bv. 17:00)
+ * am-pm | {boolean} | optie om de 12-uurs AM/PM timepicker te gebruiken ipv de (standaard) 24-uurs timepicker | [geen waarde]
+ *
  * @demo demo/vl-datepicker.html
  */
 export class VlDatepicker extends VlElement(HTMLElement) {
@@ -62,7 +78,7 @@ export class VlDatepicker extends VlElement(HTMLElement) {
             wrap: true
         };
 
-        //@TODO: append datepicker inside shadowDOM for encapsulation, so that global CSS is not needed
+        //@TODO: set option to append datepicker inside shadowDOM for encapsulation, so that global CSS is not needed
         //WARNING: causes positioning issue: https://github.com/flatpickr/flatpickr/issues/1024
         //WARNING: may cause issues wrt z-index and stacking context
         //this._options.appendTo = this._shadow.querySelector('#wrapper');
@@ -108,19 +124,21 @@ export class VlDatepicker extends VlElement(HTMLElement) {
         this.__createFlatpickr();
     }
 
+
     static get _observedAttributes() {
         return [
-            'locale',           // nl (default) | en | fr | de
-            'format',           // bv. 'd-m-Y' -> 31-12-2019
-            'human-format',     // bv.  'l j F Y \\o\\m H:i \\u\\u\\r' -> woensdag 17 april 2019 om 12:00 uur
-            'default-date',    // conform format (default Y-m-d)
-            'min-date',         // conform format (default Y-m-d)
-            'max-date',         // conform format (default Y-m-d)
-            'disabled-dates',   // JSON array of dates and date ranges. Note that JSON requires double quotes!
+            'type',
+            'locale',
+            'format',
+            'human-format',
+            'default-date',
+            'min-date',
+            'max-date',
+            'disabled-dates',
+            'disable-weekends',
             'min-time',
             'max-time',
-            'am-pm',            // true | false
-            'type'              // date (default) | time | date-time | date-range | multiple-dates
+            'am-pm'
         ];
     }
 
@@ -182,7 +200,23 @@ export class VlDatepicker extends VlElement(HTMLElement) {
 
     _disabled_datesChangedCallback(oldValue, newValue) {
 
-        this._options.disable = (newValue) ? JSON.parse(newValue) : null;
+        this.__disableDates();
+    }
+    _disable_weekendsChangedCallback(oldValue, newValue) {
+
+        this.__disableDates();
+    }
+
+    __disableDates(){
+
+        const disabledDates = this.getAttribute('disabled-dates');
+        this._options.disable = (disabledDates) ? JSON.parse(disabledDates) : [];
+
+        if(this.hasAttribute('disable-weekends')){
+            this._options.disable.push(function(date){
+                return (date.getDay() === 0 || date.getDay() === 6)
+            });
+        }
     }
 
     __createFlatpickr() {

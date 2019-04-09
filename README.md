@@ -33,12 +33,12 @@ aangesproken.
 * minimum en maximum datum
 * minimum en maximum tijd
 * standaard 24-uurs tijdnotatie
+* optioneel 12-uurs AM/PM notatie
 
 **De web component ondersteunt daarnaast nog enkele andere Flatpickr features:**
 * optioneel engels, frans en duits
-* de multiple-date modus (variant om in één veld en met één picker 
-meerdere datums te kiezen)
-* de optie om bepaalde datums te disabelen  
+* de multiple-date modus (variant om in één keer meerdere datums te kiezen)
+* de optie om weekeinden en/of willekeurige datums te disabelen
 
 **Volgende features worden NIET ondersteund:**
 
@@ -46,9 +46,9 @@ meerdere datums te kiezen)
 * De variant om meerdere datums met tijden te selecteren
 * De variant om een tijd-range te selecteren
 
-Voor deze patronen is dit geen geschikte component. 
+Voor deze varianten is dit geen geschikte component. 
 
-Flatpickr biedt nog een hoop andere opties die in deze component NIET worden ondersteund.
+Flatpickr biedt daarnaast nog een hoop andere opties die in deze component NIET worden ondersteund.
 
 **Bijzonder punt van aandacht:**
 
