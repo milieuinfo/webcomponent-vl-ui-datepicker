@@ -18,7 +18,7 @@ services:
       - HUB_PORT_4444_TCP_ADDR=selenium-hub
       - HUB_PORT_4444_TCP_PORT=4444
   tests:
-    image: ${DOCKER_REGISTRY}node:10
+    image: ${DOCKER_REGISTRY}node:12
     depends_on:
       - selenium-hub
       - selenium-chrome
@@ -31,3 +31,6 @@ services:
       - ..:/data:ro
       - ./wct.docker.conf.json:/workdir/wct.conf.json:ro
     command: bash -c "cp -R /data/. /workdir && npm install && npm run test"
+networks:
+  build-network:
+    driver: bridge
