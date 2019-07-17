@@ -1,0 +1,16 @@
+project:
+  key: WEBCOM
+  plan:
+    name: vl-ui-datepicker
+    key: VLUIDATEPICKER
+stages:
+  - jobs:
+      - scripts:
+          - /opt/scripts/git/git-repository-information-restore.sh
+          - 'cp ${bamboo.gitconfig_path} ${bamboo.build.working.directory}'
+          - 'cp ${bamboo.npmrc_path} ${bamboo.build.working.directory}'
+          - 'cp ${bamboo.gitcredentials_path} ${bamboo.build.working.directory}'
+          - 'docker build --build-arg VERSION=patch --build-arg REPO=${bamboo.planRepository.repositoryUrl} --no-cache .'
+          - /opt/scripts/docker/stop-docker-containers.sh
+        requirements:
+          - REMOTE_ONLY
