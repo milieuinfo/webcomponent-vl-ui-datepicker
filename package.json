@@ -4,8 +4,7 @@
   "description": "De \"datepicker\" UI component van Webuniversum Vlaanderen als Web Component",
   "main": "vl-datepicker.js",
   "scripts": {
-    "prepare": "npm run prepare:util",
-    "prepare:util": "npm explore vl-ui-util -- npm run util",
+    "postinstall": "npm explore vl-ui-util -- npm run util",
     "test": "wct -l chrome,firefox --npm",
     "release": "np",
     "release:prepare": "npm run release:prepare:build && npm run release:prepare:imports && npm run release:prepare:css && npm run release:prepare:commit",
