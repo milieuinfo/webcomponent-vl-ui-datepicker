@@ -1,118 +1,236 @@
-<html>
+<!DOCTYPE html>
+<html lang="nl">
 <head>
-    <title>vl-datepicker voorbeeld</title>
-    <style>
-        p{
-            margin:2em !important;
-        }
-        vl-datepicker{
-            display: inline-block;
-            width:400px;
-        }
-    </style>
+  <title>vl-datepicker voorbeeld</title>
 </head>
 
 <script type="module" src="../vl-datepicker.src.js"></script>
+<script type="module" src="demo.js"></script>
 
 <body>
 
 <h1>vl-datepicker demo</h1>
-
-<div style="position: absolute; top: 25%; left:40%;">
-    Datepicker in absolute positioned container:<br/>
-    <vl-datepicker></vl-datepicker>
-</div>
-
-<div style="position: fixed; top: 40%; left:40%;">
-    <p>
-    Datepicker in fixed positioned container (such as a modal):<br/>
-    <vl-datepicker></vl-datepicker>
-    </p>
-</div>
-
 <p>
-    Datepicker zonder verdere attributen:<br/>
-    <vl-datepicker></vl-datepicker>
+  <a href="https://overheid.vlaanderen.be/webuniversum/v3/documentation/forms/vl-ui-datepicker">
+    Meer voorbeelden en documentatie</a>.
 </p>
 
-<p>
-    Datepicker met custom format en vandaag als vooringevulde datum:<br/>
+<div>
+  <h2>Datepicker zonder verdere attributen</h2>
+  <pre>
+    <code class="line-numbers language-markup">&lt;vl-datepicker&gt;&lt;/vl-datepicker&gt;</code>
+  </pre>
+  <div class="demo">
+    <vl-datepicker></vl-datepicker>
+  </div>
+</div>
+
+<div>
+  <h2>Datepicker met custom format en vandaag als vooringevulde datum</h2>
+  <pre>
+    <code class="line-numbers language-markup">&lt;vl-datepicker format=&quot;d/m/Y&quot; default-date='today'&gt;&lt;/vl-datepicker&gt;</code>
+  </pre>
+  <div class="demo">
     <vl-datepicker format="d/m/Y" default-date='today'></vl-datepicker>
-</p>
+  </div>
+</div>
 
-<p>
-    Datepicker met human-friendly format naast het achterliggende data format:<br/>
+<div>
+  <h2>Datepicker met human-friendly format naast het achterliggende data format</h2>
+  <pre>
+    <code class="line-numbers language-markup">&lt;vl-datepicker human-format=&quot;l j F Y&quot;&gt;&lt;/vl-datepicker&gt;</code>
+  </pre>
+  <div class="demo">
     <vl-datepicker human-format="l j F Y"></vl-datepicker>
-</p>
+  </div>
+</div>
 
-<p>
-    Datepicker met min/max datums:<br/>
+<div>
+  <h2>Datepicker met min/max datums</h2>
+  <pre>
+    <code class="line-numbers language-markup">&lt;vl-datepicker human-format=&quot;j F Y&quot; min-date=&quot;10-05-2019&quot; max-date=&quot;15-05-2019&quot;&gt;&lt;/vl-datepicker&gt;</code>
+  </pre>
+  <div class="demo">
     <vl-datepicker human-format="j F Y" min-date="10-05-2019" max-date="15-05-2019"></vl-datepicker>
-</p>
+  </div>
+</div>
 
-<p>
-    Datepicker met uitgeschakelde weekeinden:<br/>
+<div>
+  <h2>Datepicker met uitgeschakelde weekeinden</h2>
+  <pre>
+    <code class="line-numbers language-markup">&lt;vl-datepicker human-format=&quot;j F Y&quot; format=&quot;Y-m-d&quot; disable-weekends&gt;&lt;/vl-datepicker&gt;</code>
+  </pre>
+  <div class="demo">
     <vl-datepicker human-format="j F Y" format="Y-m-d" disable-weekends></vl-datepicker>
-</p>
+  </div>
+</div>
 
-<p>
-    Datepicker met specifieke datums uitgeschakeld:<br/>
-    <vl-datepicker human-format="j F Y" format="Y-m-d" min-date="2019-04-10" max-date="2019-06-15" disabled-dates='["2019-04-15","2019-04-17","2019-04-19",{"from": "2019-04-25", "to": "2019-05-06"}]'></vl-datepicker>
-</p>
+<div>
+  <h2>Datepicker met specifieke datums uitgeschakeld</h2>
+  <pre>
+    <code class="line-numbers language-markup">&lt;vl-datepicker
+        human-format=&quot;j F Y&quot;
+        format=&quot;Y-m-d&quot;
+        min-date=&quot;2019-04-10&quot;
+        max-date=&quot;2019-06-15&quot;
+        disabled-dates='[&quot;2019-04-15&quot;,&quot;2019-04-17&quot;,&quot;2019-04-19&quot;,{&quot;from&quot;: &quot;2019-04-25&quot;, &quot;to&quot;: &quot;2019-05-06&quot;}]'&gt;
+      &lt;/vl-datepicker&gt;</code>
+  </pre>
+  <div class="demo">
+    <vl-datepicker
+        human-format="j F Y"
+        format="Y-m-d"
+        min-date="2019-04-10"
+        max-date="2019-06-15"
+        disabled-dates='["2019-04-15","2019-04-17","2019-04-19",{"from": "2019-04-25", "to": "2019-05-06"}]'>
+    </vl-datepicker>
+  </div>
+</div>
 
-<p>
-    Date-rangepicker:<br/>
+<div>
+  <h2>Date-rangepicker</h2>
+  <pre>
+    <code class="line-numbers language-markup">&lt;vl-datepicker human-format=&quot;j F Y&quot; type=&quot;date-range&quot;&gt;&lt;/vl-datepicker&gt;</code>
+  </pre>
+  <div class="demo">
     <vl-datepicker human-format="j F Y" type="date-range"></vl-datepicker>
-</p>
+  </div>
+</div>
 
-<p>
-    Multiple-dates-picker:<br/>
+<div>
+  <h2>Multiple-dates-picker</h2>
+  <pre>
+    <code class="line-numbers language-markup">&lt;vl-datepicker human-format=&quot;j F Y&quot; type=&quot;multiple-dates&quot;&gt;&lt;/vl-datepicker&gt;</code>
+  </pre>
+  <div class="demo">
     <vl-datepicker human-format="j F Y" type="multiple-dates"></vl-datepicker>
-</p>
+  </div>
+</div>
 
-<p>
-    Multiple-dates-picker met niet-beschikbare datums:<br/>
-    <vl-datepicker human-format="j F Y" format="Y-m-d" type="multiple-dates" min-date="2019-04-10" max-date="2019-06-15" disabled-dates='["2019-04-15","2019-04-17","2019-04-19",{"from": "2019-04-25", "to": "2019-05-06"}]'></vl-datepicker>
-</p>
+<div>
+  <h2>Multiple-dates-picker met niet-beschikbare datums</h2>
+  <pre>
+    <code class="line-numbers language-markup">&lt;vl-datepicker
+        human-format=&quot;j F Y&quot;
+        format=&quot;Y-m-d&quot;
+        type=&quot;multiple-dates&quot;
+        min-date=&quot;2019-04-10&quot;
+        max-date=&quot;2019-06-15&quot;
+        disabled-dates='[&quot;2019-04-15&quot;,&quot;2019-04-17&quot;,&quot;2019-04-19&quot;,{&quot;from&quot;: &quot;2019-04-25&quot;, &quot;to&quot;: &quot;2019-05-06&quot;}]'&gt;
+    &lt;/vl-datepicker&gt;</code>
+  </pre>
+  <div class="demo">
+    <vl-datepicker
+        human-format="j F Y"
+        format="Y-m-d"
+        type="multiple-dates"
+        min-date="2019-04-10"
+        max-date="2019-06-15"
+        disabled-dates='["2019-04-15","2019-04-17","2019-04-19",{"from": "2019-04-25", "to": "2019-05-06"}]'>
+    </vl-datepicker>
+  </div>
+</div>
 
-<p>
-    Date-rangepicker met niet-beschikbare datums:<br/>
-    <vl-datepicker human-format="j F Y" format="Y-m-d" type="date-range" min-date="2019-04-10" max-date="2019-06-15" disabled-dates='["2019-04-15","2019-04-17","2019-04-19",{"from": "2019-04-25", "to": "2019-05-06"}]'></vl-datepicker>
-</p>
+<div>
+  <h2>Date-rangepicker met niet-beschikbare datums</h2>
+  <pre>
+    <code class="line-numbers language-markup">&lt;vl-datepicker
+      human-format=&quot;j F Y&quot;
+      format=&quot;Y-m-d&quot;
+      type=&quot;date-range&quot;
+      min-date=&quot;2019-04-10&quot;
+      max-date=&quot;2019-06-15&quot;
+      disabled-dates='[&quot;2019-04-15&quot;,&quot;2019-04-17&quot;,&quot;2019-04-19&quot;,{&quot;from&quot;: &quot;2019-04-25&quot;, &quot;to&quot;: &quot;2019-05-06&quot;}]'&gt;
+    &lt;/vl-datepicker&gt;</code>
+  </pre>
+  <div class="demo">
+    <vl-datepicker
+        human-format="j F Y"
+        format="Y-m-d"
+        type="date-range"
+        min-date="2019-04-10"
+        max-date="2019-06-15"
+        disabled-dates='["2019-04-15","2019-04-17","2019-04-19",{"from": "2019-04-25", "to": "2019-05-06"}]'>
+    </vl-datepicker>
+  </div>
+</div>
 
-<p>
-    Timepicker (standaard 24-uurs notatie):<br/>
+<div>
+  <h2>Timepicker (standaard 24-uurs notatie)</h2>
+  <pre>
+    <code class="line-numbers language-markup">&lt;vl-datepicker type=&quot;time&quot; human-format=&quot;H:i \\u\\u\\r&quot; format=&quot;H:i&quot;&gt;&lt;/vl-datepicker&gt;</code>
+  </pre>
+  <div class="demo">
     <vl-datepicker type="time" human-format="H:i \\u\\u\\r" format="H:i"></vl-datepicker>
-</p>
+  </div>
+</div>
 
-<p>
-    Timepicker met min/max (9:00-17:00) en am/pm notatie:<br/>
-    <vl-datepicker type="time" human-format="H:i \\u\\u\\r" format="H:i" min-time="09:00" max-time="17:00" am-pm></vl-datepicker>
-</p>
+<div>
+  <h2>Timepicker met min/max (9:00-17:00) en am/pm notatie</h2>
+  <pre>
+    <code class="line-numbers language-markup">&lt;vl-datepicker
+      type=&quot;time&quot;
+      human-format=&quot;H:i \\u\\u\\r&quot;
+      format=&quot;H:i&quot;
+      min-time=&quot;09:00&quot;
+      max-time=&quot;17:00&quot;
+      am-pm&gt;
+    &lt;/vl-datepicker&gt;</code>
+  </pre>
+  <div class="demo">
+    <vl-datepicker
+        type="time"
+        human-format="H:i \\u\\u\\r"
+        format="H:i"
+        min-time="09:00"
+        max-time="17:00"
+        am-pm>
+    </vl-datepicker>
+  </div>
+</div>
 
-<p>
-    Date-timepicker (met human-friendly format):<br/>
+<div>
+  <h2>Date-timepicker (met human-friendly format)</h2>
+  <pre>
+    <code class="line-numbers language-markup">&lt;vl-datepicker type=&quot;date-time&quot; human-format=&quot;l j F Y \\o\\m H:i \\u\\u\\r&quot;&gt;&lt;/vl-datepicker&gt;</code>
+  </pre>
+  <div class="demo">
     <vl-datepicker type="date-time" human-format="l j F Y \\o\\m H:i \\u\\u\\r"></vl-datepicker>
-</p>
+  </div>
+</div>
 
+<br />
+<h1>vl-datepicker andere talen demo</h1>
 
-
-<p>Andere talen:</p>
-<p>
-    Frans:<br/>
+<div>
+  <h2>Frans</h2>
+  <pre>
+    <code class="line-numbers language-markup">&lt;vl-datepicker locale=&quot;fr&quot; human-format=&quot;l j F Y&quot;&gt;&lt;/vl-datepicker&gt;</code>
+  </pre>
+  <div class="demo">
     <vl-datepicker locale="fr" human-format="l j F Y"></vl-datepicker>
-</p>
+  </div>
+</div>
 
-<p>
-    Duits:<br/>
+<div>
+  <h2>Duits</h2>
+  <pre>
+    <code class="line-numbers language-markup">&lt;vl-datepicker locale=&quot;de&quot; human-format=&quot;l j F Y&quot;&gt;&lt;/vl-datepicker&gt;</code>
+  </pre>
+  <div class="demo">
     <vl-datepicker locale="de" human-format="l j F Y"></vl-datepicker>
-</p>
+  </div>
+</div>
 
-<p>
-    Engels:<br/>
-    <vl-datepicker locale="en" human-format="l F J, Y"></vl-datepicker>
-</p>
+<div>
+  <h2>Engels</h2>
+  <pre>
+    <code class="line-numbers language-markup">&lt;vl-datepicker locale=&quot;en&quot; human-format=&quot;l j F Y&quot;&gt;&lt;/vl-datepicker&gt;</code>
+  </pre>
+  <div class="demo">
+    <vl-datepicker locale="en" human-format="l j F Y"></vl-datepicker>
+  </div>
+</div>
 
 </body>
-
 </html>

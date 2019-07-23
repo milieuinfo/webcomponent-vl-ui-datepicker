@@ -17,20 +17,29 @@
     "demo": "http-server"
   },
   "dependencies": {
-    "@govflanders/vl-ui-util": "3.7.2",
     "flatpickr": "4.5.7",
-    "vl-ui-core": "1.4.3"
+    "vl-ui-button": "1.0.11",
+    "vl-ui-core": "1.4.3",
+    "vl-ui-icon": "2.0.6",
+    "vl-ui-input-field": "1.0.5",
+    "vl-ui-input-group": "1.0.7",
+    "vl-ui-tooltip": "^1.0.6"
   },
   "peerDependencies": {
-    "vl-ui-core": "1.1.2"
+    "vl-ui-button": "^1.0.11",
+    "vl-ui-core": "^1.4.3",
+    "vl-ui-icon": "^2.0.6",
+    "vl-ui-input-field": "^1.0.5",
+    "vl-ui-input-group": "^1.0.7"
   },
   "devDependencies": {
+    "@govflanders/vl-ui-util": "3.7.2",
     "@govflanders/vl-ui-datepicker": "3.7.2",
+    "vl-ui-util": "1.1.3",
     "http-server": "0.11.1",
     "np": "3.0.4",
     "replace": "1.0.0",
     "uglify-js-es6": "2.8.9",
-    "vl-ui-util": "1.1.3",
     "wct-browser-legacy": "1.0.2",
     "web-component-tester": "6.9.2"
   },

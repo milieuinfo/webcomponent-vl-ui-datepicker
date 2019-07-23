@@ -1,3 +1,5 @@
-node_modules
-.sass-cache
+.sass-cache/
+*.css.map
+node_modules/
+.idea/
 vl-datepicker.js
