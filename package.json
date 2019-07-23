@@ -23,14 +23,15 @@
     "vl-ui-icon": "2.0.6",
     "vl-ui-input-field": "1.0.5",
     "vl-ui-input-group": "1.0.7",
-    "vl-ui-tooltip": "^1.0.6"
+    "vl-ui-tooltip": "1.0.6"
   },
   "peerDependencies": {
     "vl-ui-button": "^1.0.11",
     "vl-ui-core": "^1.4.3",
     "vl-ui-icon": "^2.0.6",
     "vl-ui-input-field": "^1.0.5",
-    "vl-ui-input-group": "^1.0.7"
+    "vl-ui-input-group": "^1.0.7",
+    "vl-ui-tooltip": "^1.0.6"
   },
   "devDependencies": {
     "@govflanders/vl-ui-util": "3.7.2",

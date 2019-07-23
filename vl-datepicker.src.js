@@ -1,4 +1,4 @@
-import {VlElement} from '/node_modules/vl-ui-core/vl-core.js';
+import {VlElement, define} from '/node_modules/vl-ui-core/vl-core.js';
 
 import "/node_modules/flatpickr/dist/flatpickr.min.js";
 import "/node_modules/flatpickr/dist/l10n/nl.js";
@@ -240,4 +240,4 @@ export class VlDatepicker extends VlElement(HTMLElement) {
   }
 }
 
-customElements.define('vl-datepicker', VlDatepicker);
+define('vl-datepicker', VlDatepicker);
