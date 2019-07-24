@@ -9,29 +9,6 @@ import "/node_modules/vl-ui-input-field/vl-input-field.js";
 import "/node_modules/vl-ui-button/vl-button.js";
 import "/node_modules/vl-ui-icon/vl-icon.js";
 
-(() => {
-  const id = 'flatpickr-style';
-  addStyle();
-
-  //nodig zolang de datepicker niet binnen de shadowDOM kan worden gehouden
-
-  function addStyle() {
-    if (!document.head.querySelector('#' + id)) {
-      var style = getStyle();
-      document.head.appendChild(style);
-    }
-  }
-
-  function getStyle() {
-    var link = document.createElement('link');
-    link.setAttribute('id', id);
-    link.setAttribute('rel', 'stylesheet');
-    link.setAttribute('type', 'text/css');
-    link.setAttribute('href', '../style.css');
-    return link;
-  }
-})();
-
 /**
  * vl-datepicker
  *
@@ -111,7 +88,7 @@ export class VlDatepicker extends VlElement(HTMLElement) {
   }
 
   __configureCommonOptions() {
-// defaults in lijn met Webuniversum component
+    // defaults in lijn met Webuniversum component
     this._options = {
       locale: "nl",
       dateFormat: "d-m-Y",
