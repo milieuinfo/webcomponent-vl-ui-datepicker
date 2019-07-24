@@ -1,4 +1,4 @@
-import {VlElement, define} from '/node_modules/vl-ui-core/vl-core.js';
+import {define, VlElement} from '/node_modules/vl-ui-core/vl-core.js';
 
 import "/node_modules/flatpickr/dist/flatpickr.min.js";
 import "/node_modules/flatpickr/dist/l10n/nl.js";
@@ -82,9 +82,24 @@ export class VlDatepicker extends VlElement(HTMLElement) {
     ];
   }
 
+  get _input() {
+    return this._element.querySelector('#input');
+  }
+
   connectedCallback() {
     this.__configureTypeSpecificOptions();
     this.__createFlatpickr();
+
+    this._element.addEventListener('change', (e) => {
+      this.value = this._picker.selectedDates.map(
+          d => window.flatpickr.formatDate(d, this._options.dateFormat));
+      this.dispatchEvent(
+          new CustomEvent('change', {
+            'detail': {
+              'value': this.value
+            }
+          }))
+    });
   }
 
   __configureCommonOptions() {

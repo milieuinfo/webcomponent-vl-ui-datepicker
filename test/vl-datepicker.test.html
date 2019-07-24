@@ -2,102 +2,109 @@
 <html>
 
 <head>
-    <meta charset="utf-8">
-    <script src="../../@webcomponents/webcomponentsjs/webcomponents-lite.js"></script>
-    <script src="../../web-component-tester/browser.js"></script>
+  <meta charset="utf-8">
+  <script src="../../@webcomponents/webcomponentsjs/webcomponents-lite.js"></script>
+  <script src="../../web-component-tester/browser.js"></script>
 
-    <script type="module" src="../vl-datepicker.src.js"></script>
+  <script type="module" src="../vl-datepicker.src.js"></script>
 </head>
 
 <body>
 <test-fixture id="vl-datepicker-fixture">
-    <template>
-        <vl-datepicker></vl-datepicker>
-    </template>
+  <template>
+    <vl-datepicker></vl-datepicker>
+  </template>
 </test-fixture>
 
 <script>
-    suite('<vl-datepicker>', () => {
-        const should = chai.should();
+  suite('<vl-datepicker>', () => {
 
-        const datepicker = fixture('vl-datepicker-fixture');
-
-        test('bestaat', () => {
-            assert.isTrue(typeof datepicker !== 'undefined');
-        });
-
-        test('opent flatpickr picker', () => {
-            datepicker._picker.open();
-            assert.isTrue(datepicker._picker.isOpen);
-        });
-
-        test('is standaard in het nederlands; kan optioneel in het Engels, Frans en Duits worden gezet', () => {
-            assert.isTrue(datepicker._picker.config.locale === "nl");
-            datepicker.setAttribute('locale','en');
-            assert.isTrue(datepicker._picker.config.locale === "en");
-            datepicker.setAttribute('locale','fr');
-            assert.isTrue(datepicker._picker.config.locale === "fr");
-            datepicker.setAttribute('locale','de');
-            assert.isTrue(datepicker._picker.config.locale === "de");
-
-            datepicker.removeAttribute('locale');
-            assert.isTrue(datepicker._picker.config.locale === "nl");
-        });
-
-        test('kan een vooringestelde datum hebben', () => {
-            const defaultDateStr = '01-01-2020';
-            const defaultDateObj = new Date(2020,0,1);
-            datepicker.setAttribute('default-date',defaultDateStr);
-            assert.isTrue(datepicker._picker.config.defaultDate === defaultDateStr);
-            assert.isTrue(datepicker._picker.selectedDates[0].getTime() === defaultDateObj.getTime());
-
-            datepicker.removeAttribute('default-date');
-            assert.isTrue(datepicker._picker.config.defaultDate == null);
-        });
-
-        test('heeft als default datumformaat d-m-Y (bv. 01-01-2020)', () => {
-            const defaultFormat = 'd-m-Y';
-            assert.isTrue(datepicker._picker.config.dateFormat === defaultFormat);
-        });
-
-        test('kan een custom datumformaat hebben', () => {
-            const customFormat = 'd/m/Y';
-            datepicker.setAttribute('format',customFormat);
-            assert.isTrue(datepicker._picker.config.dateFormat === customFormat);
-
-            datepicker.removeAttribute('format');
-            assert.isFalse(datepicker._picker.config.dateFormat === customFormat);
-        });
-
-        test('kan de datum in een human-friendly formaat tonen', () => {
-            const humanFormat = 'l j F Y';
-            datepicker.setAttribute('human-format',humanFormat);
-            assert.isTrue(datepicker._picker.config.altInput);
-            assert.isTrue(datepicker._picker.config.altFormat === humanFormat);
-
-            datepicker.removeAttribute('human-format');
-            assert.isFalse(datepicker._picker.config.altInput);
-        });
-
-        test('kan een minimum en maximum datum hebben', () => {
-            const today = new Date();
-            today.setHours(0,0,0,0);
-
-            datepicker.setAttribute('min-date','today');
-            assert.isTrue(datepicker._picker.config.minDate.getTime() === today.getTime());
-
-            datepicker.removeAttribute('min-date');
-            assert.isTrue(typeof datepicker._picker.config.minDate === 'undefined');
-
-            datepicker.setAttribute('max-date','today');
-            assert.isTrue(datepicker._picker.config.maxDate.getTime() === today.getTime());
-
-            datepicker.removeAttribute('max-date');
-            assert.isTrue(typeof datepicker._picker.config.maxDate === 'undefined');
-        });
-
+    setup(() => {
+      this.datepicker = fixture('vl-datepicker-fixture');
     });
+
+    test('bestaat', () => {
+      assert.isTrue(typeof this.datepicker !== 'undefined');
+    });
+
+    test('opent flatpickr picker', () => {
+      this.datepicker._picker.open();
+      assert.isTrue(this.datepicker._picker.isOpen);
+    });
+
+    test('is standaard in het nederlands; kan optioneel in het Engels, Frans en Duits worden gezet',
+        () => {
+          assert.isTrue(this.datepicker._picker.config.locale === "nl");
+          this.datepicker.setAttribute('locale', 'en');
+          assert.isTrue(this.datepicker._picker.config.locale === "en");
+          this.datepicker.setAttribute('locale', 'fr');
+          assert.isTrue(this.datepicker._picker.config.locale === "fr");
+          this.datepicker.setAttribute('locale', 'de');
+          assert.isTrue(this.datepicker._picker.config.locale === "de");
+
+          this.datepicker.removeAttribute('locale');
+          assert.isTrue(this.datepicker._picker.config.locale === "nl");
+        });
+
+    test('kan een vooringestelde datum hebben', () => {
+      const defaultDateStr = '01-01-2020';
+      const defaultDateObj = new Date(2020, 0, 1);
+      this.datepicker.setAttribute('default-date', defaultDateStr);
+      assert.isTrue(this.datepicker._picker.config.defaultDate === defaultDateStr);
+      assert.isTrue(this.datepicker._picker.selectedDates[0].getTime() === defaultDateObj.getTime());
+
+      this.datepicker.removeAttribute('default-date');
+      assert.isTrue(this.datepicker._picker.config.defaultDate == null);
+    });
+
+    test('heeft als default datumformaat d-m-Y (bv. 01-01-2020)', () => {
+      const defaultFormat = 'd-m-Y';
+      assert.isTrue(this.datepicker._picker.config.dateFormat === defaultFormat);
+    });
+
+    test('kan een custom datumformaat hebben', () => {
+      const customFormat = 'd/m/Y';
+      this.datepicker.setAttribute('format', customFormat);
+      assert.isTrue(this.datepicker._picker.config.dateFormat === customFormat);
+
+      this.datepicker.removeAttribute('format');
+      assert.isFalse(this.datepicker._picker.config.dateFormat === customFormat);
+    });
+
+    test('kan de datum in een human-friendly formaat tonen', () => {
+      const humanFormat = 'l j F Y';
+      this.datepicker.setAttribute('human-format', humanFormat);
+      assert.isTrue(this.datepicker._picker.config.altInput);
+      assert.isTrue(this.datepicker._picker.config.altFormat === humanFormat);
+
+      this.datepicker.removeAttribute('human-format');
+      assert.isFalse(this.datepicker._picker.config.altInput);
+    });
+
+    test('kan een minimum en maximum datum hebben', () => {
+      const today = new Date();
+      today.setHours(0, 0, 0, 0);
+
+      this.datepicker.setAttribute('min-date', 'today');
+      assert.isTrue(this.datepicker._picker.config.minDate.getTime() === today.getTime());
+
+      this.datepicker.removeAttribute('min-date');
+      assert.isTrue(typeof this.datepicker._picker.config.minDate === 'undefined');
+
+      this.datepicker.setAttribute('max-date', 'today');
+      assert.isTrue(this.datepicker._picker.config.maxDate.getTime() === today.getTime());
+
+      this.datepicker.removeAttribute('max-date');
+      assert.isTrue(typeof this.datepicker._picker.config.maxDate === 'undefined');
+    });
+
+    test('geeft aan wanneer een waarde verandert', (done) => {
+      this.datepicker.addEventListener('change', (e) => {
+        done();
+      });
+      this.datepicker._picker.setDate(new Date(), true);
+    });
+  });
 </script>
 </body>
-
 </html>

@@ -6,7 +6,8 @@
 
 <script type="module" src="demo.js"></script>
 <script type="module" src="lit-element-demo.js"></script>
-<script type="module" src="/node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
+<script type="module"
+        src="/node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
 <script type="module" src="../vl-datepicker.src.js"></script>
 
 <body>
@@ -25,6 +26,33 @@
   <div class="demo">
     <vl-datepicker></vl-datepicker>
   </div>
+</div>
+
+<div>
+  <h2>Datepicker luisteren op change events (zichtbaar in console)</h2>
+  <pre>
+    <code class="line-numbers language-markup">&lt;vl-datepicker id=&quot;datepicker-changes&quot;&gt;&lt;/vl-datepicker&gt;
+
+    &lt;script type=&quot;text/javascript&quot;&gt;
+      (() =&gt; {
+        document.getElementById('datepicker-changes').addEventListener('change', (e) =&gt; {
+          console.log(`datepicker value changed to ${e.detail.value}`);
+        });
+      })();
+    &lt;/script&gt;</code>
+  </pre>
+  <div class="demo">
+    <vl-datepicker id="datepicker-changes"></vl-datepicker>
+
+    <script type="text/javascript">
+      (() => {
+        document.getElementById('datepicker-changes').addEventListener('change', (e) => {
+          console.log(`datepicker value changed to ${e.detail.value}`);
+        });
+      })();
+    </script>
+  </div>
+
 </div>
 
 <div>
@@ -201,7 +229,19 @@
   </div>
 </div>
 
-<br />
+<div>
+  <h2>Lit Element Demo</h2>
+  <pre>
+      <code class="line-numbers language-markup">
+        &lt;lit-element-demo&gt;&lt;/lit-element-demo&gt;
+      </code>
+  </pre>
+  <div class="demo">
+    <lit-element-demo></lit-element-demo>
+  </div>
+</div>
+
+<br/>
 <h1>vl-datepicker andere talen demo</h1>
 
 <div>
@@ -231,18 +271,6 @@
   </pre>
   <div class="demo">
     <vl-datepicker locale="en" human-format="l j F Y"></vl-datepicker>
-  </div>
-</div>
-
-<div>
-  <h2>Lit Element Demo</h2>
-  <pre>
-      <code class="line-numbers language-markup">
-        &lt;lit-element-demo&gt;&lt;/lit-element-demo&gt;
-      </code>
-  </pre>
-  <div class="demo">
-    <lit-element-demo></lit-element-demo>
   </div>
 </div>
 
