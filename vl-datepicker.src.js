@@ -89,17 +89,6 @@ export class VlDatepicker extends VlElement(HTMLElement) {
   connectedCallback() {
     this.__configureTypeSpecificOptions();
     this.__createFlatpickr();
-
-    this._element.addEventListener('change', (e) => {
-      this.value = this._picker.selectedDates.map(
-          d => window.flatpickr.formatDate(d, this._options.dateFormat));
-      this.dispatchEvent(
-          new CustomEvent('change', {
-            'detail': {
-              'value': this.value
-            }
-          }))
-    });
   }
 
   __configureCommonOptions() {
@@ -108,13 +97,27 @@ export class VlDatepicker extends VlElement(HTMLElement) {
       locale: "nl",
       dateFormat: "d-m-Y",
       time_24hr: true,
-      wrap: true
+      wrap: true,
+      onChange: () => {
+        this.__onChange();
+      }
     };
 
     //@TODO: set option to append datepicker inside shadowDOM for encapsulation, so that global CSS is not needed
     //WARNING: causes positioning issue: https://github.com/flatpickr/flatpickr/issues/1024
     //WARNING: may cause issues wrt z-index and stacking context
     this._options.appendTo = this._element;
+  }
+
+  __onChange() {
+    this.value = this._picker.selectedDates.map(
+        d => window.flatpickr.formatDate(d, this._options.dateFormat));
+    this.dispatchEvent(
+        new CustomEvent('change', {
+          'detail': {
+            'value': this.value
+          }
+        }));
   }
 
   /**
