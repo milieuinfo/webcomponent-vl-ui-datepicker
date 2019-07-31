@@ -1,4 +1,4 @@
-FROM artifactory-pr-build.lb.cumuli.be:8081/acd-docker/node:12
+FROM acd-docker.repository.milieuinfo.be/node:12
 
 ARG VERSION
 ARG REPO
