@@ -35,7 +35,10 @@ export class VlDatepicker extends VlElement(HTMLElement) {
   constructor() {
     super(`
         <style>
-            @import "../style.css";          
+            @import "../style.css";    
+            :host {
+              position: relative;
+            }      
         </style>
         <vl-input-group>
           <input 
@@ -102,11 +105,6 @@ export class VlDatepicker extends VlElement(HTMLElement) {
         this.__onChange();
       }
     };
-
-    //@TODO: set option to append datepicker inside shadowDOM for encapsulation, so that global CSS is not needed
-    //WARNING: causes positioning issue: https://github.com/flatpickr/flatpickr/issues/1024
-    //WARNING: may cause issues wrt z-index and stacking context
-    this._options.appendTo = this._element;
   }
 
   __onChange() {
@@ -231,7 +229,45 @@ export class VlDatepicker extends VlElement(HTMLElement) {
   }
 
   __createFlatpickr() {
+    //@TODO: set option to append datepicker inside shadowDOM for encapsulation, so that global CSS is not needed
+    //WARNING: causes positioning issue: https://github.com/flatpickr/flatpickr/issues/1024
+    //WARNING: may cause issues wrt z-index and stacking context
+    this._options.appendTo = this._element;
+    this._options.onOpen = (selectedDates, dateStr, instance) => {
+      requestAnimationFrame(() => {
+        this.__moveCalendarToInput(instance);
+      });
+    };
     this._picker = window.flatpickr(this._element, this._options);
+  }
+
+  // fix for issue: https://github.com/flatpickr/flatpickr/issues/1024
+  __moveCalendarToInput(instance) {
+    // the unusual case of the firefox ...
+    // if (window.navigator.userAgent.indexOf("Firefox") !== -1) {
+    //   return;
+    // }
+
+    const calendar = instance.calendarContainer; // calendar dropdown
+    const input = instance.input; // date input field
+
+    calendar.style.top = this.__calculateTop(calendar, input);
+    calendar.style.left = 'auto';
+    calendar.style.right = 'auto';
+  }
+
+  __calculateTop(calendar, input) {
+    if (calendar.classList.contains('arrowTop')) {
+      const inputStyle = window.getComputedStyle(input);
+      return `calc(${inputStyle.height} + 5px)`;
+    }
+
+    if (calendar.classList.contains('arrowBottom')) {
+      const calendarStyle = window.getComputedStyle(calendar);
+      return `calc(-${calendarStyle.height} - 5px)`;
+    }
+
+    return 'auto';
   }
 }
 
