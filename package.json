@@ -34,13 +34,14 @@
     "vl-ui-tooltip": "^1.0.6"
   },
   "devDependencies": {
-    "@govflanders/vl-ui-util": "3.7.2",
     "@govflanders/vl-ui-datepicker": "3.7.2",
-    "vl-ui-util": "1.1.3",
+    "@govflanders/vl-ui-util": "3.7.2",
     "http-server": "0.11.1",
     "np": "3.0.4",
     "replace": "1.0.0",
+    "sass": "^1.22.9",
     "uglify-js-es6": "2.8.9",
+    "vl-ui-util": "1.1.3",
     "wct-browser-legacy": "1.0.2",
     "web-component-tester": "6.9.2"
   },
