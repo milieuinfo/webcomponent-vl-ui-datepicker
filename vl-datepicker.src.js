@@ -9,6 +9,17 @@ import "/node_modules/vl-ui-input-field/vl-input-field.js";
 import "/node_modules/vl-ui-button/vl-button.js";
 import "/node_modules/vl-ui-icon/vl-icon.js";
 
+//TODO: verplaatsen naar core library?
+const debounce = (fn, time) => {
+  let timeout;
+
+  return (...args) => {
+    const functionCall = () => fn.apply(this, args);
+    clearTimeout(timeout);
+    timeout = setTimeout(functionCall, time);
+  }
+};
+
 /**
  * vl-datepicker
  *
@@ -66,6 +77,20 @@ export class VlDatepicker extends VlElement(HTMLElement) {
         </vl-input-group>
         `);
     this.__configureCommonOptions();
+    this.__createFlatpickrDebounced = debounce(() => {
+      requestAnimationFrame(() => {
+        this.__createFlatpickr();
+      });
+    }, 50);
+  }
+
+  __createFlatpickr() {
+    //@TODO: set option to append datepicker inside shadowDOM for encapsulation, so that global CSS is not needed
+    //WARNING: causes positioning issue: https://github.com/flatpickr/flatpickr/issues/1024
+    //WARNING: may cause issues wrt z-index and stacking context
+    this._options.appendTo = this._element;
+    this._picker = window.flatpickr(this._element, this._options);
+    this.dispatchEvent(new CustomEvent('vl-datepicker-created', {}));
   }
 
   static get _observedAttributes() {
@@ -91,7 +116,7 @@ export class VlDatepicker extends VlElement(HTMLElement) {
 
   connectedCallback() {
     this.__configureTypeSpecificOptions();
-    this.__createFlatpickr();
+    this.__createFlatpickrDebounced();
   }
 
   __configureCommonOptions() {
@@ -101,8 +126,16 @@ export class VlDatepicker extends VlElement(HTMLElement) {
       dateFormat: "d-m-Y",
       time_24hr: true,
       wrap: true,
+      allowInput: true,
+
       onChange: () => {
         this.__onChange();
+      },
+
+      onOpen: (selectedDates, dateStr, instance) => {
+        requestAnimationFrame(() => {
+          this.__moveCalendarToInput(instance);
+        });
       }
     };
   }
@@ -118,11 +151,36 @@ export class VlDatepicker extends VlElement(HTMLElement) {
         }));
   }
 
+  // fix for issue: https://github.com/flatpickr/flatpickr/issues/1024
+  __moveCalendarToInput(instance) {
+    const calendar = instance.calendarContainer; // calendar dropdown
+    const input = instance.input; // date input field
+
+    calendar.style.top = this.__calculateTop(calendar, input);
+    calendar.style.left = 'auto';
+    calendar.style.right = 'auto';
+  }
+
+  __calculateTop(calendar, input) {
+    if (calendar.classList.contains('arrowTop')) {
+      const inputStyle = window.getComputedStyle(input);
+      return `calc(${inputStyle.height} + 5px)`;
+    }
+
+    if (calendar.classList.contains('arrowBottom')) {
+      const calendarStyle = window.getComputedStyle(calendar);
+      return `calc(-${calendarStyle.height} - 5px)`;
+    }
+
+    return 'auto';
+  }
+
   /**
    * Options specific to the type of picker
    * supported types: date | time | date-time | multiple-dates | date-range
    * Time range and multiple times are not supported by flatpickr
-   * multiple dates with times and date-range with times are supported by flatpickr, but not in this component, because unconventional UX
+   * multiple dates with times and date-range with times are supported by flatpickr,
+   * but not in this component, because unconventional UX
    */
   __configureTypeSpecificOptions() {
     const type = this.getAttribute('type');
@@ -165,7 +223,7 @@ export class VlDatepicker extends VlElement(HTMLElement) {
 
   attributeChangedCallback(attr, oldValue, newValue) {
     super.attributeChangedCallback(attr, oldValue, newValue);
-    this.__createFlatpickr();
+    this.__createFlatpickrDebounced();
   }
 
   _typeChangedCallback(oldValue, newValue) {
@@ -220,54 +278,11 @@ export class VlDatepicker extends VlElement(HTMLElement) {
   __disableDates() {
     const disabledDates = this.getAttribute('disabled-dates');
     this._options.disable = (disabledDates) ? JSON.parse(disabledDates) : [];
-
     if (this.hasAttribute('disable-weekends')) {
       this._options.disable.push(function (date) {
         return (date.getDay() === 0 || date.getDay() === 6)
       });
     }
-  }
-
-  __createFlatpickr() {
-    //@TODO: set option to append datepicker inside shadowDOM for encapsulation, so that global CSS is not needed
-    //WARNING: causes positioning issue: https://github.com/flatpickr/flatpickr/issues/1024
-    //WARNING: may cause issues wrt z-index and stacking context
-    this._options.appendTo = this._element;
-    this._options.onOpen = (selectedDates, dateStr, instance) => {
-      requestAnimationFrame(() => {
-        this.__moveCalendarToInput(instance);
-      });
-    };
-    this._picker = window.flatpickr(this._element, this._options);
-  }
-
-  // fix for issue: https://github.com/flatpickr/flatpickr/issues/1024
-  __moveCalendarToInput(instance) {
-    // the unusual case of the firefox ...
-    // if (window.navigator.userAgent.indexOf("Firefox") !== -1) {
-    //   return;
-    // }
-
-    const calendar = instance.calendarContainer; // calendar dropdown
-    const input = instance.input; // date input field
-
-    calendar.style.top = this.__calculateTop(calendar, input);
-    calendar.style.left = 'auto';
-    calendar.style.right = 'auto';
-  }
-
-  __calculateTop(calendar, input) {
-    if (calendar.classList.contains('arrowTop')) {
-      const inputStyle = window.getComputedStyle(input);
-      return `calc(${inputStyle.height} + 5px)`;
-    }
-
-    if (calendar.classList.contains('arrowBottom')) {
-      const calendarStyle = window.getComputedStyle(calendar);
-      return `calc(-${calendarStyle.height} - 5px)`;
-    }
-
-    return 'auto';
   }
 }
 
