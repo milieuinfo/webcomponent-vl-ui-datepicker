@@ -227,7 +227,7 @@ export class VlDatepicker extends VlElement(HTMLElement) {
   }
 
   _typeChangedCallback(oldValue, newValue) {
-    console.error('The "type" attribute cannot be changed.');
+    this.__configureTypeSpecificOptions();
   }
 
   _localeChangedCallback(oldValue, newValue) {
