@@ -38,6 +38,7 @@ const debounce = (fn, time) => {
  * min-time | {string} | conform het ingestelde format (bv. 09:00)
  * max-time | {string} | conform het ingestelde format (bv. 17:00)
  * am-pm | {boolean} | optie om de 12-uurs AM/PM timepicker te gebruiken ipv de (standaard) 24-uurs timepicker | [geen waarde]
+ * disable-input | {boolean} | optie om de gebruiker geen toegang te geven tot het input veld
  *
  * @demo demo/vl-datepicker.html
  */
@@ -106,7 +107,8 @@ export class VlDatepicker extends VlElement(HTMLElement) {
       'disable-weekends',
       'min-time',
       'max-time',
-      'am-pm'
+      'am-pm',
+      'disable-input'
     ];
   }
 
@@ -265,6 +267,10 @@ export class VlDatepicker extends VlElement(HTMLElement) {
 
   _am_pmChangedCallback(oldValue, newValue) {
     this._options.time_24hr = (!this.hasAttribute('am-pm'));
+  }
+
+  _disable_inputChangedCallback(oldValue, newValue) {
+    this._options.allowInput = !this.hasAttribute('disable-input');
   }
 
   _disabled_datesChangedCallback(oldValue, newValue) {
