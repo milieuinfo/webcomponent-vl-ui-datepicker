@@ -108,12 +108,22 @@ export class VlDatepicker extends VlElement(HTMLElement) {
       'min-time',
       'max-time',
       'am-pm',
-      'disable-input'
+      'disable-input',
+      'error',
+      'success'
     ];
   }
 
   get _input() {
     return this._element.querySelector('#input');
+  }
+
+  get _button() {
+    return this._element.querySelector('#button');
+  }
+
+  get _icon() {
+    return this._element.querySelector('#icon');
   }
 
   connectedCallback() {
@@ -279,6 +289,34 @@ export class VlDatepicker extends VlElement(HTMLElement) {
 
   _disable_weekendsChangedCallback(oldValue, newValue) {
     this.__disableDates();
+  }
+
+  _errorChangedCallback(oldValue, newValue) {
+    this._updateComponetnsAttribute('error');
+  }
+
+  _successChangedCallback(oldValue, newValue) {
+    this._updateComponetnsAttribute('success');
+  }
+
+  _updateComponetnsAttribute(attr) {
+    if (this.hasAttribute(attr)) {
+      this.__setComponentsAttribute(attr);
+    } else {
+      this.__removeComponentsAttribute(attr);
+    }
+  }
+
+  __removeComponentsAttribute(attr) {
+    this._input.removeAttribute(attr);
+    this._button.removeAttribute(attr);
+    this._icon.removeAttribute(attr);
+  }
+
+  __setComponentsAttribute(attr) {
+    this._input.setAttribute(attr, '');
+    this._button.setAttribute(attr, '');
+    this._icon.setAttribute(attr, '');
   }
 
   __disableDates() {
