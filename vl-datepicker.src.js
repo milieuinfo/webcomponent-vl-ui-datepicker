@@ -98,6 +98,19 @@ export class VlDatepicker extends VlElement(HTMLElement) {
 
   static get _observedAttributes() {
     return [
+      ...VlDatepicker._observedStyleAttributes,
+      ...VlDatepicker._observedConfigAttributes
+    ];
+  }
+
+  /**
+   * Attributen die van belang zijn voor de configuratie van flatpickr. Met als
+   * gevolg dat de flatpickr weer aangemaakt moet worden bij een verandering van
+   * deze attributen.
+   * @private
+   */
+  static get _observedConfigAttributes() {
+    return [
       'type',
       'locale',
       'format',
@@ -110,10 +123,18 @@ export class VlDatepicker extends VlElement(HTMLElement) {
       'min-time',
       'max-time',
       'am-pm',
-      'disable-input',
-      'error',
-      'success'
+      'disable-input'
     ];
+  }
+
+  /**
+   * Attributen die enkel van toepassing zijn op de styling van de compoent.
+   * Wanneer deze attributen veranderen, mag de flatpickr instantie blijven
+   * bestaan.
+   * @private
+   */
+  static get _observedStyleAttributes() {
+    return ['error', 'success'];
   }
 
   get _input() {
@@ -237,7 +258,11 @@ export class VlDatepicker extends VlElement(HTMLElement) {
 
   attributeChangedCallback(attr, oldValue, newValue) {
     super.attributeChangedCallback(attr, oldValue, newValue);
-    this.__createFlatpickrDebounced();
+
+    // create a new instance of flatpickr when the config changes.
+    if (VlDatepicker._observedConfigAttributes.includes(attr)) {
+      this.__createFlatpickrDebounced();
+    }
   }
 
   _typeChangedCallback(oldValue, newValue) {
