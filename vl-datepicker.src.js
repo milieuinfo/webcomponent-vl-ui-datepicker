@@ -39,6 +39,8 @@ const debounce = (fn, time) => {
  * max-time | {string} | conform het ingestelde format (bv. 17:00)
  * am-pm | {boolean} | optie om de 12-uurs AM/PM timepicker te gebruiken ipv de (standaard) 24-uurs timepicker | [geen waarde]
  * disable-input | {boolean} | optie om de gebruiker geen toegang te geven tot het input veld
+ * error | {boolean} | aptie om aan te duiden dat het date element verplicht is of ongeldige tekst bevat.
+ * success | {boolean} | optie om aan te duiden dat het date element correct werd ingevuld.
  *
  * @demo demo/vl-datepicker.html
  */
