@@ -27,7 +27,7 @@
   "devDependencies": {
     "@govflanders/vl-ui-datepicker": "3.7.2",
     "http-server": "0.11.1",
-    "np": "3.0.4",
+    "np": "5.0.3",
     "replace": "1.0.0",
     "uglify-js-es6": "2.8.9",
     "vl-ui-util": "^1.2.3",
