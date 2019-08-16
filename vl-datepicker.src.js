@@ -48,6 +48,8 @@ import "/node_modules/flatpickr/dist/l10n/de.js";
  * am-pm | {boolean} | optie om de 12-uurs AM/PM timepicker te gebruiken ipv de (standaard) 24-uurs timepicker | [geen waarde]
  *
  * @demo demo/vl-datepicker.html
+ * 
+ * @version <a href="http://www.github.com/milieuinfo/webcomponent-vl-ui-datepicker/releases/latest">Release notes</a>
  */
 export class VlDatepicker extends VlElement(HTMLElement) {
 
