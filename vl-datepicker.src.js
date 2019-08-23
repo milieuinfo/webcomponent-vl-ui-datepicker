@@ -49,7 +49,8 @@ import "/node_modules/flatpickr/dist/l10n/de.js";
  *
  * @demo demo/vl-datepicker.html
  * 
- * @version <a href="http://www.github.com/milieuinfo/webcomponent-vl-ui-datepicker/releases/latest">Release notes</a>
+ * @see {@link https://www.github.com/milieuinfo/webcomponent-vl-ui-datepicker/releases/latest|Release notes}
+ * @see {@link https://www.github.com/milieuinfo/webcomponent-vl-ui-datepicker/issues|Issues}
  */
 export class VlDatepicker extends VlElement(HTMLElement) {
 
