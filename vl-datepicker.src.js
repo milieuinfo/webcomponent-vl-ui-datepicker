@@ -170,6 +170,7 @@ export class VlDatepicker extends VlElement(HTMLElement) {
       onOpen: (selectedDates, dateStr, instance) => {
         requestAnimationFrame(() => {
           this.__moveCalendarToInput(instance);
+          this.__onChange();
         });
       }
     };
