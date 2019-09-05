@@ -47,10 +47,10 @@ import "/node_modules/flatpickr/dist/l10n/de.js";
  * max-time | {string} | conform het ingestelde format (bv. 17:00)
  * am-pm | {boolean} | optie om de 12-uurs AM/PM timepicker te gebruiken ipv de (standaard) 24-uurs timepicker | [geen waarde]
  *
- * @demo demo/vl-datepicker.html
  * 
  * @see {@link https://www.github.com/milieuinfo/webcomponent-vl-ui-datepicker/releases/latest|Release notes}
  * @see {@link https://www.github.com/milieuinfo/webcomponent-vl-ui-datepicker/issues|Issues}
+ * @see {@link https://webcomponenten.omgeving.vlaanderen.be/demo/vl-ui-datepicker.html|Demo}
  */
 export class VlDatepicker extends VlElement(HTMLElement) {
 
