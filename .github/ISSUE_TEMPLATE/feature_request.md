@@ -3,12 +3,12 @@ name: Feature request
 about: Stel een nieuwe feature voor
 title: "[Feature request] - "
 labels: enhancement
-assignees: cambiph, coemans
+assignees: coemans
 
 ---
 
-**Functionele beschrijving**
-Een korte en duidelijke uitleg over wat je wil toevoegen.
+**Wat moet er gebeuren**
+Een korte en duidelijke uitleg over wat er moet gebeuren.
 
 **Extra info**
 Extra info, indien nodig.
