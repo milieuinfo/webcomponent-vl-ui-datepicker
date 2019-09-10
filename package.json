@@ -17,7 +17,7 @@
     "demo": "http-server"
   },
   "dependencies": {
-    "@govflanders/vl-ui-util": "3.7.2",
+    "@govflanders/vl-ui-util": "3.9.0",
     "flatpickr": "4.5.7",
     "vl-ui-core": "1.4.4"
   },
