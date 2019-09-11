@@ -1,10 +1,10 @@
 {
   "name": "vl-ui-datepicker",
-  "version": "0.0.2",
+  "version": "0.0.7",
   "description": "De \"datepicker\" UI component van Webuniversum Vlaanderen als Web Component",
   "main": "vl-datepicker.js",
   "scripts": {
-    "prepare": "npm run prepare:util",
+    "prepare": "npm update --dev vl-ui-util && npm run prepare:util",
     "prepare:util": "npm explore vl-ui-util -- npm run util",
     "test": "wct -l chrome,firefox --npm",
     "release": "np",
@@ -19,18 +19,18 @@
   "dependencies": {
     "@govflanders/vl-ui-util": "3.7.2",
     "flatpickr": "4.5.7",
-    "vl-ui-core": "1.4.3"
+    "vl-ui-core": "1.4.4"
   },
   "peerDependencies": {
-    "vl-ui-core": "1.1.2"
+    "vl-ui-core": "1.4.4"
   },
   "devDependencies": {
     "@govflanders/vl-ui-datepicker": "3.7.2",
     "http-server": "0.11.1",
     "np": "3.1.0",
-    "replace": "1.0.0",
+    "replace": "1.1.0",
     "uglify-js-es6": "2.8.9",
-    "vl-ui-util": "^1.2.3",
+    "vl-ui-util": "^1.2.23",
     "wct-browser-legacy": "1.0.2",
     "web-component-tester": "6.9.2"
   },
