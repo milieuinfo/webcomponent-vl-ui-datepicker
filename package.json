@@ -28,7 +28,7 @@
     "@govflanders/vl-ui-datepicker": "3.7.2",
     "http-server": "0.11.1",
     "np": "3.1.0",
-    "replace": "1.1.0",
+    "replace": "1.1.1",
     "uglify-js-es6": "2.8.9",
     "vl-ui-util": "^1.2.23",
     "wct-browser-legacy": "1.0.2",
