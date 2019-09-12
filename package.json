@@ -19,10 +19,10 @@
   "dependencies": {
     "@govflanders/vl-ui-util": "3.7.2",
     "flatpickr": "4.5.7",
-    "vl-ui-core": "1.4.4"
+    "vl-ui-core": "1.4.7"
   },
   "peerDependencies": {
-    "vl-ui-core": "1.4.4"
+    "vl-ui-core": "1.4.7"
   },
   "devDependencies": {
     "@govflanders/vl-ui-datepicker": "3.7.2",
