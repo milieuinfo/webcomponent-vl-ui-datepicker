@@ -18,7 +18,7 @@
   },
   "dependencies": {
     "@govflanders/vl-ui-util": "3.7.2",
-    "flatpickr": "4.6.2",
+    "flatpickr": "4.6.3",
     "vl-ui-core": "1.4.7"
   },
   "peerDependencies": {
