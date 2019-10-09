@@ -124,7 +124,7 @@ img {
 
 html {
   min-height: 100%;
-  font-family: flanders-sans, sans-serif;
+  font-family: "Flanders Art Sans", sans-serif;
   font-size: 62.5%;
 }
 
@@ -154,7 +154,7 @@ body::before {
     content: "medium";
   }
 }
-@media screen and (min-width: 767.1px) {
+@media screen and (min-width: 767px) {
   body::before {
     content: "medium-up";
   }
@@ -169,63 +169,87 @@ body::before {
     content: "xsmall";
   }
 }
-@media screen and (min-width: 1600.1px) {
+@media screen and (min-width: 1600px) {
   body::before {
     content: "xlarge";
   }
 }
 
 @font-face {
-  font-family: "flanders-sans";
-  src: url("https://cdn.milieuinfo.be/vlaanderen-font/LATEST/font/flandersart/FlandersArtSans-Regular.woff2") format("woff2"), url("https://cdn.milieuinfo.be/vlaanderen-font/LATEST/font/flandersart/FlandersArtSans-Regular.woff") format("woff");
+  font-family: "Flanders Art Sans";
+  src: url("https://cdn.milieuinfo.be/vlaanderen-font/LATEST/font/flandersart/FlandersArtSans-Light.woff2") format("woff2"), url("https://cdn.milieuinfo.be/vlaanderen-font/LATEST/font/flandersart/FlandersArtSans-Light.woff") format("woff");
   font-weight: 300;
   font-style: normal;
 }
 @font-face {
-  font-family: "flanders-sans";
+  font-family: "Flanders Art Sans";
   src: url("https://cdn.milieuinfo.be/vlaanderen-font/LATEST/font/flandersart/FlandersArtSans-Regular.woff2") format("woff2"), url("https://cdn.milieuinfo.be/vlaanderen-font/LATEST/font/flandersart/FlandersArtSans-Regular.woff") format("woff");
   font-weight: 400;
   font-style: normal;
 }
 @font-face {
-  font-family: "flanders-sans";
+  font-family: "Flanders Art Sans";
   src: url("https://cdn.milieuinfo.be/vlaanderen-font/LATEST/font/flandersart/FlandersArtSans-Medium.woff2") format("woff2"), url("https://cdn.milieuinfo.be/vlaanderen-font/LATEST/font/flandersart/FlandersArtSans-Medium.woff") format("woff");
   font-weight: 500;
   font-style: normal;
 }
 @font-face {
-  font-family: "flanders-sans";
+  font-family: "Flanders Art Sans";
   src: url("https://cdn.milieuinfo.be/vlaanderen-font/LATEST/font/flandersart/FlandersArtSans-Bold.woff2") format("woff2"), url("https://cdn.milieuinfo.be/vlaanderen-font/LATEST/font/flandersart/FlandersArtSans-Bold.woff") format("woff");
   font-weight: 700;
   font-style: normal;
 }
 @font-face {
-  font-family: "flanders-serif";
+  font-family: "Flanders Art Sans";
+  src: url("https://cdn.milieuinfo.be/vlaanderen-font/LATEST/font/flandersart/FlandersArtSansItalic-Light.woff2") format("woff2"), url("https://cdn.milieuinfo.be/vlaanderen-font/LATEST/font/flandersart/FlandersArtSansItalic-Light.woff") format("woff");
+  font-weight: 300;
+  font-style: italic;
+}
+@font-face {
+  font-family: "Flanders Art Sans";
+  src: url("https://cdn.milieuinfo.be/vlaanderen-font/LATEST/font/flandersart/FlandersArtSansItalic-Regular.woff2") format("woff2"), url("https://cdn.milieuinfo.be/vlaanderen-font/LATEST/font/flandersart/FlandersArtSansItalic-Regular.woff") format("woff");
+  font-weight: 400;
+  font-style: italic;
+}
+@font-face {
+  font-family: "Flanders Art Sans";
+  src: url("https://cdn.milieuinfo.be/vlaanderen-font/LATEST/font/flandersart/FlandersArtSansItalic-Medium.woff2") format("woff2"), url("https://cdn.milieuinfo.be/vlaanderen-font/LATEST/font/flandersart/FlandersArtSansItalic-Medium.woff") format("woff");
+  font-weight: 500;
+  font-style: italic;
+}
+@font-face {
+  font-family: "Flanders Art Sans";
+  src: url("https://cdn.milieuinfo.be/vlaanderen-font/LATEST/font/flandersart/FlandersArtSansItalic-Bold.woff2") format("woff2"), url("https://cdn.milieuinfo.be/vlaanderen-font/LATEST/font/flandersart/FlandersArtSansItalic-Bold.woff") format("woff");
+  font-weight: 700;
+  font-style: italic;
+}
+@font-face {
+  font-family: "Flanders Art Serif";
   src: url("https://cdn.milieuinfo.be/vlaanderen-font/LATEST/font/flandersart/FlandersArtSerif-Light.woff2") format("woff2"), url("https://cdn.milieuinfo.be/vlaanderen-font/LATEST/font/flandersart/FlandersArtSerif-Light.woff") format("woff");
   font-weight: 300;
   font-style: normal;
 }
 @font-face {
-  font-family: "flanders-serif";
+  font-family: "Flanders Art Serif";
   src: url("https://cdn.milieuinfo.be/vlaanderen-font/LATEST/font/flandersart/FlandersArtSerif-Regular.woff2") format("woff2"), url("https://cdn.milieuinfo.be/vlaanderen-font/LATEST/font/flandersart/FlandersArtSerif-Regular.woff") format("woff");
   font-weight: 400;
   font-style: normal;
 }
 @font-face {
-  font-family: "flanders-serif";
+  font-family: "Flanders Art Serif";
   src: url("https://cdn.milieuinfo.be/vlaanderen-font/LATEST/font/flandersart/FlandersArtSerif-Medium.woff2") format("woff2"), url("https://cdn.milieuinfo.be/vlaanderen-font/LATEST/font/flandersart/FlandersArtSerif-Medium.woff") format("woff");
   font-weight: 500;
   font-style: normal;
 }
 @font-face {
-  font-family: "flanders-serif";
+  font-family: "Flanders Art Serif";
   src: url("https://cdn.milieuinfo.be/vlaanderen-font/LATEST/font/flandersart/FlandersArtSerif-Bold.woff2") format("woff2"), url("https://cdn.milieuinfo.be/vlaanderen-font/LATEST/font/flandersart/FlandersArtSerif-Bold.woff") format("woff");
   font-weight: 700;
   font-style: normal;
 }
 @font-face {
   font-family: "vlaanderen-icon";
-  src: url("https://cdn.milieuinfo.be/vlaanderen-font/LATEST/font/flandersart/vlaanderen-icon.woff2") format("woff2"), url("https://cdn.milieuinfo.be/vlaanderen-font/LATEST/font/flandersart/vlaanderen-icon.woff") format("woff");
+  src: url("https://cdn.milieuinfo.be/vlaanderen-font/LATEST/font/iconfont/3.9.1/vlaanderen-icon.woff2") format("woff2"), url("https://cdn.milieuinfo.be/vlaanderen-font/LATEST/font/iconfont/3.9.1/vlaanderen-icon.woff") format("woff");
   font-weight: normal;
   font-style: normal;
 }
@@ -1797,1442 +1821,1530 @@ body::before {
   content: "";
 }
 
-.vl-vi-italic::before {
+.vl-vi-ironing::before {
   content: "";
+}
+
+.vl-vi-ironing--after::after {
+  content: "";
+}
+
+.vl-vi-italic::before {
+  content: "";
 }
 
 .vl-vi-italic--after::after {
-  content: "";
+  content: "";
 }
 
 .vl-vi-jira::before {
-  content: "";
+  content: "";
 }
 
 .vl-vi-jira--after::after {
-  content: "";
+  content: "";
 }
 
 .vl-vi-key::before {
-  content: "";
+  content: "";
 }
 
 .vl-vi-key--after::after {
-  content: "";
+  content: "";
 }
 
 .vl-vi-keyboard::before {
-  content: "";
+  content: "";
 }
 
 .vl-vi-keyboard--after::after {
-  content: "";
+  content: "";
 }
 
 .vl-vi-laptop::before {
-  content: "";
+  content: "";
 }
 
 .vl-vi-laptop--after::after {
-  content: "";
+  content: "";
 }
 
 .vl-vi-lightbulb::before {
-  content: "";
+  content: "";
 }
 
 .vl-vi-lightbulb--after::after {
-  content: "";
+  content: "";
 }
 
 .vl-vi-link-broken::before {
-  content: "";
+  content: "";
 }
 
 .vl-vi-link-broken--after::after {
-  content: "";
+  content: "";
 }
 
 .vl-vi-link::before {
-  content: "";
+  content: "";
 }
 
 .vl-vi-link--after::after {
-  content: "";
+  content: "";
 }
 
 .vl-vi-linkedin::before {
-  content: "";
+  content: "";
 }
 
 .vl-vi-linkedin--after::after {
-  content: "";
+  content: "";
+}
+
+.vl-vi-list-add::before {
+  content: "";
+}
+
+.vl-vi-list-add--after::after {
+  content: "";
 }
 
 .vl-vi-list-bullets-alt::before {
-  content: "";
+  content: "";
 }
 
 .vl-vi-list-bullets-alt--after::after {
-  content: "";
+  content: "";
 }
 
 .vl-vi-list-bullets::before {
-  content: "";
+  content: "";
 }
 
 .vl-vi-list-bullets--after::after {
-  content: "";
+  content: "";
 }
 
 .vl-vi-list-numbers::before {
-  content: "";
+  content: "";
 }
 
 .vl-vi-list-numbers--after::after {
-  content: "";
+  content: "";
 }
 
 .vl-vi-list::before {
-  content: "";
+  content: "";
 }
 
 .vl-vi-list--after::after {
-  content: "";
+  content: "";
 }
 
 .vl-vi-location-direction-arrow::before {
-  content: "";
+  content: "";
 }
 
 .vl-vi-location-direction-arrow--after::after {
-  content: "";
+  content: "";
 }
 
 .vl-vi-location-gps::before {
-  content: "";
+  content: "";
 }
 
 .vl-vi-location-gps--after::after {
-  content: "";
+  content: "";
 }
 
 .vl-vi-location-map::before {
-  content: "";
+  content: "";
 }
 
 .vl-vi-location-map--after::after {
-  content: "";
+  content: "";
 }
 
 .vl-vi-location::before {
-  content: "";
+  content: "";
 }
 
 .vl-vi-location--after::after {
-  content: "";
+  content: "";
 }
 
 .vl-vi-lock-unlock::before {
-  content: "";
+  content: "";
 }
 
 .vl-vi-lock-unlock--after::after {
-  content: "";
+  content: "";
 }
 
 .vl-vi-lock::before {
-  content: "";
+  content: "";
 }
 
 .vl-vi-lock--after::after {
-  content: "";
+  content: "";
 }
 
 .vl-vi-login::before {
-  content: "";
+  content: "";
 }
 
 .vl-vi-login--after::after {
-  content: "";
+  content: "";
 }
 
 .vl-vi-logout::before {
-  content: "";
+  content: "";
 }
 
 .vl-vi-logout--after::after {
-  content: "";
+  content: "";
 }
 
 .vl-vi-long-arrow::before {
-  content: "";
+  content: "";
 }
 
 .vl-vi-long-arrow--after::after {
-  content: "";
+  content: "";
 }
 
 .vl-vi-magnifier::before {
-  content: "";
+  content: "";
 }
 
 .vl-vi-magnifier--after::after {
-  content: "";
+  content: "";
 }
 
 .vl-vi-mail::before {
-  content: "";
+  content: "";
 }
 
 .vl-vi-mail--after::after {
-  content: "";
+  content: "";
 }
 
 .vl-vi-market::before {
-  content: "";
+  content: "";
 }
 
 .vl-vi-market--after::after {
-  content: "";
+  content: "";
 }
 
 .vl-vi-menu::before {
-  content: "";
+  content: "";
 }
 
 .vl-vi-menu--after::after {
-  content: "";
+  content: "";
 }
 
 .vl-vi-messenger::before {
-  content: "";
+  content: "";
 }
 
 .vl-vi-messenger--after::after {
-  content: "";
+  content: "";
 }
 
 .vl-vi-microphone-off::before {
-  content: "";
+  content: "";
 }
 
 .vl-vi-microphone-off--after::after {
-  content: "";
+  content: "";
 }
 
 .vl-vi-microphone::before {
-  content: "";
+  content: "";
 }
 
 .vl-vi-microphone--after::after {
-  content: "";
+  content: "";
 }
 
 .vl-vi-minus-circle::before {
-  content: "";
+  content: "";
 }
 
 .vl-vi-minus-circle--after::after {
-  content: "";
+  content: "";
 }
 
 .vl-vi-minus::before {
-  content: "";
+  content: "";
 }
 
 .vl-vi-minus--after::after {
-  content: "";
+  content: "";
 }
 
 .vl-vi-mobile-phone::before {
-  content: "";
+  content: "";
 }
 
 .vl-vi-mobile-phone--after::after {
-  content: "";
+  content: "";
 }
 
 .vl-vi-move-down::before {
-  content: "";
+  content: "";
 }
 
 .vl-vi-move-down--after::after {
-  content: "";
+  content: "";
 }
 
 .vl-vi-move-left-right::before {
-  content: "";
+  content: "";
 }
 
 .vl-vi-move-left-right--after::after {
-  content: "";
+  content: "";
 }
 
 .vl-vi-moving-elevator::before {
-  content: "";
+  content: "";
 }
 
 .vl-vi-moving-elevator--after::after {
-  content: "";
+  content: "";
 }
 
 .vl-vi-music-note::before {
-  content: "";
+  content: "";
 }
 
 .vl-vi-music-note--after::after {
-  content: "";
+  content: "";
 }
 
 .vl-vi-nature-leaf::before {
-  content: "";
+  content: "";
 }
 
 .vl-vi-nature-leaf--after::after {
-  content: "";
+  content: "";
 }
 
 .vl-vi-nature-tree::before {
-  content: "";
+  content: "";
 }
 
 .vl-vi-nature-tree--after::after {
-  content: "";
+  content: "";
 }
 
 .vl-vi-nav-down-double::before {
-  content: "";
+  content: "";
 }
 
 .vl-vi-nav-down-double--after::after {
-  content: "";
+  content: "";
 }
 
 .vl-vi-nav-down-light::before {
-  content: "";
+  content: "";
 }
 
 .vl-vi-nav-down-light--after::after {
-  content: "";
+  content: "";
 }
 
 .vl-vi-nav-down::before {
-  content: "";
+  content: "";
 }
 
 .vl-vi-nav-down--after::after {
-  content: "";
+  content: "";
 }
 
 .vl-vi-nav-left-double::before {
-  content: "";
+  content: "";
 }
 
 .vl-vi-nav-left-double--after::after {
-  content: "";
+  content: "";
 }
 
 .vl-vi-nav-left-light::before {
-  content: "";
+  content: "";
 }
 
 .vl-vi-nav-left-light--after::after {
-  content: "";
+  content: "";
 }
 
 .vl-vi-nav-left::before {
-  content: "";
+  content: "";
 }
 
 .vl-vi-nav-left--after::after {
-  content: "";
+  content: "";
 }
 
 .vl-vi-nav-right-double::before {
-  content: "";
+  content: "";
 }
 
 .vl-vi-nav-right-double--after::after {
-  content: "";
+  content: "";
 }
 
 .vl-vi-nav-right-light::before {
-  content: "";
+  content: "";
 }
 
 .vl-vi-nav-right-light--after::after {
-  content: "";
+  content: "";
 }
 
 .vl-vi-nav-right::before {
-  content: "";
+  content: "";
 }
 
 .vl-vi-nav-right--after::after {
-  content: "";
+  content: "";
 }
 
 .vl-vi-nav-show-more-horizontal::before {
-  content: "";
+  content: "";
 }
 
 .vl-vi-nav-show-more-horizontal--after::after {
-  content: "";
+  content: "";
 }
 
 .vl-vi-nav-show-more-vertical::before {
-  content: "";
+  content: "";
 }
 
 .vl-vi-nav-show-more-vertical--after::after {
-  content: "";
+  content: "";
 }
 
 .vl-vi-nav-up-double::before {
-  content: "";
+  content: "";
 }
 
 .vl-vi-nav-up-double--after::after {
-  content: "";
+  content: "";
 }
 
 .vl-vi-nav-up-light::before {
-  content: "";
+  content: "";
 }
 
 .vl-vi-nav-up-light--after::after {
-  content: "";
+  content: "";
 }
 
 .vl-vi-nav-up::before {
-  content: "";
+  content: "";
 }
 
 .vl-vi-nav-up--after::after {
-  content: "";
+  content: "";
 }
 
 .vl-vi-news::before {
-  content: "";
+  content: "";
 }
 
 .vl-vi-news--after::after {
-  content: "";
+  content: "";
 }
 
 .vl-vi-newspaper::before {
-  content: "";
+  content: "";
 }
 
 .vl-vi-newspaper--after::after {
-  content: "";
+  content: "";
 }
 
 .vl-vi-next::before {
-  content: "";
+  content: "";
 }
 
 .vl-vi-next--after::after {
-  content: "";
+  content: "";
 }
 
 .vl-vi-other-annoyances-alt::before {
-  content: "";
+  content: "";
 }
 
 .vl-vi-other-annoyances-alt--after::after {
-  content: "";
+  content: "";
 }
 
 .vl-vi-other-annoyances::before {
-  content: "";
+  content: "";
 }
 
 .vl-vi-other-annoyances--after::after {
-  content: "";
+  content: "";
 }
 
 .vl-vi-paint-brush::before {
-  content: "";
+  content: "";
 }
 
 .vl-vi-paint-brush--after::after {
-  content: "";
+  content: "";
 }
 
 .vl-vi-paper::before {
-  content: "";
+  content: "";
 }
 
 .vl-vi-paper--after::after {
-  content: "";
+  content: "";
 }
 
 .vl-vi-paperclip::before {
-  content: "";
+  content: "";
 }
 
 .vl-vi-paperclip--after::after {
-  content: "";
+  content: "";
 }
 
 .vl-vi-paragraph::before {
-  content: "";
+  content: "";
 }
 
 .vl-vi-paragraph--after::after {
-  content: "";
+  content: "";
 }
 
 .vl-vi-pause::before {
-  content: "";
+  content: "";
 }
 
 .vl-vi-pause--after::after {
-  content: "";
+  content: "";
 }
 
 .vl-vi-pencil-write::before {
-  content: "";
+  content: "";
 }
 
 .vl-vi-pencil-write--after::after {
-  content: "";
+  content: "";
 }
 
 .vl-vi-pencil::before {
-  content: "";
+  content: "";
 }
 
 .vl-vi-pencil--after::after {
-  content: "";
+  content: "";
 }
 
 .vl-vi-pennants::before {
-  content: "";
+  content: "";
 }
 
 .vl-vi-pennants--after::after {
-  content: "";
+  content: "";
 }
 
 .vl-vi-phone-incoming::before {
-  content: "";
+  content: "";
 }
 
 .vl-vi-phone-incoming--after::after {
-  content: "";
+  content: "";
+}
+
+.vl-vi-phone-off::before {
+  content: "";
+}
+
+.vl-vi-phone-off--after::after {
+  content: "";
 }
 
 .vl-vi-phone-outgoing::before {
-  content: "";
+  content: "";
 }
 
 .vl-vi-phone-outgoing--after::after {
-  content: "";
+  content: "";
 }
 
 .vl-vi-phone-record::before {
-  content: "";
+  content: "";
 }
 
 .vl-vi-phone-record--after::after {
-  content: "";
+  content: "";
 }
 
 .vl-vi-phone-signal-low::before {
-  content: "";
+  content: "";
 }
 
 .vl-vi-phone-signal-low--after::after {
-  content: "";
+  content: "";
 }
 
 .vl-vi-phone-speaker::before {
-  content: "";
+  content: "";
 }
 
 .vl-vi-phone-speaker--after::after {
-  content: "";
+  content: "";
 }
 
 .vl-vi-phone::before {
-  content: "";
+  content: "";
 }
 
 .vl-vi-phone--after::after {
-  content: "";
+  content: "";
 }
 
 .vl-vi-pin-paper::before {
-  content: "";
+  content: "";
 }
 
 .vl-vi-pin-paper--after::after {
-  content: "";
+  content: "";
 }
 
 .vl-vi-pin::before {
-  content: "";
+  content: "";
 }
 
 .vl-vi-pin--after::after {
-  content: "";
+  content: "";
 }
 
 .vl-vi-pinterest::before {
-  content: "";
+  content: "";
 }
 
 .vl-vi-pinterest--after::after {
-  content: "";
+  content: "";
 }
 
 .vl-vi-places-factory::before {
-  content: "";
+  content: "";
 }
 
 .vl-vi-places-factory--after::after {
-  content: "";
+  content: "";
 }
 
 .vl-vi-places-home::before {
-  content: "";
+  content: "";
 }
 
 .vl-vi-places-home--after::after {
-  content: "";
+  content: "";
 }
 
 .vl-vi-play::before {
-  content: "";
+  content: "";
 }
 
 .vl-vi-play--after::after {
-  content: "";
+  content: "";
 }
 
 .vl-vi-playstreet::before {
-  content: "";
+  content: "";
 }
 
 .vl-vi-playstreet--after::after {
-  content: "";
+  content: "";
 }
 
 .vl-vi-plug::before {
-  content: "";
+  content: "";
 }
 
 .vl-vi-plug--after::after {
-  content: "";
+  content: "";
 }
 
 .vl-vi-plus-circle::before {
-  content: "";
+  content: "";
 }
 
 .vl-vi-plus-circle--after::after {
-  content: "";
+  content: "";
 }
 
 .vl-vi-plus::before {
-  content: "";
+  content: "";
 }
 
 .vl-vi-plus--after::after {
-  content: "";
+  content: "";
 }
 
 .vl-vi-power-button::before {
-  content: "";
+  content: "";
 }
 
 .vl-vi-power-button--after::after {
-  content: "";
+  content: "";
 }
 
 .vl-vi-printer-view::before {
-  content: "";
+  content: "";
 }
 
 .vl-vi-printer-view--after::after {
-  content: "";
+  content: "";
 }
 
 .vl-vi-programming-bug::before {
-  content: "";
+  content: "";
 }
 
 .vl-vi-programming-bug--after::after {
-  content: "";
+  content: "";
 }
 
 .vl-vi-publication::before {
-  content: "";
+  content: "";
 }
 
 .vl-vi-publication--after::after {
-  content: "";
+  content: "";
 }
 
 .vl-vi-question-mark-filled::before {
-  content: "";
+  content: "";
 }
 
 .vl-vi-question-mark-filled--after::after {
-  content: "";
+  content: "";
 }
 
 .vl-vi-question-mark-small::before {
-  content: "";
+  content: "";
 }
 
 .vl-vi-question-mark-small--after::after {
-  content: "";
+  content: "";
 }
 
 .vl-vi-question-mark::before {
-  content: "";
+  content: "";
 }
 
 .vl-vi-question-mark--after::after {
-  content: "";
+  content: "";
 }
 
 .vl-vi-question::before {
-  content: "";
+  content: "";
 }
 
 .vl-vi-question--after::after {
-  content: "";
+  content: "";
 }
 
 .vl-vi-recreation::before {
-  content: "";
+  content: "";
 }
 
 .vl-vi-recreation--after::after {
-  content: "";
+  content: "";
 }
 
 .vl-vi-reply-all::before {
-  content: "";
+  content: "";
 }
 
 .vl-vi-reply-all--after::after {
-  content: "";
+  content: "";
 }
 
 .vl-vi-reply::before {
-  content: "";
+  content: "";
 }
 
 .vl-vi-reply--after::after {
-  content: "";
+  content: "";
 }
 
 .vl-vi-rewards-certified-badge::before {
-  content: "";
+  content: "";
 }
 
 .vl-vi-rewards-certified-badge--after::after {
-  content: "";
+  content: "";
 }
 
 .vl-vi-rewards-gift::before {
-  content: "";
+  content: "";
 }
 
 .vl-vi-rewards-gift--after::after {
-  content: "";
+  content: "";
 }
 
 .vl-vi-road-block::before {
-  content: "";
+  content: "";
 }
 
 .vl-vi-road-block--after::after {
-  content: "";
+  content: "";
 }
 
 .vl-vi-road::before {
-  content: "";
+  content: "";
 }
 
 .vl-vi-road--after::after {
-  content: "";
+  content: "";
 }
 
 .vl-vi-romance-marriage-license::before {
-  content: "";
+  content: "";
 }
 
 .vl-vi-romance-marriage-license--after::after {
-  content: "";
+  content: "";
 }
 
 .vl-vi-save::before {
-  content: "";
+  content: "";
 }
 
 .vl-vi-save--after::after {
-  content: "";
+  content: "";
 }
 
 .vl-vi-scaffold::before {
-  content: "";
+  content: "";
 }
 
 .vl-vi-scaffold--after::after {
-  content: "";
+  content: "";
 }
 
 .vl-vi-scissors::before {
-  content: "";
+  content: "";
 }
 
 .vl-vi-scissors--after::after {
-  content: "";
+  content: "";
 }
 
 .vl-vi-search::before {
-  content: "";
+  content: "";
 }
 
 .vl-vi-search--after::after {
-  content: "";
+  content: "";
 }
 
 .vl-vi-server::before {
-  content: "";
+  content: "";
 }
 
 .vl-vi-server--after::after {
-  content: "";
+  content: "";
 }
 
 .vl-vi-settings::before {
-  content: "";
+  content: "";
 }
 
 .vl-vi-settings--after::after {
-  content: "";
+  content: "";
 }
 
 .vl-vi-share-megaphone::before {
-  content: "";
+  content: "";
 }
 
 .vl-vi-share-megaphone--after::after {
-  content: "";
+  content: "";
 }
 
 .vl-vi-share-rss-feed::before {
-  content: "";
+  content: "";
 }
 
 .vl-vi-share-rss-feed--after::after {
-  content: "";
+  content: "";
 }
 
 .vl-vi-share::before {
-  content: "";
+  content: "";
 }
 
 .vl-vi-share--after::after {
-  content: "";
+  content: "";
 }
 
 .vl-vi-shipping-truck::before {
-  content: "";
+  content: "";
 }
 
 .vl-vi-shipping-truck--after::after {
-  content: "";
+  content: "";
 }
 
 .vl-vi-shopping-basket-add::before {
-  content: "";
+  content: "";
 }
 
 .vl-vi-shopping-basket-add--after::after {
-  content: "";
+  content: "";
 }
 
 .vl-vi-shopping-basket-subtract::before {
-  content: "";
+  content: "";
 }
 
 .vl-vi-shopping-basket-subtract--after::after {
-  content: "";
+  content: "";
 }
 
 .vl-vi-shopping-basket::before {
-  content: "";
+  content: "";
 }
 
 .vl-vi-shopping-basket--after::after {
-  content: "";
+  content: "";
+}
+
+.vl-vi-shopping::before {
+  content: "";
+}
+
+.vl-vi-shopping--after::after {
+  content: "";
 }
 
 .vl-vi-shrink::before {
-  content: "";
+  content: "";
 }
 
 .vl-vi-shrink--after::after {
-  content: "";
+  content: "";
 }
 
 .vl-vi-sign-disable::before {
-  content: "";
+  content: "";
 }
 
 .vl-vi-sign-disable--after::after {
-  content: "";
+  content: "";
 }
 
 .vl-vi-sign-recycle::before {
-  content: "";
+  content: "";
 }
 
 .vl-vi-sign-recycle--after::after {
-  content: "";
+  content: "";
 }
 
 .vl-vi-sitemap::before {
-  content: "";
+  content: "";
 }
 
 .vl-vi-sitemap--after::after {
-  content: "";
+  content: "";
 }
 
 .vl-vi-skype::before {
-  content: "";
+  content: "";
 }
 
 .vl-vi-skype--after::after {
-  content: "";
+  content: "";
 }
 
 .vl-vi-smiley-poker-face::before {
-  content: "";
+  content: "";
 }
 
 .vl-vi-smiley-poker-face--after::after {
-  content: "";
+  content: "";
 }
 
 .vl-vi-smiley-smile::before {
-  content: "";
+  content: "";
 }
 
 .vl-vi-smiley-smile--after::after {
-  content: "";
+  content: "";
 }
 
 .vl-vi-snapchat::before {
-  content: "";
+  content: "";
 }
 
 .vl-vi-snapchat--after::after {
-  content: "";
+  content: "";
 }
 
 .vl-vi-sort::before {
-  content: "";
+  content: "";
 }
 
 .vl-vi-sort--after::after {
-  content: "";
+  content: "";
 }
 
 .vl-vi-speaker-volume-decrease::before {
-  content: "";
+  content: "";
 }
 
 .vl-vi-speaker-volume-decrease--after::after {
-  content: "";
+  content: "";
 }
 
 .vl-vi-speaker-volume-high::before {
-  content: "";
+  content: "";
 }
 
 .vl-vi-speaker-volume-high--after::after {
-  content: "";
+  content: "";
 }
 
 .vl-vi-speaker-volume-increase::before {
-  content: "";
+  content: "";
 }
 
 .vl-vi-speaker-volume-increase--after::after {
-  content: "";
+  content: "";
 }
 
 .vl-vi-speaker-volume-low::before {
-  content: "";
+  content: "";
 }
 
 .vl-vi-speaker-volume-low--after::after {
-  content: "";
+  content: "";
 }
 
 .vl-vi-speaker-volume-medium::before {
-  content: "";
+  content: "";
 }
 
 .vl-vi-speaker-volume-medium--after::after {
-  content: "";
+  content: "";
 }
 
 .vl-vi-speaker-volume-off::before {
-  content: "";
+  content: "";
 }
 
 .vl-vi-speaker-volume-off--after::after {
-  content: "";
+  content: "";
 }
 
 .vl-vi-sports-competition::before {
-  content: "";
+  content: "";
 }
 
 .vl-vi-sports-competition--after::after {
-  content: "";
+  content: "";
 }
 
 .vl-vi-spotify::before {
-  content: "";
+  content: "";
 }
 
 .vl-vi-spotify--after::after {
-  content: "";
+  content: "";
 }
 
 .vl-vi-stop::before {
-  content: "";
+  content: "";
 }
 
 .vl-vi-stop--after::after {
-  content: "";
+  content: "";
 }
 
 .vl-vi-subtract::before {
-  content: "";
+  content: "";
 }
 
 .vl-vi-subtract--after::after {
-  content: "";
+  content: "";
 }
 
 .vl-vi-subway::before {
-  content: "";
+  content: "";
 }
 
 .vl-vi-subway--after::after {
-  content: "";
+  content: "";
 }
 
 .vl-vi-suitcase::before {
-  content: "";
+  content: "";
 }
 
 .vl-vi-suitcase--after::after {
-  content: "";
+  content: "";
 }
 
 .vl-vi-switches::before {
-  content: "";
+  content: "";
 }
 
 .vl-vi-switches--after::after {
-  content: "";
+  content: "";
 }
 
 .vl-vi-symbol-wifi::before {
-  content: "";
+  content: "";
 }
 
 .vl-vi-symbol-wifi--after::after {
-  content: "";
+  content: "";
 }
 
 .vl-vi-synchronize-timeout::before {
-  content: "";
+  content: "";
 }
 
 .vl-vi-synchronize-timeout--after::after {
-  content: "";
+  content: "";
 }
 
 .vl-vi-synchronize::before {
-  content: "";
+  content: "";
 }
 
 .vl-vi-synchronize--after::after {
-  content: "";
+  content: "";
 }
 
 .vl-vi-tag-add::before {
-  content: "";
+  content: "";
 }
 
 .vl-vi-tag-add--after::after {
-  content: "";
+  content: "";
 }
 
 .vl-vi-tag-check::before {
-  content: "";
+  content: "";
 }
 
 .vl-vi-tag-check--after::after {
-  content: "";
+  content: "";
 }
 
 .vl-vi-tag-close::before {
-  content: "";
+  content: "";
 }
 
 .vl-vi-tag-close--after::after {
-  content: "";
+  content: "";
 }
 
 .vl-vi-tag-double::before {
-  content: "";
+  content: "";
 }
 
 .vl-vi-tag-double--after::after {
-  content: "";
+  content: "";
 }
 
 .vl-vi-tag-edit::before {
-  content: "";
+  content: "";
 }
 
 .vl-vi-tag-edit--after::after {
-  content: "";
+  content: "";
 }
 
 .vl-vi-tag-subtract::before {
-  content: "";
+  content: "";
 }
 
 .vl-vi-tag-subtract--after::after {
-  content: "";
+  content: "";
 }
 
 .vl-vi-tag-view::before {
-  content: "";
+  content: "";
 }
 
 .vl-vi-tag-view--after::after {
-  content: "";
+  content: "";
 }
 
 .vl-vi-tag::before {
-  content: "";
+  content: "";
 }
 
 .vl-vi-tag--after::after {
-  content: "";
+  content: "";
 }
 
 .vl-vi-taxi::before {
-  content: "";
+  content: "";
 }
 
 .vl-vi-taxi--after::after {
-  content: "";
+  content: "";
 }
 
 .vl-vi-television::before {
-  content: "";
+  content: "";
 }
 
 .vl-vi-television--after::after {
-  content: "";
+  content: "";
 }
 
 .vl-vi-terrace::before {
-  content: "";
+  content: "";
 }
 
 .vl-vi-terrace--after::after {
-  content: "";
+  content: "";
 }
 
 .vl-vi-text-cursor::before {
-  content: "";
+  content: "";
 }
 
 .vl-vi-text-cursor--after::after {
-  content: "";
+  content: "";
 }
 
 .vl-vi-text-eraser::before {
-  content: "";
+  content: "";
 }
 
 .vl-vi-text-eraser--after::after {
-  content: "";
+  content: "";
 }
 
 .vl-vi-text-redo::before {
-  content: "";
+  content: "";
 }
 
 .vl-vi-text-redo--after::after {
-  content: "";
+  content: "";
 }
 
 .vl-vi-text-undo::before {
-  content: "";
+  content: "";
 }
 
 .vl-vi-text-undo--after::after {
-  content: "";
+  content: "";
 }
 
 .vl-vi-timeline::before {
-  content: "";
+  content: "";
 }
 
 .vl-vi-timeline--after::after {
-  content: "";
+  content: "";
 }
 
 .vl-vi-tint::before {
-  content: "";
+  content: "";
 }
 
 .vl-vi-tint--after::after {
-  content: "";
+  content: "";
 }
 
 .vl-vi-train::before {
-  content: "";
+  content: "";
 }
 
 .vl-vi-train--after::after {
-  content: "";
+  content: "";
 }
 
 .vl-vi-trash::before {
-  content: "";
+  content: "";
 }
 
 .vl-vi-trash--after::after {
-  content: "";
+  content: "";
 }
 
 .vl-vi-trophy::before {
-  content: "";
+  content: "";
 }
 
 .vl-vi-trophy--after::after {
-  content: "";
+  content: "";
 }
 
 .vl-vi-twitter::before {
-  content: "";
+  content: "";
 }
 
 .vl-vi-twitter--after::after {
-  content: "";
+  content: "";
 }
 
 .vl-vi-underline::before {
-  content: "";
+  content: "";
 }
 
 .vl-vi-underline--after::after {
-  content: "";
+  content: "";
 }
 
 .vl-vi-university::before {
-  content: "";
+  content: "";
 }
 
 .vl-vi-university--after::after {
-  content: "";
+  content: "";
 }
 
 .vl-vi-up-down-arrows::before {
-  content: "";
+  content: "";
 }
 
 .vl-vi-up-down-arrows--after::after {
-  content: "";
+  content: "";
 }
 
 .vl-vi-upload-harddisk::before {
-  content: "";
+  content: "";
 }
 
 .vl-vi-upload-harddisk--after::after {
-  content: "";
+  content: "";
+}
+
+.vl-vi-user-alt::before {
+  content: "";
+}
+
+.vl-vi-user-alt--after::after {
+  content: "";
+}
+
+.vl-vi-user-download::before {
+  content: "";
+}
+
+.vl-vi-user-download--after::after {
+  content: "";
+}
+
+.vl-vi-user-email::before {
+  content: "";
+}
+
+.vl-vi-user-email--after::after {
+  content: "";
 }
 
 .vl-vi-user-female::before {
-  content: "";
+  content: "";
 }
 
 .vl-vi-user-female--after::after {
-  content: "";
+  content: "";
 }
 
 .vl-vi-user-group::before {
-  content: "";
+  content: "";
 }
 
 .vl-vi-user-group--after::after {
-  content: "";
+  content: "";
 }
 
 .vl-vi-user-male::before {
-  content: "";
+  content: "";
 }
 
 .vl-vi-user-male--after::after {
-  content: "";
+  content: "";
+}
+
+.vl-vi-user-redirect::before {
+  content: "";
+}
+
+.vl-vi-user-redirect--after::after {
+  content: "";
 }
 
 .vl-vi-user-setting::before {
-  content: "";
+  content: "";
 }
 
 .vl-vi-user-setting--after::after {
-  content: "";
+  content: "";
 }
 
 .vl-vi-user::before {
-  content: "";
+  content: "";
 }
 
 .vl-vi-user--after::after {
-  content: "";
+  content: "";
 }
 
 .vl-vi-video-subtitle::before {
-  content: "";
+  content: "";
 }
 
 .vl-vi-video-subtitle--after::after {
-  content: "";
+  content: "";
 }
 
 .vl-vi-view-add::before {
-  content: "";
+  content: "";
 }
 
 .vl-vi-view-add--after::after {
-  content: "";
+  content: "";
 }
 
 .vl-vi-vlaanderen::before {
-  content: "";
+  content: "";
 }
 
 .vl-vi-vlaanderen--after::after {
-  content: "";
+  content: "";
 }
 
 .vl-vi-vote-flag::before {
-  content: "";
+  content: "";
 }
 
 .vl-vi-vote-flag--after::after {
-  content: "";
+  content: "";
 }
 
 .vl-vi-vote-heart::before {
-  content: "";
+  content: "";
 }
 
 .vl-vi-vote-heart--after::after {
-  content: "";
+  content: "";
 }
 
 .vl-vi-vote-star::before {
-  content: "";
+  content: "";
 }
 
 .vl-vi-vote-star--after::after {
-  content: "";
+  content: "";
 }
 
 .vl-vi-vote-thumbs-down::before {
-  content: "";
+  content: "";
 }
 
 .vl-vi-vote-thumbs-down--after::after {
-  content: "";
+  content: "";
 }
 
 .vl-vi-vote-thumbs-up::before {
-  content: "";
+  content: "";
 }
 
 .vl-vi-vote-thumbs-up--after::after {
-  content: "";
+  content: "";
+}
+
+.vl-vi-voucher-download::before {
+  content: "";
+}
+
+.vl-vi-voucher-download--after::after {
+  content: "";
+}
+
+.vl-vi-voucher-scissors::before {
+  content: "";
+}
+
+.vl-vi-voucher-scissors--after::after {
+  content: "";
+}
+
+.vl-vi-wallet::before {
+  content: "";
+}
+
+.vl-vi-wallet--after::after {
+  content: "";
 }
 
 .vl-vi-warning::before {
-  content: "";
+  content: "";
 }
 
 .vl-vi-warning--after::after {
-  content: "";
+  content: "";
 }
 
 .vl-vi-whatsapp::before {
-  content: "";
+  content: "";
 }
 
 .vl-vi-whatsapp--after::after {
-  content: "";
+  content: "";
 }
 
 .vl-vi-wrench::before {
-  content: "";
+  content: "";
 }
 
 .vl-vi-wrench--after::after {
-  content: "";
+  content: "";
 }
 
 .vl-vi-youtube::before {
-  content: "";
+  content: "";
 }
 
 .vl-vi-youtube--after::after {
-  content: "";
+  content: "";
 }
 
 .vl-vi-zoom-in::before {
-  content: "";
+  content: "";
 }
 
 .vl-vi-zoom-in--after::after {
-  content: "";
+  content: "";
 }
 
 .vl-vi-zoom-out::before {
-  content: "";
+  content: "";
 }
 
 .vl-vi-zoom-out--after::after {
-  content: "";
+  content: "";
 }
 
 a {
   color: #05c;
   text-decoration: underline;
-  text-decoration-skip: ink;
+  text-decoration-skip-ink: auto;
 }
 a:hover, a:focus {
   text-decoration: none;
@@ -3245,8 +3357,17 @@ button:focus {
 }
 
 button {
-  font-family: flanders-sans, sans-serif;
+  font-family: "Flanders Art Sans", sans-serif;
   cursor: pointer;
+}
+
+img.vl-image--error {
+  overflow-wrap: break-word;
+  padding: 10px;
+  line-height: 1.25;
+  font-size: 1.6rem;
+  color: var(--vl-theme-fg-color);
+  background-color: #e8ebee;
 }
 
 .vl-grid {
@@ -4478,7 +4599,7 @@ button {
     margin-left: auto;
   }
 }
-@media screen and (min-width: 1280.1px) {
+@media screen and (min-width: 1280px) {
   .vl-grid--wide {
     margin-left: calc(-4.1666666667% - 3rem);
     margin-right: -4.1666666667%;
@@ -4893,15 +5014,24 @@ button {
     margin-left: auto;
   }
 }
-@media screen and (min-width: 1280.1px) {
+@media screen and (min-width: 1280px) {
   .vl-form-grid--wide {
     margin-left: calc(-4.1666666667% - 3rem);
     margin-right: -4.1666666667%;
   }
 }
 .vl-page {
+  position: relative;
   width: 100%;
   background-color: #fff;
+}
+.vl-page .vl-main-content > .vl-region:last-child {
+  padding-bottom: 10rem;
+}
+@media screen and (max-width: 767px) {
+  .vl-page .vl-main-content > .vl-region:last-child {
+    padding-bottom: 7rem;
+  }
 }
 
 .vl-main-content {
@@ -5974,19 +6104,31 @@ span.flatpickr-day.selected {
   color: #333332;
   padding-top: 12px;
 }
+.flatpickr-current-month .flatpickr-monthDropdown-months {
+  appearance: none;
+  border: none;
+  border-radius: 0;
+  font-size: 1.6rem;
+  font-weight: 500;
+  font-family: "Flanders Art Sans", sans-serif;
+  color: #05c;
+  text-decoration: underline;
+}
 .flatpickr-current-month span.cur-month, .flatpickr-current-month span.cur-year,
 .flatpickr-current-month input.cur-month,
 .flatpickr-current-month input.cur-year {
   font-weight: 500;
 }
-.flatpickr-current-month span.cur-month:hover,
-.flatpickr-current-month input.cur-month:hover {
-  background-color: transparent;
-}
 .flatpickr-current-month span.cur-year,
 .flatpickr-current-month input.cur-year {
   color: #05c;
   text-decoration: underline;
+  appearance: none;
+}
+.flatpickr-current-month input:hover, .flatpickr-current-month input:focus,
+.flatpickr-current-month select:hover,
+.flatpickr-current-month select:focus {
+  text-decoration: none;
 }
 
 .flatpickr-months .flatpickr-prev-month,
@@ -6032,250 +6174,24 @@ span.flatpickr-day.selected {
   right: 1rem;
 }
 
-.flatpickr-mobile {
-  position: absolute;
-  width: 0;
-  height: 0;
-  opacity: 0;
-  pointer-events: none;
+.vl-datepicker.validated .vl-datepicker__input-field {
+  border-right: none;
 }
-
-.vl-button {
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  border-radius: 0;
-  appearance: none;
-  -webkit-appearance: none;
-  border: 0;
-  background-color: transparent;
-  padding: 0;
-  display: inline-flex;
-  align-items: center;
-  height: 3.5rem;
-  font-size: 1.6rem;
-  font-family: flanders-sans, sans-serif;
-  line-height: 3.5rem;
-  padding: 0 4rem;
-  background-color: #05c;
-  text-decoration: none;
-  color: #fff;
-  text-align: center;
-  outline: 0;
-  cursor: default;
+.vl-datepicker.validated.invalid .vl-datepicker__input-field,
+.vl-datepicker.validated.invalid .vl-datepicker__input-addon {
+  background-color: #fbe6e6;
+  border-color: #db3434;
+  box-shadow: inset 0 0 0 0.1rem #db3434;
 }
-@media screen and (max-width: 767px) {
-  .vl-button {
-    font-size: 1.5rem;
-    padding: 0 1.5rem;
-  }
-}
-.vl-button:hover, .vl-button:focus {
-  background-color: #003bb0;
-  text-decoration: none;
-  color: #fff;
-}
-.vl-button:focus {
-  outline: 0.2rem solid #ffc515;
-}
-.vl-button:active {
-  background-color: #004099;
-}
-.vl-button:visited {
-  color: #fff;
-}
-.vl-button--secondary {
-  background-color: transparent;
-  color: #05c;
-  border: 0.2rem solid currentColor;
-  transition: color 0.2s, border-color 0.2s, box-shadow 0.2s;
-  line-height: 3.1rem;
-}
-.vl-button--secondary:visited {
-  color: #05c;
-}
-.vl-button--secondary:hover, .vl-button--secondary:focus, .vl-button--secondary:active {
-  color: #003bb0;
-  background-color: transparent;
-  box-shadow: inset 0px 0px 0px 0.2rem #003bb0;
-}
-.vl-button--tertiary {
-  background-color: transparent;
-  color: #05c;
-  border: 0.1rem #c6cdd3 solid;
-  transition: background-color 0.2s, box-shadow 0.2s;
-  line-height: 3.3rem;
-}
-.vl-button--tertiary:visited {
-  color: #05c;
-}
-.vl-button--tertiary:hover, .vl-button--tertiary:focus, .vl-button--tertiary:active {
-  color: #05c;
-  background-color: transparent;
-  border-color: #8c9ba7;
-  box-shadow: inset 0px 0px 0px 0.2rem #8c9ba7;
-}
-.vl-button--block {
-  display: block;
-  width: 100%;
-  padding: 0;
-}
-.vl-button--disabled {
-  background-color: #cbd2da;
-  border-color: #cbd2da;
-  color: #fff;
-  cursor: not-allowed;
-}
-.vl-button--disabled:hover, .vl-button--disabled:focus, .vl-button--disabled:active {
-  background-color: #cbd2da;
-  border-color: #cbd2da;
-  color: #fff;
-  box-shadow: none;
-}
-.vl-button--disabled.vl-button--secondary {
+.vl-datepicker.validated.invalid .vl-datepicker__input-field:focus,
+.vl-datepicker.validated.invalid .vl-datepicker__input-addon:focus {
   background-color: #fff;
-  color: #cbd2da;
 }
-.vl-button--disabled.vl-button--secondary:visited {
-  color: #cbd2da;
-}
-.vl-button--error.vl-button {
-  background: #db3434;
-}
-.vl-button--error.vl-button--secondary {
-  background-color: #fff;
-  color: #db3434;
-}
-.vl-button--error.vl-button--secondary:visited {
-  color: #db3434;
-}
-.vl-button--error.vl-button--secondary:hover, .vl-button--error.vl-button--secondary:focus, .vl-button--error.vl-button--secondary:active {
-  color: #af2929;
-  background-color: transparent;
-  box-shadow: inset 0px 0px 0px 0.2rem #af2929;
-}
-.vl-button--error:hover, .vl-button--error:focus, .vl-button--error:active {
-  color: #fff;
-  background-color: #af2929;
-}
-.vl-button--large {
-  height: 4.5rem;
-  line-height: 4.5rem;
-  font-size: 1.8rem;
-}
-.vl-button--wide {
-  padding: 0 6rem;
-}
-.vl-button--narrow {
-  padding: 0 1rem;
-}
-.vl-button--loading {
-  background-color: #cbd2da;
-  border-color: #cbd2da;
-  position: relative;
-  cursor: not-allowed;
-  color: #333332;
-  padding: 0 8rem 0 4rem;
-}
-.vl-button--loading:hover, .vl-button--loading:focus, .vl-button--loading:active {
-  background-color: #cbd2da;
-  border-color: #cbd2da;
-  box-shadow: none;
-  color: #333332;
-}
-.vl-button--loading:hover::after, .vl-button--loading:focus::after, .vl-button--loading:active::after {
-  background-color: #cbd2da;
-}
-.vl-button--loading:visited {
-  color: #333332;
-}
-.vl-button--loading::after {
-  animation: waving-light infinite 1s linear;
-  content: "";
-  display: block;
-  position: absolute;
-  top: 50%;
-  right: 4rem;
-  margin-top: -0.2rem;
-  margin-right: 3.2rem;
-  width: 0.4rem;
-  height: 0.4rem;
-  background-color: #cbd2da;
-  border-radius: 50%;
-  box-shadow: 1rem 0 #fff, 2rem 0 #fff, 3rem 0 #fff;
-}
-@keyframes waving-light {
-  0% {
-    box-shadow: 10px 0px #333332, 20px 0px #333332, 30px 0px #333332;
-  }
-  10% {
-    box-shadow: 10px -3px #333332, 20px 0px #333332, 30px 0px #333332;
-  }
-  20% {
-    box-shadow: 10px -6px #333332, 20px -3px #333332, 30px 0px #333332;
-  }
-  30% {
-    box-shadow: 10px -3px #333332, 20px -6px #333332, 30px -3px #333332;
-  }
-  40% {
-    box-shadow: 10px 0px #333332, 20px -3px #333332, 30px -6px #333332;
-  }
-  50% {
-    box-shadow: 10px 0px #333332, 20px 0px #333332, 30px -3px #333332;
-  }
-  60% {
-    box-shadow: 10px 0px #333332, 20px 0px #333332, 30px 0px #333332;
-  }
-  100% {
-    box-shadow: 10px 0px #333332, 20px 0px #333332, 30px 0px #333332;
-  }
-}
-.vl-button--loading.vl-button--secondary::after {
-  animation: waving-dark infinite 1s linear;
-}
-@keyframes waving-dark {
-  0% {
-    box-shadow: 10px 0px #333332, 20px 0px #333332, 30px 0px #333332;
-  }
-  10% {
-    box-shadow: 10px -3px #333332, 20px 0px #333332, 30px 0px #333332;
-  }
-  20% {
-    box-shadow: 10px -6px #333332, 20px -3px #333332, 30px 0px #333332;
-  }
-  30% {
-    box-shadow: 10px -3px #333332, 20px -6px #333332, 30px -3px #333332;
-  }
-  40% {
-    box-shadow: 10px 0px #333332, 20px -3px #333332, 30px -6px #333332;
-  }
-  50% {
-    box-shadow: 10px 0px #333332, 20px 0px #333332, 30px -3px #333332;
-  }
-  60% {
-    box-shadow: 10px 0px #333332, 20px 0px #333332, 30px 0px #333332;
-  }
-  100% {
-    box-shadow: 10px 0px #333332, 20px 0px #333332, 30px 0px #333332;
-  }
-}
-.vl-button__icon {
-  display: flex;
-}
-.vl-button__icon--before {
-  margin-right: 0.8rem;
-}
-.vl-button__icon--after {
-  margin-left: 0.8rem;
-}
-
-.vl-button-group {
-  display: flex;
-  flex-wrap: wrap;
-}
-.vl-button-group .vl-button {
-  margin-right: 1rem;
-  margin-bottom: 1rem;
+.vl-datepicker.validated.valid .vl-datepicker__input-field,
+.vl-datepicker.validated.valid .vl-datepicker__input-addon {
+  background-color: #f7fae5;
+  border-color: #8bae00;
+  box-shadow: inset 0 0 0 1px #8bae00;
 }
 
 .vl-icon-wrapper {
@@ -6309,7 +6225,7 @@ span.flatpickr-day.selected {
 .vl-input-field {
   display: inline-block;
   background: #fff;
-  font-family: flanders-sans, sans-serif;
+  font-family: "Flanders Art Sans", sans-serif;
   font-size: 1.6rem;
   color: #333332;
   max-width: 100%;
@@ -6475,6 +6391,7 @@ span.flatpickr-day.selected {
   font-size: 1.8rem;
   color: #333332;
   z-index: 1;
+  margin: 0;
 }
 .vl-input-addon[type=button] .vl-vi, .vl-input-addon[href] .vl-vi {
   color: #05c;
@@ -6509,7 +6426,7 @@ span.flatpickr-day.selected {
   line-height: 1.4;
   font-weight: 500;
   color: #333332;
-  font-family: flanders-serif, serif;
+  font-family: "Flanders Art Serif", serif;
   padding: 0.2rem 0.7rem;
   z-index: 1;
   position: relative;
@@ -6685,7 +6602,7 @@ span.flatpickr-day.selected {
   text-align: right !important;
 }
 
-@media screen and (min-width: 1023.1px) {
+@media screen and (min-width: 1023px) {
   .vl-u-align-left--l {
     text-align: left !important;
   }
@@ -6737,7 +6654,8 @@ span.flatpickr-day.selected {
     text-align: right !important;
   }
 }
-.vl-u-flex-align-left {
+.vl-u-flex-align-left,
+.vl-u-flex-align-flex-start {
   align-items: flex-start !important;
 }
 
@@ -6745,19 +6663,21 @@ span.flatpickr-day.selected {
   align-items: center !important;
 }
 
-.vl-u-flex-align-right {
+.vl-u-flex-align-right,
+.vl-u-flex-align-flex-end {
   align-items: flex-end !important;
 }
 
-.vl-u-flex-space-between {
-  align-items: space-between !important;
+.vl-u-flex-align-baseline {
+  align-items: baseline !important;
 }
 
-.vl-u-flex-space-around {
-  align-items: space-around !important;
+.vl-u-flex-align-stretch {
+  align-items: stretch !important;
 }
 
-.vl-u-flex-v-top {
+.vl-u-flex-v-top,
+.vl-u-flex-v-flex-start {
   justify-content: flex-start !important;
 }
 
@@ -6765,16 +6685,54 @@ span.flatpickr-day.selected {
   justify-content: center !important;
 }
 
-.vl-u-flex-v-bottom {
+.vl-u-flex-v-bottom,
+.vl-u-flex-v-flex-end {
   justify-content: flex-end !important;
 }
 
-.vl-u-flex-v-stretch {
-  justify-content: stretch !important;
+.vl-u-flex-v-space-between {
+  justify-content: space-between !important;
 }
 
-@media screen and (min-width: 1023.1px) {
+.vl-u-flex-v-space-around {
+  justify-content: space-around !important;
+}
+
+.vl-u-flex-direction-row {
+  flex-direction: row !important;
+}
+
+.vl-u-flex-direction-column {
+  flex-direction: column !important;
+}
+
+.vl-u-flex-direction-row-reverse {
+  flex-direction: row-reverse !important;
+}
+
+.vl-u-flex-direction-column-reverse {
+  flex-direction: column-reverse !important;
+}
+
+.vl-u-flex-wrap-wrap {
+  flex-wrap: wrap !important;
+}
+
+.vl-u-flex-wrap-nowrap {
+  flex-wrap: nowrap !important;
+}
+
+.vl-u-flex-wrap-reverse {
+  flex-wrap: wrap-reverse !important;
+}
+
+@media screen and (min-width: 1023px) {
   .vl-u-flex-align-left--l {
+    align-items: flex-start !important;
+  }
+
+  .vl-u-flex-align-left--l,
+.vl-u-flex-align-flex-start--l {
     align-items: flex-start !important;
   }
 
@@ -6782,19 +6740,21 @@ span.flatpickr-day.selected {
     align-items: center !important;
   }
 
-  .vl-u-flex-align-right--l {
+  .vl-u-flex-align-right--l,
+.vl-u-flex-align-flex-end--l {
     align-items: flex-end !important;
   }
 
-  .vl-u-flex-space-between--l {
-    align-items: space-between !important;
+  .vl-u-flex-align-baseline--l {
+    align-items: baseline !important;
   }
 
-  .vl-u-flex-space-around--l {
-    align-items: space-around !important;
+  .vl-u-flex-align-stretch--l {
+    align-items: stretch !important;
   }
 
-  .vl-u-flex-v-top--l {
+  .vl-u-flex-v-top--l,
+.vl-u-flex-v-flex-start--l {
     justify-content: flex-start !important;
   }
 
@@ -6802,12 +6762,45 @@ span.flatpickr-day.selected {
     justify-content: center !important;
   }
 
-  .vl-u-flex-v-bottom--l {
+  .vl-u-flex-v-bottom--l,
+.vl-u-flex-v-flex-end--l {
     justify-content: flex-end !important;
   }
 
-  .vl-u-flex-v-stretch--l {
-    justify-content: stretch !important;
+  .vl-u-flex-v-space-between--l {
+    justify-content: space-between !important;
+  }
+
+  .vl-u-flex-v-space-around--l {
+    justify-content: space-around !important;
+  }
+
+  .vl-u-flex-direction-row--l {
+    flex-direction: row !important;
+  }
+
+  .vl-u-flex-direction-column--l {
+    flex-direction: column !important;
+  }
+
+  .vl-u-flex-direction-row-reverse--l {
+    flex-direction: row-reverse !important;
+  }
+
+  .vl-u-flex-direction-column-reverse--l {
+    flex-direction: column-reverse !important;
+  }
+
+  .vl-u-flex-wrap-wrap--l {
+    flex-wrap: wrap !important;
+  }
+
+  .vl-u-flex-wrap-nowrap--l {
+    flex-wrap: nowrap !important;
+  }
+
+  .vl-u-flex-wrap-reverse--l {
+    flex-wrap: wrap-reverse !important;
   }
 }
 @media screen and (max-width: 1023px) {
@@ -6815,23 +6808,30 @@ span.flatpickr-day.selected {
     align-items: flex-start !important;
   }
 
+  .vl-u-flex-align-left--m,
+.vl-u-flex-align-flex-start--m {
+    align-items: flex-start !important;
+  }
+
   .vl-u-flex-align-center--m {
     align-items: center !important;
   }
 
-  .vl-u-flex-align-right--m {
+  .vl-u-flex-align-right--m,
+.vl-u-flex-align-flex-end--m {
     align-items: flex-end !important;
   }
 
-  .vl-u-flex-space-between--m {
-    align-items: space-between !important;
+  .vl-u-flex-align-baseline--m {
+    align-items: baseline !important;
   }
 
-  .vl-u-flex-space-around--m {
-    align-items: space-around !important;
+  .vl-u-flex-align-stretch--m {
+    align-items: stretch !important;
   }
 
-  .vl-u-flex-v-top--m {
+  .vl-u-flex-v-top--m,
+.vl-u-flex-v-flex-start--m {
     justify-content: flex-start !important;
   }
 
@@ -6839,12 +6839,45 @@ span.flatpickr-day.selected {
     justify-content: center !important;
   }
 
-  .vl-u-flex-v-bottom--m {
+  .vl-u-flex-v-bottom--m,
+.vl-u-flex-v-flex-end--m {
     justify-content: flex-end !important;
   }
 
-  .vl-u-flex-v-stretch--m {
-    justify-content: stretch !important;
+  .vl-u-flex-v-space-between--m {
+    justify-content: space-between !important;
+  }
+
+  .vl-u-flex-v-space-around--m {
+    justify-content: space-around !important;
+  }
+
+  .vl-u-flex-direction-row--m {
+    flex-direction: row !important;
+  }
+
+  .vl-u-flex-direction-column--m {
+    flex-direction: column !important;
+  }
+
+  .vl-u-flex-direction-row-reverse--m {
+    flex-direction: row-reverse !important;
+  }
+
+  .vl-u-flex-direction-column-reverse--m {
+    flex-direction: column-reverse !important;
+  }
+
+  .vl-u-flex-wrap-wrap--m {
+    flex-wrap: wrap !important;
+  }
+
+  .vl-u-flex-wrap-nowrap--m {
+    flex-wrap: nowrap !important;
+  }
+
+  .vl-u-flex-wrap-reverse--m {
+    flex-wrap: wrap-reverse !important;
   }
 }
 @media screen and (max-width: 767px) {
@@ -6852,23 +6885,30 @@ span.flatpickr-day.selected {
     align-items: flex-start !important;
   }
 
+  .vl-u-flex-align-left--s,
+.vl-u-flex-align-flex-start--s {
+    align-items: flex-start !important;
+  }
+
   .vl-u-flex-align-center--s {
     align-items: center !important;
   }
 
-  .vl-u-flex-align-right--s {
+  .vl-u-flex-align-right--s,
+.vl-u-flex-align-flex-end--s {
     align-items: flex-end !important;
   }
 
-  .vl-u-flex-space-between--s {
-    align-items: space-between !important;
+  .vl-u-flex-align-baseline--s {
+    align-items: baseline !important;
   }
 
-  .vl-u-flex-space-around--s {
-    align-items: space-around !important;
+  .vl-u-flex-align-stretch--s {
+    align-items: stretch !important;
   }
 
-  .vl-u-flex-v-top--s {
+  .vl-u-flex-v-top--s,
+.vl-u-flex-v-flex-start--s {
     justify-content: flex-start !important;
   }
 
@@ -6876,12 +6916,45 @@ span.flatpickr-day.selected {
     justify-content: center !important;
   }
 
-  .vl-u-flex-v-bottom--s {
+  .vl-u-flex-v-bottom--s,
+.vl-u-flex-v-flex-end--s {
     justify-content: flex-end !important;
   }
 
-  .vl-u-flex-v-stretch--s {
-    justify-content: stretch !important;
+  .vl-u-flex-v-space-between--s {
+    justify-content: space-between !important;
+  }
+
+  .vl-u-flex-v-space-around--s {
+    justify-content: space-around !important;
+  }
+
+  .vl-u-flex-direction-row--s {
+    flex-direction: row !important;
+  }
+
+  .vl-u-flex-direction-column--s {
+    flex-direction: column !important;
+  }
+
+  .vl-u-flex-direction-row-reverse--s {
+    flex-direction: row-reverse !important;
+  }
+
+  .vl-u-flex-direction-column-reverse--s {
+    flex-direction: column-reverse !important;
+  }
+
+  .vl-u-flex-wrap-wrap--s {
+    flex-wrap: wrap !important;
+  }
+
+  .vl-u-flex-wrap-nowrap--s {
+    flex-wrap: nowrap !important;
+  }
+
+  .vl-u-flex-wrap-reverse--s {
+    flex-wrap: wrap-reverse !important;
   }
 }
 @media screen and (max-width: 500px) {
@@ -6889,23 +6962,30 @@ span.flatpickr-day.selected {
     align-items: flex-start !important;
   }
 
+  .vl-u-flex-align-left--xs,
+.vl-u-flex-align-flex-start--xs {
+    align-items: flex-start !important;
+  }
+
   .vl-u-flex-align-center--xs {
     align-items: center !important;
   }
 
-  .vl-u-flex-align-right--xs {
+  .vl-u-flex-align-right--xs,
+.vl-u-flex-align-flex-end--xs {
     align-items: flex-end !important;
   }
 
-  .vl-u-flex-space-between--xs {
-    align-items: space-between !important;
+  .vl-u-flex-align-baseline--xs {
+    align-items: baseline !important;
   }
 
-  .vl-u-flex-space-around--xs {
-    align-items: space-around !important;
+  .vl-u-flex-align-stretch--xs {
+    align-items: stretch !important;
   }
 
-  .vl-u-flex-v-top--xs {
+  .vl-u-flex-v-top--xs,
+.vl-u-flex-v-flex-start--xs {
     justify-content: flex-start !important;
   }
 
@@ -6913,12 +6993,45 @@ span.flatpickr-day.selected {
     justify-content: center !important;
   }
 
-  .vl-u-flex-v-bottom--xs {
+  .vl-u-flex-v-bottom--xs,
+.vl-u-flex-v-flex-end--xs {
     justify-content: flex-end !important;
   }
 
-  .vl-u-flex-v-stretch--xs {
-    justify-content: stretch !important;
+  .vl-u-flex-v-space-between--xs {
+    justify-content: space-between !important;
+  }
+
+  .vl-u-flex-v-space-around--xs {
+    justify-content: space-around !important;
+  }
+
+  .vl-u-flex-direction-row--xs {
+    flex-direction: row !important;
+  }
+
+  .vl-u-flex-direction-column--xs {
+    flex-direction: column !important;
+  }
+
+  .vl-u-flex-direction-row-reverse--xs {
+    flex-direction: row-reverse !important;
+  }
+
+  .vl-u-flex-direction-column-reverse--xs {
+    flex-direction: column-reverse !important;
+  }
+
+  .vl-u-flex-wrap-wrap--xs {
+    flex-wrap: wrap !important;
+  }
+
+  .vl-u-flex-wrap-nowrap--xs {
+    flex-wrap: nowrap !important;
+  }
+
+  .vl-u-flex-wrap-reverse--xs {
+    flex-wrap: wrap-reverse !important;
   }
 }
 .vl-u-bg-alt {
@@ -7027,7 +7140,7 @@ a.vl-vi {
 }
 .vl-vi.vl-vi-u-badge--warning {
   background-color: #ffc515;
-  color: #333332;
+  color: #fff;
 }
 .vl-vi.vl-vi-u-badge--neutral {
   background-color: #e8ebee;
@@ -7378,8 +7491,18 @@ main footer {
   flex-direction: column;
   min-height: 100vh;
 }
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+  .vl-u-sticky-gf {
+    display: block;
+  }
+}
 .vl-u-sticky-gf .vl-page {
   flex: 1;
+}
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+  .vl-u-sticky-gf .vl-page {
+    overflow: hidden;
+  }
 }
 
 .vl-u-text--ellipse {
@@ -7439,7 +7562,7 @@ mark,
   color: #333332;
 }
 
-@media screen and (min-width: 1023.1px) {
+@media screen and (min-width: 1023px) {
   .vl-u-visible--l {
     display: block !important;
   }
@@ -7463,7 +7586,7 @@ mark,
 .vl-u-hidden {
   display: none;
 }
-@media screen and (min-width: 1023.1px) {
+@media screen and (min-width: 1023px) {
   .vl-u-hidden--l {
     display: none !important;
   }

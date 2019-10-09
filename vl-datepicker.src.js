@@ -1,32 +1,10 @@
 import { VlElement } from '/node_modules/vl-ui-core/vl-core.js';
+import '/node_modules/vl-ui-button/vl-button.js';
 
 import "/node_modules/flatpickr/dist/flatpickr.min.js";
 import "/node_modules/flatpickr/dist/l10n/nl.js";
 import "/node_modules/flatpickr/dist/l10n/fr.js";
 import "/node_modules/flatpickr/dist/l10n/de.js";
-
-(() => {
-    const id = 'flatpickr-style';
-    addStyle();
-    //nodig zolang de datepicker niet binnen de shadowDOM kan worden gehouden
-
-
-    function addStyle() {
-        if (!document.head.querySelector('#' + id)) {
-            var style = getStyle();
-            document.head.appendChild(style);
-        }
-    }
-
-    function getStyle() {
-        var link = document.createElement('link');
-        link.setAttribute('id', id);
-        link.setAttribute('rel', 'stylesheet');
-        link.setAttribute('type', 'text/css');
-        link.setAttribute('href', '../style.css');
-        return link;
-    }
-})();
 
 /**
  * vl-datepicker
@@ -53,21 +31,15 @@ import "/node_modules/flatpickr/dist/l10n/de.js";
  * @see {@link https://webcomponenten.omgeving.vlaanderen.be/demo/vl-datepicker.html|Demo}
  */
 export class VlDatepicker extends VlElement(HTMLElement) {
-
     constructor() {
         super(`
             <style>
                 @import "../style.css";
+                @import "/node_modules/vl-ui-button/style.css";
             </style>
             <div id="wrapper" class="vl-input-group">
-                <input data-input
-                        id="input"
-                    class="vl-input-field vl-input-field--block"
-                    type="text"/>
-                <button data-toggle
-                        type="button"
-                        name="button"
-                        class="vl-input-addon">
+                <input data-input id="input" class="vl-input-field vl-input-field--block" type="text"/>
+                <button is="vl-button" data-toggle class="vl-input-addon">
                     <i class="vl-vi vl-vi-calendar" aria-hidden="true"></i>
                 </button>
             </div>
@@ -85,8 +57,6 @@ export class VlDatepicker extends VlElement(HTMLElement) {
         //WARNING: causes positioning issue: https://github.com/flatpickr/flatpickr/issues/1024
         //WARNING: may cause issues wrt z-index and stacking context
         //this._options.appendTo = this._shadow.querySelector('#wrapper');
-
-
 
         /**
          * Options specific to the type of picker
@@ -120,13 +90,17 @@ export class VlDatepicker extends VlElement(HTMLElement) {
                 break;
         }
 
+        this._addStyleLink();
     }
 
     connectedCallback() {
-
         this.__createFlatpickr();
     }
 
+    attributeChangedCallback(attr, oldValue, newValue) {
+        super.attributeChangedCallback(attr, oldValue, newValue);
+        this.__createFlatpickr();
+    }
 
     static get _observedAttributes() {
         return [
@@ -145,73 +119,61 @@ export class VlDatepicker extends VlElement(HTMLElement) {
         ];
     }
 
-    attributeChangedCallback(attr, oldValue, newValue) {
-        super.attributeChangedCallback(attr, oldValue, newValue);
-        this.__createFlatpickr();
+    get _stylePath() {
+        return '../style.css';
     }
 
     _typeChangedCallback(oldValue, newValue) {
-        console.error('The "type" attribute cannot be changed.');
+        if (oldValue) {
+            console.error('The "type" attribute cannot be changed.');
+        }
     }
 
-
     _localeChangedCallback(oldValue, newValue) {
-
         this._options.locale = (newValue) ? newValue : 'nl';
     }
 
     _formatChangedCallback(oldValue, newValue) {
-
         this._options.dateFormat = (newValue) ? newValue : 'd-m-Y';
     }
 
     _human_formatChangedCallback(oldValue, newValue) {
-
         this._options.altInput = !!(newValue);
         this._options.altFormat = newValue;
     }
 
     _default_dateChangedCallback(oldValue, newValue) {
-
         this._options.defaultDate = newValue;
     }
 
     _min_dateChangedCallback(oldValue, newValue) {
-
         this._options.minDate = newValue;
     }
 
     _max_dateChangedCallback(oldValue, newValue) {
-
         this._options.maxDate = newValue;
     }
 
     _min_timeChangedCallback(oldValue, newValue) {
-
         this._options.minTime = newValue;
     }
 
     _max_timeChangedCallback(oldValue, newValue) {
-
         this._options.maxTime = newValue;
     }
 
     _am_pmChangedCallback(oldValue, newValue) {
-
         this._options.time_24hr = (!this.hasAttribute('am-pm'));
     }
 
     _disabled_datesChangedCallback(oldValue, newValue) {
-
         this.__disableDates();
     }
     _disable_weekendsChangedCallback(oldValue, newValue) {
-
         this.__disableDates();
     }
 
-    __disableDates(){
-
+    __disableDates() {
         const disabledDates = this.getAttribute('disabled-dates');
         this._options.disable = (disabledDates) ? JSON.parse(disabledDates) : [];
 
