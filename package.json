@@ -17,7 +17,7 @@
     "demo": "http-server"
   },
   "dependencies": {
-    "flatpickr": "4.6.2",
+    "flatpickr": "4.6.3",
     "vl-ui-core": "^2.0.0",
     "vl-ui-button": "^1.1.12"
   },
