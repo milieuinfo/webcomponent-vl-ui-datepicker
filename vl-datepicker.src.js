@@ -28,9 +28,9 @@ Promise.all([
  * @property {string} max-time - Attribuut voor een maximum tijd conform het ingestelde format (bv. '17:00').
  * @property {boolean} am-pm - Attribuut om de 12-uurs AM/PM timepicker te activeren.
  * 
- * @see {@link https://www.github.com/milieuinfo/webcomponent-vl-ui-button/releases/latest|Release notes}
- * @see {@link https://www.github.com/milieuinfo/webcomponent-vl-ui-button/issues|Issues}
- * @see {@link https://webcomponenten.omgeving.vlaanderen.be/demo/vl-button.html|Demo}
+ * @see {@link https://www.github.com/milieuinfo/webcomponent-vl-ui-datepicker/releases/latest|Release notes}
+ * @see {@link https://www.github.com/milieuinfo/webcomponent-vl-ui-datepicker/issues|Issues}
+ * @see {@link https://webcomponenten.omgeving.vlaanderen.be/demo/vl-datepicker.html|Demo}
  */
 export class VlDatepicker extends VlElement(HTMLElement) {
     constructor() {
