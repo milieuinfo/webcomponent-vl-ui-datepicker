@@ -1,6 +1,6 @@
 {
   "name": "vl-ui-datepicker",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "De \"datepicker\" UI component van Webuniversum Vlaanderen als Web Component",
   "main": "vl-datepicker.js",
   "scripts": {
