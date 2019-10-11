@@ -4,15 +4,10 @@ import '/node_modules/vl-ui-input-group/vl-input-group.js';
 import '/node_modules/vl-ui-input-field/vl-input-field.js';
 import '/node_modules/vl-ui-icon/vl-icon.js';
 
-import "/node_modules/flatpickr/dist/flatpickr.js";
-import "/node_modules/flatpickr/dist/l10n/nl.js";
-import "/node_modules/flatpickr/dist/l10n/fr.js";
-import "/node_modules/flatpickr/dist/l10n/de.js";
-
 Promise.all([
     awaitScript('util', '/node_modules/@govflanders/vl-ui-util/dist/js/util.min.js'),
     awaitScript('core', '/node_modules/@govflanders/vl-ui-core/dist/js/core.min.js'),
-    awaitScript('datepicker', '/node_modules/@govflanders/vl-ui-datepicker/dist/js/datepicker.min.js'),
+    awaitScript('datepicker', '../dist/datepicker.js'),
     awaitUntil(() => window.vl && window.vl.datepicker)
 ]).then(() => define('vl-datepicker', VlDatepicker));
 
@@ -82,7 +77,7 @@ export class VlDatepicker extends VlElement(HTMLElement) {
     }
 
     /**
-     * Initialiseer de modal config.
+     * Initialiseer de datepicker config.
      */
     dress() {
         if (!this._dressed) {
