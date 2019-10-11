@@ -1,103 +1,166 @@
 <!doctype html>
 <html>
 
-<head>
-    <meta charset="utf-8">
-    <script src="../../@webcomponents/webcomponentsjs/webcomponents-lite.js"></script>
-    <script src="../../web-component-tester/browser.js"></script>
+    <head>
+        <meta charset="utf-8">
+        <script src="../../@webcomponents/webcomponentsjs/webcomponents-lite.js"></script>
+        <script src="../../web-component-tester/browser.js"></script>
+        <script src="../node_modules/sinon/pkg/sinon.js"></script>
 
-    <script type="module" src="../vl-datepicker.src.js"></script>
-</head>
+        <script type="module" src="../vl-datepicker.src.js"></script>
+    </head>
 
-<body>
-<test-fixture id="vl-datepicker-fixture">
-    <template>
-        <vl-datepicker></vl-datepicker>
-    </template>
-</test-fixture>
+    <body>
+        <test-fixture id="vl-datepicker-fixture">
+            <template>
+                <vl-datepicker></vl-datepicker>
+            </template>
+        </test-fixture>
 
-<script>
-    suite('<vl-datepicker>', () => {
-        const should = chai.should();
+        <test-fixture id="vl-datepicker-type-range-fixture">
+            <template>
+                <vl-datepicker type="range"></vl-datepicker>
+            </template>
+        </test-fixture>
 
-        const datepicker = fixture('vl-datepicker-fixture');
+        <test-fixture id="vl-datepicker-type-time-fixture">
+            <template>
+                <vl-datepicker type="time"></vl-datepicker>
+            </template>
+        </test-fixture>
 
-        test('bestaat', () => {
-            assert.isTrue(typeof datepicker !== 'undefined');
-        });
+        <test-fixture id="vl-datepicker-type-date-time-fixture">
+            <template>
+                <vl-datepicker type="date-time"></vl-datepicker>
+            </template>
+        </test-fixture>
 
-        test('opent flatpickr picker', () => {
-            datepicker._picker.open();
-            assert.isTrue(datepicker._picker.isOpen);
-        });
+        <test-fixture id="vl-datepicker-format-fixture">
+            <template>
+                <vl-datepicker format="Y-m-d"></vl-datepicker>
+            </template>
+        </test-fixture>
 
-        test('is standaard in het nederlands; kan optioneel in het Engels, Frans en Duits worden gezet', () => {
-            assert.isTrue(datepicker._picker.config.locale === "nl");
-            datepicker.setAttribute('locale','en');
-            assert.isTrue(datepicker._picker.config.locale === "en");
-            datepicker.setAttribute('locale','fr');
-            assert.isTrue(datepicker._picker.config.locale === "fr");
-            datepicker.setAttribute('locale','de');
-            assert.isTrue(datepicker._picker.config.locale === "de");
+        <test-fixture id="vl-datepicker-visual-format-fixture">
+            <template>
+                <vl-datepicker visual-format="l d M Y"></vl-datepicker>
+            </template>
+        </test-fixture>
 
-            datepicker.removeAttribute('locale');
-            assert.isTrue(datepicker._picker.config.locale === "nl");
-        });
+        <test-fixture id="vl-datepicker-selected-date-fixture">
+            <template>
+                <vl-datepicker selected-date="03/12/1988"></vl-datepicker>
+            </template>
+        </test-fixture>
 
-        test('kan een vooringestelde datum hebben', () => {
-            const defaultDateStr = '01-01-2020';
-            const defaultDateObj = new Date(2020,0,1);
-            datepicker.setAttribute('default-date',defaultDateStr);
-            assert.isTrue(datepicker._picker.config.defaultDate === defaultDateStr);
-            assert.isTrue(datepicker._picker.selectedDates[0].getTime() === defaultDateObj.getTime());
+        <test-fixture id="vl-datepicker-min-max-date-fixture">
+            <template>
+                <vl-datepicker type="time" min-date="11/10/2019" max-date="13/10/2019"></vl-datepicker>
+            </template>
+        </test-fixture>
 
-            datepicker.removeAttribute('default-date');
-            assert.isTrue(datepicker._picker.config.defaultDate == null);
-        });
+        <test-fixture id="vl-datepicker-min-max-time-fixture">
+            <template>
+                <vl-datepicker type="time" min-time="09:00" max-time="17:00"></vl-datepicker>
+            </template>
+        </test-fixture>
 
-        test('heeft als default datumformaat d-m-Y (bv. 01-01-2020)', () => {
-            const defaultFormat = 'd-m-Y';
-            assert.isTrue(datepicker._picker.config.dateFormat === defaultFormat);
-        });
+        <test-fixture id="vl-datepicker-am-pm-time-fixture">
+            <template>
+                <vl-datepicker type="time" am-pm></vl-datepicker>
+            </template>
+        </test-fixture>
 
-        test('kan een custom datumformaat hebben', () => {
-            const customFormat = 'd/m/Y';
-            datepicker.setAttribute('format',customFormat);
-            assert.isTrue(datepicker._picker.config.dateFormat === customFormat);
+        <script>
+            suite('<vl-datepicker>', () => {
+                const should = chai.should();
 
-            datepicker.removeAttribute('format');
-            assert.isFalse(datepicker._picker.config.dateFormat === customFormat);
-        });
+                setup((done) => {
+                    debugger;
+                    window.vl = {
+                        datepicker: {
+                            dress: sinon.fake()
+                        }
+                    };
+                    customElements.whenDefined('vl-datepicker').then(done);
+                });
 
-        test('kan de datum in een human-friendly formaat tonen', () => {
-            const humanFormat = 'l j F Y';
-            datepicker.setAttribute('human-format',humanFormat);
-            assert.isTrue(datepicker._picker.config.altInput);
-            assert.isTrue(datepicker._picker.config.altFormat === humanFormat);
+                test('heeft correcte configuratie', () => {
+                    const datepicker = fixture('vl-datepicker-fixture');
+                    const inputGroupElement = datepicker.shadowRoot.querySelector('#wrapper');
+                    const inputElement = datepicker.shadowRoot.querySelector('#input');
+                    const buttonElement = datepicker.shadowRoot.querySelector('#button');
+                    assert.isTrue(inputGroupElement.hasAttribute('data-vl-datepicker'));
+                    assert.isTrue(inputElement.classList.contains('js-vl-datepicker-input'));
+                    assert.isTrue(buttonElement.classList.contains('js-vl-datepicker-toggle'));
+                });
 
-            datepicker.removeAttribute('human-format');
-            assert.isFalse(datepicker._picker.config.altInput);
-        });
+                test('de dress methode called vl.modal.dress met de dialog', () => {
+                    const datepicker = fixture('vl-datepicker-fixture');
+                    const inputGroupElement = datepicker.shadowRoot.querySelector('#wrapper');
+                    assert(window.vl.datepicker.dress.calledWith(inputGroupElement));
+                });
 
-        test('kan een minimum en maximum datum hebben', () => {
-            const today = new Date();
-            today.setHours(0,0,0,0);
+                test('heeft ondersteuning voor type datepicker range', () => {
+                    const datepicker = fixture('vl-datepicker-type-range-fixture');
+                    const inputGroupElement = datepicker.shadowRoot.querySelector('vl-input-group');
+                    assert.isTrue(inputGroupElement.hasAttribute('data-vl-datepicker-range'));
+                });
 
-            datepicker.setAttribute('min-date','today');
-            assert.isTrue(datepicker._picker.config.minDate.getTime() === today.getTime());
+                test('heeft ondersteuning voor type datepicker time', () => {
+                    const datepicker = fixture('vl-datepicker-type-time-fixture');
+                    const inputGroupElement = datepicker.shadowRoot.querySelector('vl-input-group');
+                    assert.equal(inputGroupElement.getAttribute('data-vl-datepicker-enable-time'), 'true');
+                    assert.equal(inputGroupElement.getAttribute('data-vl-datepicker-disable-date'), 'true');
+                });
 
-            datepicker.removeAttribute('min-date');
-            assert.isTrue(typeof datepicker._picker.config.minDate === 'undefined');
+                test('heeft ondersteuning voor type datepicker date-time', () => {
+                    const datepicker = fixture('vl-datepicker-type-date-time-fixture');
+                    const inputGroupElement = datepicker.shadowRoot.querySelector('vl-input-group');
+                    assert.equal(inputGroupElement.getAttribute('data-vl-datepicker-enable-time'), 'true');
+                    assert.isNull(inputGroupElement.getAttribute('data-vl-datepicker-disable-date'));
+                });
 
-            datepicker.setAttribute('max-date','today');
-            assert.isTrue(datepicker._picker.config.maxDate.getTime() === today.getTime());
+                test('kan een ander formaat hebben', () => {
+                    const datepicker = fixture('vl-datepicker-format-fixture');
+                    const inputGroupElement = datepicker.shadowRoot.querySelector('vl-input-group');
+                    assert.equal(inputGroupElement.getAttribute('data-vl-datepicker-format'), 'Y-m-d');
+                });
 
-            datepicker.removeAttribute('max-date');
-            assert.isTrue(typeof datepicker._picker.config.maxDate === 'undefined');
-        });
+                test('kan een ander visueel formaat hebben', () => {
+                    const datepicker = fixture('vl-datepicker-visual-format-fixture');
+                    const inputGroupElement = datepicker.shadowRoot.querySelector('vl-input-group');
+                    assert.equal(inputGroupElement.getAttribute('data-vl-datepicker-visual-format'), 'l d M Y');
+                });
 
-    });
-</script>
-</body>
+                test('kan standaard al een datum geselecteerd hebben', () => {
+                    const datepicker = fixture('vl-datepicker-selected-date-fixture');
+                    const inputGroupElement = datepicker.shadowRoot.querySelector('vl-input-group');
+                    assert.equal(inputGroupElement.getAttribute('data-vl-datepicker-selected-date'), '03/12/1988');
+                });
 
+                test('kan een minimum en maximum datum bepalen', () => {
+                    const datepicker = fixture('vl-datepicker-min-max-date-fixture');
+                    const inputGroupElement = datepicker.shadowRoot.querySelector('vl-input-group');
+                    assert.equal(inputGroupElement.getAttribute('data-vl-datepicker-min-date'), '11/10/2019');
+                    assert.equal(inputGroupElement.getAttribute('data-vl-datepicker-max-date'), '13/10/2019');
+                });
+
+                test('kan een minimum en maximum tijd bepalen', () => {
+                    const datepicker = fixture('vl-datepicker-min-max-time-fixture');
+                    const inputGroupElement = datepicker.shadowRoot.querySelector('vl-input-group');
+                    assert.equal(inputGroupElement.getAttribute('data-vl-datepicker-min-time'), '09:00');
+                    assert.equal(inputGroupElement.getAttribute('data-vl-datepicker-max-time'), '17:00');
+                });
+
+                test('kan de tijd AM/PM activeren', () => {
+                    const datepicker = fixture('vl-datepicker-am-pm-time-fixture');
+                    const inputGroupElement = datepicker.shadowRoot.querySelector('vl-input-group');
+                    assert.equal(inputGroupElement.getAttribute('data-vl-datepicker-enable-time'), 'true');
+                    assert.equal(inputGroupElement.getAttribute('data-vl-datepicker-disable-date'), 'true');
+                    assert.equal(inputGroupElement.getAttribute('data-vl-datepicker-24hr-time'), 'false');
+                });
+            });
+        </script>
+    </body>
 </html>

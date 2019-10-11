@@ -1,10 +1,20 @@
-import { VlElement } from '/node_modules/vl-ui-core/vl-core.js';
+import { VlElement, awaitScript, awaitUntil, define } from '/node_modules/vl-ui-core/vl-core.js';
 import '/node_modules/vl-ui-button/vl-button.js';
+import '/node_modules/vl-ui-input-group/vl-input-group.js';
+import '/node_modules/vl-ui-input-field/vl-input-field.js';
+import '/node_modules/vl-ui-icon/vl-icon.js';
 
-import "/node_modules/flatpickr/dist/flatpickr.min.js";
+import "/node_modules/flatpickr/dist/flatpickr.js";
 import "/node_modules/flatpickr/dist/l10n/nl.js";
 import "/node_modules/flatpickr/dist/l10n/fr.js";
 import "/node_modules/flatpickr/dist/l10n/de.js";
+
+Promise.all([
+    awaitScript('util', '/node_modules/@govflanders/vl-ui-util/dist/js/util.min.js'),
+    awaitScript('core', '/node_modules/@govflanders/vl-ui-core/dist/js/core.min.js'),
+    awaitScript('datepicker', '/node_modules/@govflanders/vl-ui-datepicker/dist/js/datepicker.min.js'),
+    awaitUntil(() => window.vl && window.vl.datepicker)
+]).then(() => define('vl-datepicker', VlDatepicker));
 
 /**
  * vl-datepicker
@@ -12,15 +22,12 @@ import "/node_modules/flatpickr/dist/l10n/de.js";
  * ### Custom attributen
  * Attribuut | Type | Toelichting | Default en mogelijke waarden
  * ----------|------|-------------|-----------------------------
- * type | {string} | bepaalt het soort picker | 'date' (default), 'time', 'date-time', 'date-range' en 'multiple-dates'
- * locale | {string} | bepaalt de taal en daaraan gekoppelde aspecten zoals eerste dag van de week | 'nl' (default), 'en', 'fr' en 'de'
- * format |{string} | bepaalt het formaat van de datum/tijd waarde | default 'd-m-Y' (-> 31-12-2019)
- * human-format | {string} | bepaalt hoe de gekozen datum/tijd weergegeven wordt | bv. 'l j F Y \\o\\m H:i \\u\\u\\r' (-> woensdag 17 april 2019 om 12:00 uur)
- * default-date | {string} | een vooringestelde datum | conform het ingestelde format (bv. '03-10-2019') of 'today' voor vandaag
+ * type | {string} | bepaalt het soort picker | 'range', 'time' en 'date-time'
+ * format | {string} | bepaalt het formaat van de datum/tijd waarde | default 'd.m.Y' (-> 31.12.2019)
+ * visual-format | {string} | bepaalt het visueel formaat van de datum/tijd waarde
+ * selected-date | {string} | een vooringestelde datum | conform het ingestelde format (bv. '03-10-2019') of 'today' voor vandaag
  * min-date | {string} | een minimum datum | conform het ingestelde format (bv. '01-01-2019') of 'today' voor vandaag
  * max-date | {string} | een maximum datum | conform het ingestelde format (bv. '31-12-2019') of 'today' voor vandaag
- * disabled-dates | {string} | een set datums en datum-ranges als JSON array | /!\ JSON requires double quotes /!\
- * disable-weekends | {boolean} | optie om weekeinden te disabelen | [geen waarde]
  * min-time | {string} | conform het ingestelde format (bv. 09:00)
  * max-time | {string} | conform het ingestelde format (bv. 17:00)
  * am-pm | {boolean} | optie om de 12-uurs AM/PM timepicker te gebruiken ipv de (standaard) 24-uurs timepicker | [geen waarde]
@@ -36,83 +43,30 @@ export class VlDatepicker extends VlElement(HTMLElement) {
             <style>
                 @import "../style.css";
                 @import "/node_modules/vl-ui-button/style.css";
+                @import "/node_modules/vl-ui-input-field/style.css";
+                @import "/node_modules/vl-ui-icon/style.css";
             </style>
-            <div id="wrapper" class="vl-input-group">
-                <input data-input id="input" class="vl-input-field vl-input-field--block" type="text"/>
-                <button is="vl-button" data-toggle class="vl-input-addon">
-                    <i class="vl-vi vl-vi-calendar" aria-hidden="true"></i>
+            <vl-input-group id="wrapper" data-vl-datepicker>
+                <input id="input" is="vl-input-field" block type="text" class="js-vl-datepicker-input"/>
+                <button id="button" is="vl-button-input-addon" type="button" class="js-vl-datepicker-toggle">
+                    <span is="vl-icon" icon="calendar"></span>
                 </button>
-            </div>
+            </vl-input-group>
         `);
-
-        // defaults in lijn met Webuniversum component
-        this._options = {
-            locale: "nl",
-            dateFormat: "d-m-Y",
-            time_24hr: true,
-            wrap: true
-        };
-
-        //@TODO: set option to append datepicker inside shadowDOM for encapsulation, so that global CSS is not needed
-        //WARNING: causes positioning issue: https://github.com/flatpickr/flatpickr/issues/1024
-        //WARNING: may cause issues wrt z-index and stacking context
-        //this._options.appendTo = this._shadow.querySelector('#wrapper');
-
-        /**
-         * Options specific to the type of picker
-         * supported types: date | time | date-time | multiple-dates | date-range
-         * Time range and multiple times are not supported by flatpickr
-         * multiple dates with times and date-range with times are supported by flatpickr, but not in this component, because unconventional UX
-         */
-        const type = this.getAttribute('type');
-        switch(type) {
-            case 'time':
-                this._options.enableTime = true;
-                this._options.noCalendar = true;
-                let iconClasslist = this._element.querySelector('.vl-vi-calendar').classList;
-                iconClasslist.remove('vl-vi-calendar');
-                iconClasslist.add('vl-vi-clock');
-                break;
-
-            case 'date-time':
-                this._options.enableTime = true;
-                break;
-
-            case 'multiple-dates':
-                this._options.mode = 'multiple';
-                break;
-
-            case 'date-range':
-                this._options.mode = 'range';
-                break;
-
-            default:
-                break;
-        }
-
-        this._addStyleLink();
     }
 
     connectedCallback() {
-        this.__createFlatpickr();
-    }
-
-    attributeChangedCallback(attr, oldValue, newValue) {
-        super.attributeChangedCallback(attr, oldValue, newValue);
-        this.__createFlatpickr();
+        this.dress();
     }
 
     static get _observedAttributes() {
         return [
             'type',
-            'locale',
             'format',
-            'human-format',
-            'default-date',
+            'visual-format',
+            'selected-date',
             'min-date',
             'max-date',
-            'disabled-dates',
-            'disable-weekends',
             'min-time',
             'max-time',
             'am-pm'
@@ -123,70 +77,67 @@ export class VlDatepicker extends VlElement(HTMLElement) {
         return '../style.css';
     }
 
+    get _attributePrefix() {
+        return 'data-vl-datepicker-';
+    }
+
+    /**
+     * Initialiseer de modal config.
+     */
+    dress() {
+        if (!this._dressed) {
+            vl.datepicker.dress(this._element);
+        }
+    }
+
     _typeChangedCallback(oldValue, newValue) {
         if (oldValue) {
             console.error('The "type" attribute cannot be changed.');
+        } else {
+            switch (newValue) {
+                case 'time':
+                    this._element.setAttribute(this._attributePrefix + 'enable-time', 'true');
+                    this._element.setAttribute(this._attributePrefix + 'disable-date', 'true');
+                    break;
+                case 'date-time':
+                    this._element.setAttribute(this._attributePrefix + 'enable-time', 'true');
+                    break;
+                default:
+                    this._element.setAttribute(this._attributePrefix + newValue, '');
+                    break;
+            }
         }
-    }
-
-    _localeChangedCallback(oldValue, newValue) {
-        this._options.locale = (newValue) ? newValue : 'nl';
     }
 
     _formatChangedCallback(oldValue, newValue) {
-        this._options.dateFormat = (newValue) ? newValue : 'd-m-Y';
+        this._element.setAttribute(this._attributePrefix + 'format', newValue);
     }
 
-    _human_formatChangedCallback(oldValue, newValue) {
-        this._options.altInput = !!(newValue);
-        this._options.altFormat = newValue;
+    _visual_formatChangedCallback(oldValue, newValue) {
+        this._element.setAttribute(this._attributePrefix + 'visual-format', newValue);
     }
 
-    _default_dateChangedCallback(oldValue, newValue) {
-        this._options.defaultDate = newValue;
+    _selected_dateChangedCallback(oldValue, newValue) {
+        this._element.setAttribute(this._attributePrefix + 'selected-date', newValue);
     }
 
     _min_dateChangedCallback(oldValue, newValue) {
-        this._options.minDate = newValue;
+        this._element.setAttribute(this._attributePrefix + 'min-date', newValue);
     }
 
     _max_dateChangedCallback(oldValue, newValue) {
-        this._options.maxDate = newValue;
+        this._element.setAttribute(this._attributePrefix + 'max-date', newValue);
     }
 
     _min_timeChangedCallback(oldValue, newValue) {
-        this._options.minTime = newValue;
+        this._element.setAttribute(this._attributePrefix + 'min-time', newValue);
     }
 
     _max_timeChangedCallback(oldValue, newValue) {
-        this._options.maxTime = newValue;
+        this._element.setAttribute(this._attributePrefix + 'max-time', newValue);
     }
 
     _am_pmChangedCallback(oldValue, newValue) {
-        this._options.time_24hr = (!this.hasAttribute('am-pm'));
-    }
-
-    _disabled_datesChangedCallback(oldValue, newValue) {
-        this.__disableDates();
-    }
-    _disable_weekendsChangedCallback(oldValue, newValue) {
-        this.__disableDates();
-    }
-
-    __disableDates() {
-        const disabledDates = this.getAttribute('disabled-dates');
-        this._options.disable = (disabledDates) ? JSON.parse(disabledDates) : [];
-
-        if(this.hasAttribute('disable-weekends')){
-            this._options.disable.push(function(date){
-                return (date.getDay() === 0 || date.getDay() === 6)
-            });
-        }
-    }
-
-    __createFlatpickr() {
-        this._picker = flatpickr(this._element, this._options);
+        this._element.setAttribute(this._attributePrefix + '24hr-time', (newValue == undefined));
     }
 }
-
-customElements.define('vl-datepicker', VlDatepicker);

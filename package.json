@@ -18,19 +18,23 @@
   },
   "dependencies": {
     "flatpickr": "4.6.2",
+    "vl-ui-button": "^1.2.0",
     "vl-ui-core": "^2.0.0",
-    "vl-ui-button": "^1.1.12"
+    "vl-ui-icon": "^2.1.0",
+    "vl-ui-input-field": "^1.0.12",
+    "vl-ui-input-group": "^1.1.0"
   },
   "peerDependencies": {
-    "vl-ui-core": "1.4.7"
+    "vl-ui-core": "^2.0.0"
   },
   "devDependencies": {
     "@govflanders/vl-ui-datepicker": "3.9.1",
     "http-server": "0.11.1",
     "np": "3.1.0",
     "replace": "1.1.1",
+    "sinon": "7.4.2",
     "uglify-js-es6": "2.8.9",
-    "vl-ui-util": "^2.0.8",
+    "vl-ui-util": "^2.0.9",
     "wct-browser-legacy": "1.0.2",
     "web-component-tester": "6.9.2"
   },
