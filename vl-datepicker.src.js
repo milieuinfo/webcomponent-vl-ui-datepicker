@@ -12,25 +12,25 @@ Promise.all([
 ]).then(() => define('vl-datepicker', VlDatepicker));
 
 /**
- * vl-datepicker
- *
- * ### Custom attributen
- * Attribuut | Type | Toelichting | Default en mogelijke waarden
- * ----------|------|-------------|-----------------------------
- * type | {string} | bepaalt het soort picker | 'range', 'time' en 'date-time'
- * format | {string} | bepaalt het formaat van de datum/tijd waarde | default 'd.m.Y' (-> 31.12.2019)
- * visual-format | {string} | bepaalt het visueel formaat van de datum/tijd waarde
- * selected-date | {string} | een vooringestelde datum | conform het ingestelde format (bv. '03-10-2019') of 'today' voor vandaag
- * min-date | {string} | een minimum datum | conform het ingestelde format (bv. '01-01-2019') of 'today' voor vandaag
- * max-date | {string} | een maximum datum | conform het ingestelde format (bv. '31-12-2019') of 'today' voor vandaag
- * min-time | {string} | conform het ingestelde format (bv. 09:00)
- * max-time | {string} | conform het ingestelde format (bv. 17:00)
- * am-pm | {boolean} | optie om de 12-uurs AM/PM timepicker te gebruiken ipv de (standaard) 24-uurs timepicker | [geen waarde]
- *
+ * VlDatepicker
+ * @class
+ * @classdesc Gebruik de vl-datepicker om de gebruiker op een gebruiksvriendelijke manier een datum of tijd te laten selecteren.
  * 
- * @see {@link https://www.github.com/milieuinfo/webcomponent-vl-ui-datepicker/releases/latest|Release notes}
- * @see {@link https://www.github.com/milieuinfo/webcomponent-vl-ui-datepicker/issues|Issues}
- * @see {@link https://webcomponenten.omgeving.vlaanderen.be/demo/vl-datepicker.html|Demo}
+ * @extends VlElement
+ * 
+ * @property {(range | time | date-time)} type - Attribuut bepaalt het soort datepicker.
+ * @property {string} format - Attribuut bepaalt het formaat van de datum/tijd waarde, standaard 'd.m.Y' (-> 31.12.2019).
+ * @property {string} visual-format - Attribuut bepaalt het visueel formaat van de datum/tijd waarde.
+ * @property {string} selected-date - Attribuut voor een vooringestelde datum conform het ingestelde formaat (bv. '03-10-2019') of 'today' voor vandaag.
+ * @property {string} min-date - Attribuut voor een minimum datum conform het ingestelde formaat (bv. '01-01-2019') of 'today' voor vandaag.
+ * @property {string} max-date - Attribuut voor een maximum datum conform het ingestelde format (bv. '31-12-2019') of 'today' voor vandaag.
+ * @property {string} min-time - Attribuut voor een minimum tijd conform het ingestelde formaat (bv. '09:00').
+ * @property {string} max-time - Attribuut voor een maximum tijd conform het ingestelde format (bv. '17:00').
+ * @property {boolean} am-pm - Attribuut om de 12-uurs AM/PM timepicker te activeren.
+ * 
+ * @see {@link https://www.github.com/milieuinfo/webcomponent-vl-ui-button/releases/latest|Release notes}
+ * @see {@link https://www.github.com/milieuinfo/webcomponent-vl-ui-button/issues|Issues}
+ * @see {@link https://webcomponenten.omgeving.vlaanderen.be/demo/vl-button.html|Demo}
  */
 export class VlDatepicker extends VlElement(HTMLElement) {
     constructor() {
