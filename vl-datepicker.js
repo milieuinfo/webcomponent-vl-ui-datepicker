@@ -4,11 +4,15 @@ import{VlElement,awaitScript,awaitUntil,define}from"/node_modules/vl-ui-core/vl-
                 @import "/node_modules/vl-ui-button/style.css";
                 @import "/node_modules/vl-ui-input-field/style.css";
                 @import "/node_modules/vl-ui-icon/style.css";
+
+                #wrapper {
+                    position: relative;
+                }
             </style>
             <vl-input-group id="wrapper" data-vl-datepicker>
                 <input id="input" is="vl-input-field" block type="text" class="js-vl-datepicker-input"/>
                 <button id="button" is="vl-button-input-addon" type="button" class="js-vl-datepicker-toggle">
-                    <span is="vl-icon" icon="calendar"></span>
+                    <span id="icon" is="vl-icon" icon="calendar"></span>
                 </button>
             </vl-input-group>
         `)}connectedCallback(){this.dress()}static get _observedAttributes(){return["type","format","visual-format","selected-date","min-date","max-date","min-time","max-time","am-pm"]}get _stylePath(){return"/node_modules/vl-ui-datepicker/style.css"}get _attributePrefix(){return"data-vl-datepicker-"}dress(){if(!this._dressed){vl.datepicker.dress(this._element)}}_typeChangedCallback(oldValue,newValue){if(oldValue){console.error('The "type" attribute cannot be changed.')}else{switch(newValue){case"time":this._element.setAttribute(this._attributePrefix+"enable-time","true");this._element.setAttribute(this._attributePrefix+"disable-date","true");break;case"date-time":this._element.setAttribute(this._attributePrefix+"enable-time","true");break;default:this._element.setAttribute(this._attributePrefix+newValue,"");break}}}_formatChangedCallback(oldValue,newValue){this._element.setAttribute(this._attributePrefix+"format",newValue)}_visual_formatChangedCallback(oldValue,newValue){this._element.setAttribute(this._attributePrefix+"visual-format",newValue)}_selected_dateChangedCallback(oldValue,newValue){this._element.setAttribute(this._attributePrefix+"selected-date",newValue)}_min_dateChangedCallback(oldValue,newValue){this._element.setAttribute(this._attributePrefix+"min-date",newValue)}_max_dateChangedCallback(oldValue,newValue){this._element.setAttribute(this._attributePrefix+"max-date",newValue)}_min_timeChangedCallback(oldValue,newValue){this._element.setAttribute(this._attributePrefix+"min-time",newValue)}_max_timeChangedCallback(oldValue,newValue){this._element.setAttribute(this._attributePrefix+"max-time",newValue)}_am_pmChangedCallback(oldValue,newValue){this._element.setAttribute(this._attributePrefix+"24hr-time",newValue==undefined)}};
