@@ -2058,15 +2058,21 @@
               configPos = self.config.position.split(" "),
               configPosVertical = configPos[0],
               configPosHorizontal = configPos.length > 1 ? configPos[1] : null,
-              inputBounds = positionElement.getBoundingClientRect(),
+              inputBounds = {
+                top: positionElement.offsetHeight,
+                bottom: positionElement.offsetTop,
+                left: positionElement.offsetLeft,
+                right: positionElement.offsetWidth,
+                width: positionElement.clientWidth,
+              },
               distanceFromBottom = window.innerHeight - inputBounds.bottom,
               showOnTop = configPosVertical === "above" || configPosVertical !== "below" && distanceFromBottom < calendarHeight && inputBounds.top > calendarHeight;
-          var top = window.pageYOffset + inputBounds.top + (!showOnTop ? positionElement.offsetHeight + 2 : -calendarHeight - 2);
+          var top = inputBounds.top + (!showOnTop ? 2 : -calendarHeight - 2);
           toggleClass(self.calendarContainer, "arrowTop", !showOnTop);
           toggleClass(self.calendarContainer, "arrowBottom", showOnTop);
           if (self.config.inline) return;
-          var left = window.pageXOffset + inputBounds.left - (configPosHorizontal != null && configPosHorizontal === "center" ? (calendarWidth - inputBounds.width) / 2 : 0);
-          var right = window.document.body.clientWidth - inputBounds.right;
+          var left = inputBounds.left - (configPosHorizontal != null && configPosHorizontal === "center" ? (calendarWidth - inputBounds.width) / 2 : 0);
+          var right = inputBounds.right - inputBounds.width;
           var rightMost = left + calendarWidth > window.document.body.clientWidth;
           var centerMost = right + calendarWidth > window.document.body.clientWidth;
           toggleClass(self.calendarContainer, "rightMost", rightMost);
@@ -2714,7 +2720,8 @@
           'maxTime': datepicker.getAttribute(datePickerDataMaxTime),
           'defaultTime': datepicker.getAttribute(datePickerDefaultTime),
           'positionElement': datepickerButton,
-          'mode': datePickerMode
+          'mode': datePickerMode,
+          'appendTo': datepicker.querySelector('#icon')
         };
         var fltpckr = flatpickr(datepickerInput, settings); // Reset datepicker button, overwrite flatpckr
 

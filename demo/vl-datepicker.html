@@ -3,6 +3,7 @@
     <title>vl-datepicker voorbeeld</title>
 </head>
 
+<script type="module" src="/node_modules/vl-ui-modal/vl-modal.js"></script>
 <script type="module" src="../vl-datepicker.src.js"></script>
 <script type="module" src="demo.js"></script>
 
@@ -141,6 +142,23 @@
         </pre>
         <div class="demo">
             <vl-datepicker type="date-time" format="d-m-Y H:i" am-pm></vl-datepicker>
+        </div>
+    </div>
+
+    <div>
+        <h2>Modal met datepicker</h2>
+        <pre>
+            <code class="line-numbers language-markup">
+            </code>
+        </pre>
+        <div class="demo">
+            <button is="vl-button" data-vl-modal-open="modal-1">Open</button>
+            <vl-modal id="modal-1" data-title="Modal" closable not-cancellable>
+                <span slot="content">
+                    Datepicker in een modal
+                    <vl-datepicker></vl-datepicker>
+                </span>
+            </vl-modal>
         </div>
     </div>
 </body>

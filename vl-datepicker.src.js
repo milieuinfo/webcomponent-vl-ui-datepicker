@@ -40,11 +40,15 @@ export class VlDatepicker extends VlElement(HTMLElement) {
                 @import "/node_modules/vl-ui-button/style.css";
                 @import "/node_modules/vl-ui-input-field/style.css";
                 @import "/node_modules/vl-ui-icon/style.css";
+
+                #wrapper {
+                    position: relative;
+                }
             </style>
             <vl-input-group id="wrapper" data-vl-datepicker>
                 <input id="input" is="vl-input-field" block type="text" class="js-vl-datepicker-input"/>
                 <button id="button" is="vl-button-input-addon" type="button" class="js-vl-datepicker-toggle">
-                    <span is="vl-icon" icon="calendar"></span>
+                    <span id="icon" is="vl-icon" icon="calendar"></span>
                 </button>
             </vl-input-group>
         `);
