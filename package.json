@@ -25,7 +25,7 @@
     "vl-ui-core": "1.4.7"
   },
   "devDependencies": {
-    "@govflanders/vl-ui-datepicker": "3.9.1",
+    "@govflanders/vl-ui-datepicker": "3.9.2",
     "http-server": "0.11.1",
     "np": "3.1.0",
     "replace": "1.1.1",
