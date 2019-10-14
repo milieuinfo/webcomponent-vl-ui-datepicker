@@ -35,7 +35,7 @@
     "replace": "1.1.1",
     "sinon": "7.4.2",
     "uglify-js-es6": "2.8.9",
-    "vl-ui-modal": "^1.0.10",
+    "vl-ui-modal": "^1.0.11",
     "vl-ui-util": "^2.0.9",
     "wct-browser-legacy": "1.0.2",
     "web-component-tester": "6.9.2"
