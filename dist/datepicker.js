@@ -2073,7 +2073,7 @@
           if (self.config.inline) return;
           var left = inputBounds.left - (configPosHorizontal != null && configPosHorizontal === "center" ? (calendarWidth - inputBounds.width) / 2 : 0);
           var right = inputBounds.right - inputBounds.width;
-          var rightMost = left + calendarWidth > window.document.body.clientWidth;
+          var rightMost = left + calendarWidth > positionElement.parentElement.offsetWidth;
           var centerMost = right + calendarWidth > window.document.body.clientWidth;
           toggleClass(self.calendarContainer, "rightMost", rightMost);
           if (self.config.static) return;
