@@ -1,76 +1,53 @@
-# "vl-datepicker" Web Component
-De ["datepicker" component van Webuniversum Vlaanderen](https://overheid.vlaanderen.be/webuniversum/v3/documentation/forms/vl-ui-datepicker/) als Web Component.
+# vl-ui-datepicker
+![GitHub issues](https://img.shields.io/github/issues-raw/milieuinfo/webcomponent-vl-ui-datepicker) ![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/milieuinfo/webcomponent-vl-ui-datepicker) ![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/milieuinfo/webcomponent-vl-ui-datepicker)
 
-## Installation
+De "datepicker" UI component van Webuniversum Vlaanderen als Web Component
+
+## Installatie
 ```
 npm install --save vl-ui-datepicker
 ```
 
+## API
+De [API](https://webcomponenten.omgeving.vlaanderen.be/doc/VlDatepicker.html) bevat een overzicht van de ondersteunde attributen en een beschrijving van de beschikbare functies.
+
 ## Demo
+De [demo](https://webcomponenten.omgeving.vlaanderen.be/demo/vl-datepicker.html) pagina bevat een overzicht van de mogelijkheden met code voorbeelden. Lokaal opstarten kan met onderstaand [NPM](https://www.npmjs.com) script.
 ```
 npm run demo
 ```
 
-## Kanttekening
-Deze web component is niet zomaar een wrapper rond de Webuniversum component.
+## Testen
+De webcomponent bevat verschillende unit testen die bij elke commit geautomatiseerd in Chrome en Firefox draaien. Hierdoor kunnen we bij elke release een minimum aan kwaliteit garanderen. Later zullen er ook nog UI testen toegevoegd worden zodat al de functionaliteit uitgebreid getest wordt.
 
-De web component gebruikt van de Webuniversum component enkel de markup en de css.
+De testen kunnen lokaal opgestart worden met onderstaand [NPM](https://www.npmjs.com) script.
+```
+npm run test
+```
 
-De web component gebruikt NIET de JavaScript van de Webuniversum component, 
-en ook niet de classes en data-attributen die dienen voor aansturing van de 
-achterliggende Flatpickr code; de web component implementeert de Flatpickr 
-datepicker rechtstreek, dat wil zeggen, eigen attributen worden rechtstreeks 
-naar Flatpickr opties omgezet en de Flatpickr methods worden rechtstreeks 
-aangesproken.
+## Issues
+Indien je nood hebt aan extra feature of een bug gevonden hebt, mag je hiervoor een issue aanmaken. Er zijn 3 issues templates beschikbaar:
+1. Feature request
+2. Bug
+3. Task
 
-**Deze component ondersteunt tenminste de features die ook door de Webuniversum component worden ondersteund:**
-* datepicker, timepicker, date-timepicker en date-rangepicker
-* standaard nederlandstalig
-* instelbaar formaat
-* standaard formaat dd-mm-jjjj
-* human-friendly formaat
-* voorinstelbare datum
-* minimum en maximum datum
-* minimum en maximum tijd
-* standaard 24-uurs tijdnotatie
-* optioneel 12-uurs AM/PM notatie
+Uiteraard is het ook toegelaten om mee te ontwikkelen door gebruik te maken van Pull Requests (PR). Gelieve volgende conventies te respecteren:
+1. Bug issue best linken aan een branch met een test die het probleem illustreert zodat de bug opgelost kan worden
+2. Elke commit die betrekking heeft tot een issue moet een verwijzing hiernaar hebben vb. #33 fix uitlijning header
+3. Elke PR moet een issue verwijzing hebben, zodat deze automatisch opgenomen kan worden in de release notes
 
-**De web component ondersteunt daarnaast nog enkele andere Flatpickr features:**
-* optioneel engels, frans en duits
-* de multiple-date modus (variant om in één keer meerdere datums te kiezen)
-* de optie om weekeinden en/of willekeurige datums te disabelen
+## Versionering
+We gebruiken [Semantic Versioning](https://semver.org) en voorzien elke release van release notes, zie een overzicht van de [releases](https://github.com/milieuinfo/webcomponent-vl-ui-datepicker/releases).
 
-**Volgende features worden NIET ondersteund:**
+## Browser ondersteuning
+De webcomponenten zijn ontwikkeld door uitsluitend gebruik te maken van web standaarden (JavaScript, HTML, CSS). Hierdoor worden al de evergreen browser automatisch ondersteund.
 
-* De variant om een date-range met tijden te selecteren
-* De variant om meerdere datums met tijden te selecteren
-* De variant om een tijd-range te selecteren
-
-Voor deze varianten is dit geen geschikte component. 
-
-Flatpickr biedt daarnaast nog een hoop andere opties die in deze component NIET worden ondersteund.
-
-**Bijzonder punt van aandacht:**
-
-Standaard wordt de flatpickr datepicker aan het eind van de body-tag gehangen.
-Ook bij de Webuniversum component is dit zo.
-
-Voor de Web Component zouden we, omwille van encapsulatie, 
-de picker liever binnen de shadow DOM van de web component houden
-(met behulp van de 'appendTo' optie van flatpickr) maar dit geeft problemen:
-in combinatie met een fixed, absolute, of relative gepositioneerde container 
-(zoals een modal) is de positionering van de picker dan niet meer correct.
-
-Bovendien kan het gevolgen hebben voor de effectiviteit van de z-index:
-als de webcomponent een 'ancestor' heeft met een z-index,
-heeft de z-index van de picker enkel effect binnen de 'stacking context'
-van deze ancestor.
-
-Voor nu is de datepicker dus geïmplementeerd zoals de Webuniversum component 
-en zoals de standaard Flatpickr, en dus met gobal styling.
+| ![Chrome](https://raw.githubusercontent.com/alrra/browser-logos/master/src/chrome/chrome_48x48.png) | ![Firefox](https://raw.githubusercontent.com/alrra/browser-logos/master/src/firefox/firefox_48x48.png) | ![Safari](https://raw.githubusercontent.com/alrra/browser-logos/master/src/safari/safari_48x48.png) | ![Opera](https://raw.githubusercontent.com/alrra/browser-logos/master/src/opera/opera_48x48.png) | ![Edge](https://raw.githubusercontent.com/alrra/browser-logos/master/src/edge/edge_48x48.png)
+| --- | --- | --- | --- | --- |
+| <center>Chrome</center> | <center>Firefox</center> | <center>Safari</center> | <center>Opera</center> | <center>Edge</center> |
 
 ## Credits
 Zie de lijst van [ontwikkelaars](https://github.com/milieuinfo/webcomponent-vl-ui-datepicker/graphs/contributors) die meegewerkt hebben aan de webcomponent.
 
 ## Contact
-Mail je suggesties, opmerkingen of tips naar [help@omgevingvlaanderen.be](mailto:help@omgevingvlaanderen.be)
+Heb je suggesties, opmerkingen of tips? Voel je dan vrij om ons te contacteren via help@omgevingvlaanderen.be.
