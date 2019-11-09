@@ -45,12 +45,12 @@ export class VlDatepicker extends VlElement(HTMLElement) {
                     position: relative;
                 }
             </style>
-            <vl-input-group id="wrapper" data-vl-datepicker>
+            <div is="vl-input-group" id="wrapper" data-vl-datepicker>
                 <input id="input" is="vl-input-field" block type="text" class="js-vl-datepicker-input"/>
                 <button id="button" is="vl-button-input-addon" type="button" class="js-vl-datepicker-toggle">
                     <span id="icon" is="vl-icon" icon="calendar"></span>
                 </button>
-            </vl-input-group>
+            </div>
         `);
     }
 

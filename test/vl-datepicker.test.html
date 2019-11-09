@@ -103,59 +103,59 @@
 
                 test('heeft ondersteuning voor type datepicker range', () => {
                     const datepicker = fixture('vl-datepicker-type-range-fixture');
-                    const inputGroupElement = datepicker.shadowRoot.querySelector('vl-input-group');
+                    const inputGroupElement = datepicker.shadowRoot.querySelector('[is="vl-input-group"]');
                     assert.isTrue(inputGroupElement.hasAttribute('data-vl-datepicker-range'));
                 });
 
                 test('heeft ondersteuning voor type datepicker time', () => {
                     const datepicker = fixture('vl-datepicker-type-time-fixture');
-                    const inputGroupElement = datepicker.shadowRoot.querySelector('vl-input-group');
+                    const inputGroupElement = datepicker.shadowRoot.querySelector('[is="vl-input-group"]');
                     assert.equal(inputGroupElement.getAttribute('data-vl-datepicker-enable-time'), 'true');
                     assert.equal(inputGroupElement.getAttribute('data-vl-datepicker-disable-date'), 'true');
                 });
 
                 test('heeft ondersteuning voor type datepicker date-time', () => {
                     const datepicker = fixture('vl-datepicker-type-date-time-fixture');
-                    const inputGroupElement = datepicker.shadowRoot.querySelector('vl-input-group');
+                    const inputGroupElement = datepicker.shadowRoot.querySelector('[is="vl-input-group"]');
                     assert.equal(inputGroupElement.getAttribute('data-vl-datepicker-enable-time'), 'true');
                     assert.isNull(inputGroupElement.getAttribute('data-vl-datepicker-disable-date'));
                 });
 
                 test('kan een ander formaat hebben', () => {
                     const datepicker = fixture('vl-datepicker-format-fixture');
-                    const inputGroupElement = datepicker.shadowRoot.querySelector('vl-input-group');
+                    const inputGroupElement = datepicker.shadowRoot.querySelector('[is="vl-input-group"]');
                     assert.equal(inputGroupElement.getAttribute('data-vl-datepicker-format'), 'Y-m-d');
                 });
 
                 test('kan een ander visueel formaat hebben', () => {
                     const datepicker = fixture('vl-datepicker-visual-format-fixture');
-                    const inputGroupElement = datepicker.shadowRoot.querySelector('vl-input-group');
+                    const inputGroupElement = datepicker.shadowRoot.querySelector('[is="vl-input-group"]');
                     assert.equal(inputGroupElement.getAttribute('data-vl-datepicker-visual-format'), 'l d M Y');
                 });
 
                 test('kan standaard al een datum geselecteerd hebben', () => {
                     const datepicker = fixture('vl-datepicker-selected-date-fixture');
-                    const inputGroupElement = datepicker.shadowRoot.querySelector('vl-input-group');
+                    const inputGroupElement = datepicker.shadowRoot.querySelector('[is="vl-input-group"]');
                     assert.equal(inputGroupElement.getAttribute('data-vl-datepicker-selected-date'), '03/12/1988');
                 });
 
                 test('kan een minimum en maximum datum bepalen', () => {
                     const datepicker = fixture('vl-datepicker-min-max-date-fixture');
-                    const inputGroupElement = datepicker.shadowRoot.querySelector('vl-input-group');
+                    const inputGroupElement = datepicker.shadowRoot.querySelector('[is="vl-input-group"]');
                     assert.equal(inputGroupElement.getAttribute('data-vl-datepicker-min-date'), '11/10/2019');
                     assert.equal(inputGroupElement.getAttribute('data-vl-datepicker-max-date'), '13/10/2019');
                 });
 
                 test('kan een minimum en maximum tijd bepalen', () => {
                     const datepicker = fixture('vl-datepicker-min-max-time-fixture');
-                    const inputGroupElement = datepicker.shadowRoot.querySelector('vl-input-group');
+                    const inputGroupElement = datepicker.shadowRoot.querySelector('[is="vl-input-group"]');
                     assert.equal(inputGroupElement.getAttribute('data-vl-datepicker-min-time'), '09:00');
                     assert.equal(inputGroupElement.getAttribute('data-vl-datepicker-max-time'), '17:00');
                 });
 
                 test('kan de tijd AM/PM activeren', () => {
                     const datepicker = fixture('vl-datepicker-am-pm-time-fixture');
-                    const inputGroupElement = datepicker.shadowRoot.querySelector('vl-input-group');
+                    const inputGroupElement = datepicker.shadowRoot.querySelector('[is="vl-input-group"]');
                     assert.equal(inputGroupElement.getAttribute('data-vl-datepicker-enable-time'), 'true');
                     assert.equal(inputGroupElement.getAttribute('data-vl-datepicker-disable-date'), 'true');
                     assert.equal(inputGroupElement.getAttribute('data-vl-datepicker-24hr-time'), 'false');

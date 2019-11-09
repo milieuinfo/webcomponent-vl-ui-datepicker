@@ -23,7 +23,7 @@
     "vl-ui-core": "^2.0.0",
     "vl-ui-icon": "^2.1.0",
     "vl-ui-input-field": "^1.0.12",
-    "vl-ui-input-group": "^1.1.0"
+    "vl-ui-input-group": "^2.0.0"
   },
   "peerDependencies": {
     "vl-ui-core": "^2.0.0"
