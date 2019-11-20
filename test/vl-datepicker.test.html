@@ -77,11 +77,6 @@
 
                 setup((done) => {
                     debugger;
-                    window.vl = {
-                        datepicker: {
-                            dress: sinon.fake()
-                        }
-                    };
                     customElements.whenDefined('vl-datepicker').then(done);
                 });
 
@@ -96,9 +91,12 @@
                 });
 
                 test('de dress methode called vl.modal.dress met de dialog', () => {
+                    const spy = sinon.spy(window.vl.datepicker, "dress");
                     const datepicker = fixture('vl-datepicker-fixture');
+
                     const inputGroupElement = datepicker.shadowRoot.querySelector('#wrapper');
-                    assert(window.vl.datepicker.dress.calledWith(inputGroupElement));
+                    assert(spy.calledWith(inputGroupElement));
+                    spy.restore();
                 });
 
                 test('heeft ondersteuning voor type datepicker range', () => {
@@ -159,6 +157,16 @@
                     assert.equal(inputGroupElement.getAttribute('data-vl-datepicker-enable-time'), 'true');
                     assert.equal(inputGroupElement.getAttribute('data-vl-datepicker-disable-date'), 'true');
                     assert.equal(inputGroupElement.getAttribute('data-vl-datepicker-24hr-time'), 'false');
+                });
+
+                test('geeft een change event voor een datum wijziging', (done) => {
+                    const datepicker = fixture('vl-datepicker-fixture');
+                    datepicker.addEventListener('change',(e) => {
+                        assert.equal(e.detail.dateString, '20.11.2019');
+                        assert.lengthOf(e.detail.selectedDates, 1);
+                        done();
+                    });
+                    datepicker._element.querySelector('#input')._flatpickr.setDate(new Date(2019, 10, 20), true);
                 });
             });
         </script>

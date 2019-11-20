@@ -148,6 +148,52 @@
     </div>
 
     <div>
+        <h2>Date en timepicker geeft een change event bij selectie</h2>
+        <pre>
+            <code class="line-numbers language-markup">
+                &lt;vl-datepicker type="date-time"&gt;&lt;/vl-datepicker&gt;
+            </code>
+        </pre>
+        <div class="demo">
+            <vl-datepicker id="dateTimePickerMetEvent" type="date-time"  format="d-m-Y H:i"></vl-datepicker>
+            <div>
+                <h3>Event</h3>
+                <p>Type: <span id="dateTimePickerMetEventType"></span></p>
+                <p>Detail: <span id="dateTimePickerMetEventDetail"></span></p>
+            </div>
+            <script>
+                document.querySelector('#dateTimePickerMetEvent').addEventListener('change',(e) => {
+                    document.querySelector('#dateTimePickerMetEventType').innerHTML = e.type;
+                    document.querySelector('#dateTimePickerMetEventDetail').innerHTML = JSON.stringify(e.detail);
+                });
+            </script>
+        </div>
+    </div>
+
+    <div>
+        <h2>Date rangepicker geeft een change event bij selectie</h2>
+        <pre>
+            <code class="line-numbers language-markup">
+                &lt;vl-datepicker type="range"&gt;&lt;/vl-datepicker&gt;
+            </code>
+        </pre>
+        <div class="demo">
+            <vl-datepicker id="daterangePickerMetEvent" type="range"></vl-datepicker>
+            <div>
+                <h3>Event</h3>
+                <p>Type: <span id="daterangePickerMetEventType"></span></p>
+                <p>Detail: <span id="daterangePickerMetEventDetail"></span></p>
+            </div>
+            <script>
+                document.querySelector('#daterangePickerMetEvent').addEventListener('change',(e) => {
+                    document.querySelector('#daterangePickerMetEventType').innerHTML = e.type;
+                    document.querySelector('#daterangePickerMetEventDetail').innerHTML = JSON.stringify(e.detail);
+                });
+            </script>
+        </div>
+    </div>
+
+    <div>
         <h2>Modal met datepicker</h2>
         <pre>
             <code class="line-numbers language-markup">

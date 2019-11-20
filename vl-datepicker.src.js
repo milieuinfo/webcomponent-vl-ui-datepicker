@@ -32,6 +32,15 @@ Promise.all([
  * @see {@link https://www.github.com/milieuinfo/webcomponent-vl-ui-datepicker/issues|Issues}
  * @see {@link https://webcomponenten.omgeving.vlaanderen.be/demo/vl-datepicker.html|Demo}
  */
+/**
+ * Date change event
+ * @event VlDatepicker#change
+ * @type {object}
+ * @property {Array} selectedDates array containing a single date object if no range, or min and max date if ranges
+ * @property {string} dateString the string as displayed in the input field
+ *
+ * @see {@link https://flatpickr.js.org/events/|flatpickr events}
+ */
 export class VlDatepicker extends VlElement(HTMLElement) {
     constructor() {
         super(`
@@ -56,6 +65,15 @@ export class VlDatepicker extends VlElement(HTMLElement) {
 
     connectedCallback() {
         this.dress();
+        this._element.querySelector('#input')._flatpickr.config.onChange.push(
+            (selectedDates, dateString, instance) => {
+                this.dispatchEvent(new CustomEvent('change', {
+                    detail: {
+                        selectedDates: selectedDates,
+                        dateString: dateString
+                    }
+                }));
+            });
     }
 
     static get _observedAttributes() {
