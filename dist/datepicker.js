@@ -2721,7 +2721,7 @@
           'defaultTime': datepicker.getAttribute(datePickerDefaultTime),
           'positionElement': datepickerButton,
           'mode': datePickerMode,
-          'appendTo': datepicker.querySelector('#icon')
+          'appendTo': datepicker
         };
         var fltpckr = flatpickr(datepickerInput, settings); // Reset datepicker button, overwrite flatpckr
 
