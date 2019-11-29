@@ -70,7 +70,7 @@ export class VlDatepicker extends VlElement(HTMLElement) {
         this.dress();
         this._element.querySelector('#input')._flatpickr.config.onChange.push(
             (selectedDates, dateString, instance) => {
-                this._value = this._selectedDatesToValueObject(instance, selectedDates);
+                this._value = this._selectedDatesToValueObject(selectedDates);
                 this.dispatchEvent(new CustomEvent('change', {
                     detail: {
                         selectedDates: selectedDates,
@@ -81,16 +81,16 @@ export class VlDatepicker extends VlElement(HTMLElement) {
             });
     }
 
-    _selectedDatesToValueObject(flatpickr, selectedDates) {
+    _selectedDatesToValueObject(selectedDates) {
         if (selectedDates.length === 1) {
             return {
-                date: this._formatDate(flatpickr, selectedDates[0]),
+                date: selectedDates[0],
             }
         }
         if (selectedDates.length === 2) {
             return {
-                dateFrom: this._formatDate(flatpickr, selectedDates[0]),
-                dateTo: this._formatDate(flatpickr, selectedDates[1])
+                dateFrom: selectedDates[0],
+                dateTo: selectedDates[1]
             }
         }
         if (selectedDates.length > 2) {
@@ -99,20 +99,16 @@ export class VlDatepicker extends VlElement(HTMLElement) {
         return null;
     }
 
-    _formatDate(flatpickr, date) {
-        return flatpickr.formatDate(date, flatpickr.config.dateFormat);
-    }
-
     /**
      * An object containing the selected date or date range.
      *
      * @typedef {Object} Value
-     * @property {string} [date] - The selected date according to the configured date(time) format.
-     * @property {string} [dateFrom] - The start date of the range formatted in the configured date(time) format. Only applicable with range.
-     * @property {string} [dateTo] - The end date of the range formatted in the configured date(time) format. Only applicable with range.
+     * @property {Date} [date] - The selected date. Only applicable if no range.
+     * @property {Date} [dateFrom] - The start date of the range. Only applicable with range.
+     * @property {Date} [dateTo] - The end date of the range. Only applicable with range.
      */
     /**
-     * Returns the current selected value / range, taking into account the format.
+     * Returns the current selected value / range.
      *
      * @returns {null|Value} null if no date selected or a JSON object with selected date(s).
      */
