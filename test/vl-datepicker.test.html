@@ -168,6 +168,20 @@
                     });
                     datepicker._element.querySelector('#input')._flatpickr.setDate(new Date(2019, 10, 20), true);
                 });
+
+                test('bevat een value object na een datum selectie', () => {
+                    const datepicker = fixture('vl-datepicker-fixture');
+                    assert.isNull(datepicker.value);
+                    datepicker._element.querySelector('#input')._flatpickr.setDate(new Date(2019, 10, 29), true);
+                    assert.deepEqual(datepicker.value, {date: '29.11.2019'});
+                });
+
+                test('bevat een value object na een datum range selectie', () => {
+                    const datepicker = fixture('vl-datepicker-type-range-fixture');
+                    assert.isNull(datepicker.value);
+                    datepicker._element.querySelector('#input')._flatpickr.setDate([new Date(2019, 10, 29), new Date(2019, 10, 30)], true);
+                    assert.deepEqual(datepicker.value, {dateFrom: '29.11.2019', dateTo: '30.11.2019'});
+                });
             });
         </script>
     </body>

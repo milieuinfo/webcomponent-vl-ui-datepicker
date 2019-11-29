@@ -35,13 +35,15 @@ Promise.all([
 /**
  * Date change event
  * @event VlDatepicker#change
- * @type {object}
+ * @typedef {Object} DateChangeEvent
  * @property {Array} selectedDates array containing a single date object if no range, or min and max date if ranges
  * @property {string} dateString the string as displayed in the input field
+ * @property {null|Value} value null if no date selected or a JSON object with selected date(s)
  *
  * @see {@link https://flatpickr.js.org/events/|flatpickr events}
  */
 export class VlDatepicker extends VlElement(HTMLElement) {
+
     constructor() {
         super(`
             <style>
@@ -61,19 +63,61 @@ export class VlDatepicker extends VlElement(HTMLElement) {
                 </button>
             </div>
         `);
+        this._value = null;
     }
 
     connectedCallback() {
         this.dress();
         this._element.querySelector('#input')._flatpickr.config.onChange.push(
             (selectedDates, dateString, instance) => {
+                this._value = this._selectedDatesToValueObject(instance, selectedDates);
                 this.dispatchEvent(new CustomEvent('change', {
                     detail: {
                         selectedDates: selectedDates,
-                        dateString: dateString
+                        dateString: dateString,
+                        value: this._value
                     }
                 }));
             });
+    }
+
+    _selectedDatesToValueObject(flatpickr, selectedDates) {
+        if (selectedDates.length === 1) {
+            return {
+                date: this._formatDate(flatpickr, selectedDates[0]),
+            }
+        }
+        if (selectedDates.length === 2) {
+            return {
+                dateFrom: this._formatDate(flatpickr, selectedDates[0]),
+                dateTo: this._formatDate(flatpickr, selectedDates[1])
+            }
+        }
+        if (selectedDates.length > 2) {
+            console.warn("datepicker with more than 2 dates not supported");
+        }
+        return null;
+    }
+
+    _formatDate(flatpickr, date) {
+        return flatpickr.formatDate(date, flatpickr.config.dateFormat);
+    }
+
+    /**
+     * An object containing the selected date or date range.
+     *
+     * @typedef {Object} Value
+     * @property {string} [date] - The selected date according to the configured date(time) format.
+     * @property {string} [dateFrom] - The start date of the range formatted in the configured date(time) format. Only applicable with range.
+     * @property {string} [dateTo] - The end date of the range formatted in the configured date(time) format. Only applicable with range.
+     */
+    /**
+     * Returns the current selected value / range, taking into account the format.
+     *
+     * @returns {null|Value} null if no date selected or a JSON object with selected date(s).
+     */
+    get value() {
+        return this._value;
     }
 
     static get _observedAttributes() {
