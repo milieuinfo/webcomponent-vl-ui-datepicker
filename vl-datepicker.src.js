@@ -36,9 +36,9 @@ Promise.all([
  * Date change event
  * @event VlDatepicker#change
  * @typedef {Object} DateChangeEvent
- * @property {Array} selectedDates array containing a single date object if no range, or min and max date if ranges
- * @property {string} dateString the string as displayed in the input field
- * @property {null|Value} value null if no date selected or a JSON object with selected date(s)
+ * @property {Array} selectedDates array die een date object bevat indien geen range, of min en max date bij gebruik van een range
+ * @property {string} dateString de string zoals getoond in het input veld
+ * @property {null|Value} waarde null indien geen datum geselecteerd of een JSON object met geselecteerde datum(s)
  *
  * @see {@link https://flatpickr.js.org/events/|flatpickr events}
  */
@@ -68,17 +68,6 @@ export class VlDatepicker extends VlElement(HTMLElement) {
 
     connectedCallback() {
         this.dress();
-        this._element.querySelector('#input')._flatpickr.config.onChange.push(
-            (selectedDates, dateString, instance) => {
-                this._value = this._selectedDatesToValueObject(selectedDates);
-                this.dispatchEvent(new CustomEvent('change', {
-                    detail: {
-                        selectedDates: selectedDates,
-                        dateString: dateString,
-                        value: this._value
-                    }
-                }));
-            });
     }
 
     _selectedDatesToValueObject(selectedDates) {
@@ -100,17 +89,17 @@ export class VlDatepicker extends VlElement(HTMLElement) {
     }
 
     /**
-     * An object containing the selected date or date range.
+     * Een object dat de geselecteerde datum of periode (date range) bevat.
      *
      * @typedef {Object} Value
-     * @property {Date} [date] - The selected date. Only applicable if no range.
-     * @property {Date} [dateFrom] - The start date of the range. Only applicable with range.
-     * @property {Date} [dateTo] - The end date of the range. Only applicable with range.
+     * @property {Date} [date] - De geselecteerde datum. Enkel van toepassing indien geen range.
+     * @property {Date} [dateFrom] - De startdatum van de periode (range). Enkel van toepassing indien range gezet werd.
+     * @property {Date} [dateTo] - De einddatum van de periode (range). Enkel van toepassing indien range gezet werd.
      */
     /**
-     * Returns the current selected value / range.
+     * Geeft de huidige geselecteerde datum / periode.
      *
-     * @returns {null|Value} null if no date selected or a JSON object with selected date(s).
+     * @returns {null|Value} null indien geen datum geselecteerd of een JSON object met geselecteerde datum(s).
      */
     get value() {
         return this._value;
@@ -144,6 +133,17 @@ export class VlDatepicker extends VlElement(HTMLElement) {
     dress() {
         if (!this._dressed) {
             vl.datepicker.dress(this._element);
+            this._element.querySelector('#input')._flatpickr.config.onChange.push(
+                (selectedDates, dateString, instance) => {
+                    this._value = this._selectedDatesToValueObject(selectedDates);
+                    this.dispatchEvent(new CustomEvent('change', {
+                        detail: {
+                            selectedDates: selectedDates,
+                            dateString: dateString,
+                            value: this._value
+                        }
+                    }));
+                });
         }
     }
 
