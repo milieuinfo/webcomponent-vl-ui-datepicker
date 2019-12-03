@@ -40,7 +40,6 @@ Promise.all([
  * @property {string} dateString de string zoals getoond in het input veld
  * @property {null|Value} waarde null indien geen datum geselecteerd of een JSON object met geselecteerde datum(s)
  *
- * @see {@link https://flatpickr.js.org/events/|flatpickr events}
  */
 export class VlDatepicker extends VlElement(HTMLElement) {
 
@@ -133,6 +132,7 @@ export class VlDatepicker extends VlElement(HTMLElement) {
     dress() {
         if (!this._dressed) {
             vl.datepicker.dress(this._element);
+            // see https://flatpickr.js.org/events/
             this._element.querySelector('#input')._flatpickr.config.onChange.push(
                 (selectedDates, dateString, instance) => {
                     this._value = this._selectedDatesToValueObject(selectedDates);
