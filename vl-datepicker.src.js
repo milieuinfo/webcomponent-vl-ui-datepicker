@@ -27,6 +27,8 @@ Promise.all([
  * @property {string} min-time - Attribuut voor een minimum tijd conform het ingestelde formaat (bv. '09:00').
  * @property {string} max-time - Attribuut voor een maximum tijd conform het ingestelde format (bv. '17:00').
  * @property {boolean} am-pm - Attribuut om de 12-uurs AM/PM timepicker te activeren.
+ * @property {boolean} error - Attribuut om aan te geven dat de datepicker een error bevat.
+ * @property {boolean} success - Attribuut om aan te geven dat de datepicker geen error bevat.
  * 
  * @see {@link https://www.github.com/milieuinfo/webcomponent-vl-ui-datepicker/releases/latest|Release notes}
  * @see {@link https://www.github.com/milieuinfo/webcomponent-vl-ui-datepicker/issues|Issues}
@@ -68,7 +70,9 @@ export class VlDatepicker extends VlElement(HTMLElement) {
             'max-date',
             'min-time',
             'max-time',
-            'am-pm'
+            'am-pm',
+            'error',
+            'success'
         ];
     }
 
@@ -154,5 +158,21 @@ export class VlDatepicker extends VlElement(HTMLElement) {
 
     _am_pmChangedCallback(oldValue, newValue) {
         this._element.setAttribute(this._attributePrefix + '24hr-time', (newValue == undefined));
+    }
+
+    _errorChangedCallback(oldValue, newValue) {
+        if (newValue != undefined) {
+            this._inputElement.setAttribute('error', '');
+        } else {
+            this._inputElement.removeAttribute('error');
+        }
+    }
+
+    _successChangedCallback(oldValue, newValue) {
+        if (newValue != undefined) {
+            this._inputElement.setAttribute('success', '');
+        } else {
+            this._inputElement.removeAttribute('success');
+        }
     }
 }
