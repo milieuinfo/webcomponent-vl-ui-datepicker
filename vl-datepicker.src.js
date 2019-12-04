@@ -72,6 +72,23 @@ export class VlDatepicker extends VlElement(HTMLElement) {
         ];
     }
 
+    /**
+     * Initialiseer de datepicker config.
+     */
+    dress() {
+        if (!this._dressed) {
+            vl.datepicker.dress(this._element);
+        }
+    }
+
+    get value() {
+        return this._inputElement.value;
+    }
+
+    set value(value) {
+        this._inputElement._flatpickr.setDate(value, false, this._format);
+    }
+
     get _stylePath() {
         return '../style.css';
     }
@@ -80,13 +97,12 @@ export class VlDatepicker extends VlElement(HTMLElement) {
         return 'data-vl-datepicker-';
     }
 
-    /**
-     * Initialiseer de datepicker config.
-     */
-    dress() {
-        if (!this._dressed) {
-            vl.datepicker.dress(this._element);
-        }
+    get _inputElement() {
+        return this._element.querySelector('#input');
+    }
+
+    get _format() {
+        return this.getAttribute('format');
     }
 
     _typeChangedCallback(oldValue, newValue) {
