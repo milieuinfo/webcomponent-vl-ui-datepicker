@@ -148,6 +148,52 @@
     </div>
 
     <div>
+        <h2>Datepicker kan programmatisch gewijzigd worden</h2>
+        <pre>
+            <code class="line-numbers language-markup">
+                &lt;vl-datepicker id="datepicker-1"&gt;&lt;/vl-datepicker&gt;
+                &lt;button is="vl-button" onclick="document.querySelector('#datepicker-1').value = '01.12.2019'"&gt;Kies 01.12.2019&lt;/button&gt;
+                
+                &lt;vl-datepicker id="datepicker-2" format="d/m/Y"&gt;&lt;/vl-datepicker&gt;
+                &lt;button is="vl-button" onclick="document.querySelector('#datepicker-2').value = '01/12/2019'"&gt;Kies 01/12/2019&lt;/button&gt;
+                
+                &lt;vl-datepicker id="datepicker-3" type="range"&gt;&lt;/vl-datepicker&gt;
+                &lt;button is="vl-button" onclick="document.querySelector('#datepicker-3').value = ['01.12.2019', '10.12.2019']"&gt;Kies 01.12.2019 tot 10.12.2019&lt;/button&gt;
+                
+                &lt;vl-datepicker id="datepicker-4" type="time" format="H:i"&gt;&lt;/vl-datepicker&gt;
+                &lt;button is="vl-button" onclick="document.querySelector('#datepicker-4').value = ['11:55']"&gt;Kies 11:55&lt;/button&gt;
+                
+                &lt;vl-datepicker id="datepicker-5" type="date-time" format="d-m-Y H:i" am-pm&gt;&lt;/vl-datepicker&gt;
+                &lt;button is="vl-button" onclick="document.querySelector('#datepicker-5').value = ['01-12-2019 11:55']"&gt;Kies 01-12-2019 11:55&lt;/button&gt;
+            </code>
+        </pre>
+        <div class="demo">
+            <vl-datepicker id="datepicker-1"></vl-datepicker>
+            <button is="vl-button" onclick="document.querySelector('#datepicker-1').value = '01.12.2019'">Kies 01.12.2019</button>
+        </div>
+
+        <div class="demo">
+            <vl-datepicker id="datepicker-2" format="d/m/Y"></vl-datepicker>
+            <button is="vl-button" onclick="document.querySelector('#datepicker-2').value = '01/12/2019'">Kies 01/12/2019</button>
+        </div>
+
+        <div class="demo">
+            <vl-datepicker id="datepicker-3" type="range"></vl-datepicker>
+            <button is="vl-button" onclick="document.querySelector('#datepicker-3').value = ['01.12.2019', '10.12.2019']">Kies 01.12.2019 tot 10.12.2019</button>
+        </div>
+
+        <div class="demo">
+            <vl-datepicker id="datepicker-4" type="time" format="H:i"></vl-datepicker>
+            <button is="vl-button" onclick="document.querySelector('#datepicker-4').value = ['11:55']">Kies 11:55</button>
+        </div>
+
+        <div class="demo">
+            <vl-datepicker id="datepicker-5" type="date-time" format="d-m-Y H:i" am-pm></vl-datepicker>
+            <button is="vl-button" onclick="document.querySelector('#datepicker-5').value = ['01-12-2019 11:55']">Kies 01-12-2019 11:55</button>
+        </div>
+    </div>
+
+    <div>
         <h2>Modal met datepicker</h2>
         <pre>
             <code class="line-numbers language-markup">
