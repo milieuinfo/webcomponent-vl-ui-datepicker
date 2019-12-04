@@ -1666,7 +1666,7 @@
           // "ArrowRight" (IE "Right")         39
           // "ArrowDown"  (IE "Down")          40
           // "Delete"     (IE "Del")           46
-          var isInput = e.target === self._input;
+          var isInput = e.target === self._input || e.target.shadowRoot.querySelector('input') === self._input;
           var allowInput = self.config.allowInput;
           var allowKeydown = self.isOpen && (!allowInput || !isInput);
           var allowInlineKeydown = self.config.inline && isInput && !allowInput;
