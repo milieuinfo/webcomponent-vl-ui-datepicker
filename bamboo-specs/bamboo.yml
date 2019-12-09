@@ -40,7 +40,7 @@ Release:
         #!/usr/env/bin bash
         set -e
         /opt/scripts/git/git-repository-information-restore.sh
-        docker run -e GIT_REPO=${bamboo_repository_git_repositoryUrl} -e RELEASE_VERSION=${bamboo.release_version} acd-docker.repository.milieuinfo.be/milieuinfo/wc-release:1.0.0
+        docker run -e http_proxy=${bamboo.http_proxy} -e https_proxy=${bamboo.http_proxy} -e HTTP_PROXY=${bamboo.http_proxy} -e HTTPS_PROXY=${bamboo.http_proxy} -e GIT_REPO=${bamboo_repository_git_repositoryUrl} -e RELEASE_VERSION=${bamboo.release_version} acd-docker.repository.milieuinfo.be/milieuinfo/wc-release:1.0.0
         /opt/scripts/docker/stop-docker-containers.sh
   requirements:
     - REMOTE_ONLY
