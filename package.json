@@ -33,7 +33,7 @@
     "http-server": "0.11.1",
     "np": "3.1.0",
     "replace": "1.1.1",
-    "sinon": "7.5.0",
+    "sinon": "8.0.2",
     "uglify-js-es6": "2.8.9",
     "vl-ui-modal": "^1.0.11",
     "vl-ui-side-sheet": "^1.0.0",
