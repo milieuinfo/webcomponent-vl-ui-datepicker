@@ -4,8 +4,8 @@
 De "datepicker" UI component van Webuniversum Vlaanderen als Web Component
 
 ## Installatie
-```
-npm install --save vl-ui-datepicker
+``` bash
+$ npm install --save vl-ui-datepicker
 ```
 
 ## API
@@ -13,16 +13,16 @@ De [API](https://webcomponenten.omgeving.vlaanderen.be/doc/VlDatepicker.html) be
 
 ## Demo
 De [demo](https://webcomponenten.omgeving.vlaanderen.be/demo/vl-datepicker.html) pagina bevat een overzicht van de mogelijkheden met code voorbeelden. Lokaal opstarten kan met onderstaand [NPM](https://www.npmjs.com) script.
-```
-npm run demo
+``` bash
+$ npm run demo
 ```
 
 ## Testen
 De webcomponent bevat verschillende unit testen die bij elke commit geautomatiseerd in Chrome en Firefox draaien. Hierdoor kunnen we bij elke release een minimum aan kwaliteit garanderen. Later zullen er ook nog UI testen toegevoegd worden zodat al de functionaliteit uitgebreid getest wordt.
 
 De testen kunnen lokaal opgestart worden met onderstaand [NPM](https://www.npmjs.com) script.
-```
-npm run test
+``` bash
+$ npm run test
 ```
 
 ## Issues

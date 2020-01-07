@@ -56,7 +56,7 @@
     "uglify-js-es6": "2.8.9",
     "vl-ui-modal": "^1.0.18",
     "vl-ui-side-sheet": "^1.0.0",
-    "vl-ui-util": "^3.0.11",
+    "vl-ui-util": "^3.2.5",
     "wct-browser-legacy": "1.0.2",
     "web-component-tester": "6.9.2",
     "yargs": "15.0.2"
