@@ -42,7 +42,7 @@
     "@govflanders/vl-ui-datepicker": "3.9.1",
     "vl-ui-modal": "^1.0.18",
     "vl-ui-side-sheet": "^1.0.0",
-    "vl-ui-util": "^3.4.1"
+    "vl-ui-util": "^3.4.2"
   },
   "publishConfig": {
     "registry": "http://artifactory-pr-build.lb.cumuli.be:8081/artifactory/api/npm/acd-npm/"
