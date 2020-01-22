@@ -7,7 +7,7 @@ import '/node_modules/vl-ui-icon/vl-icon.js';
 Promise.all([
     awaitScript('util', '/node_modules/@govflanders/vl-ui-util/dist/js/util.min.js'),
     awaitScript('core', '/node_modules/@govflanders/vl-ui-core/dist/js/core.min.js'),
-    awaitScript('datepicker', '../dist/datepicker.js'),
+    awaitScript('datepicker', '/dist/datepicker.js'),
     awaitUntil(() => window.vl && window.vl.datepicker)
 ]).then(() => define('vl-datepicker', VlDatepicker));
 
