@@ -8,7 +8,4 @@ describe('vl-datepicker', async () => {
     before(() => {
         return vlDatepickerPage.load();
     });
-
-    after(() => driver && driver.quit());
-  
 });
