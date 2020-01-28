@@ -7,8 +7,24 @@ class VlDatepickerPage extends Page {
         return new VlDatepicker(this.driver, selector);
     }
 
+    async getDefaultDatepicker() {
+        return this._getDatepicker('#default-datepicker');
+    }
+
+    async getCustomFormatDatepicker() {
+        return this._getDatepicker('#custom-format-datepicker');
+    }
+
+    async getDefaultDateDatepicker() {
+        return this._getDatepicker('#prefilled-datepicker');
+    }
+
+    async getMinMaxDatepicker() {
+        return this._getDatepicker('#min-max-datepicker');
+    }
+
     async load() {
-        await super.load(Config.baseUrl + '/demo/vl-datepicker.html');
+        return super.load(Config.baseUrl + '/demo/vl-datepicker.html');
     }
 }
 
