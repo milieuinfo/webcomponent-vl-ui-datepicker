@@ -16,26 +16,26 @@ describe('vl-datepicker', async () => {
     });
 
     it('als ik enkel een dag selecteer, word automatisch de huidige maand en het huidige jaar gekozen', async () => {
-        const tomorrow = now.toFormat('dd.LL.yyyy');
+        const currentDay = now.toFormat('dd.LL.yyyy');
         const datepicker = await vlDatepickerPage.getDefaultDatepicker();
         await datepicker.selectDay(day);
-        await assert.eventually.equal(datepicker.getInputValue(), tomorrow);
+        await assert.eventually.equal(datepicker.getInputValue(), currentDay);
     });
 
     it('ik kan een maand selecteren', async () => {
-        const nextMonth = now.toFormat('dd.LL.yyyy');
+        const currentMonth = now.toFormat('dd.LL.yyyy');
         const datepicker = await vlDatepickerPage.getDefaultDatepicker();
         await datepicker.selectMonth(month);
         await datepicker.selectDay(day);
-        await assert.eventually.equal(datepicker.getInputValue(), nextMonth);
+        await assert.eventually.equal(datepicker.getInputValue(), currentMonth);
     });
 
     it('ik kan een jaar selecteren', async () => {
-        const nextYear = now.toFormat('dd.LL.yyyy');
+        const currentYear = now.toFormat('dd.LL.yyyy');
         const datepicker = await vlDatepickerPage.getDefaultDatepicker();
         await datepicker.selectYear(year);
         await datepicker.selectDay(day);
-        await assert.eventually.isTrue(datepicker.getInputValue(), nextYear);
+        await assert.eventually.isTrue(datepicker.getInputValue(), currentYear);
     });
 
     it('ik kan een custom format definieren', async () => {
@@ -71,7 +71,7 @@ describe('vl-datepicker', async () => {
         //TODO
     });
 
-    xit('ik kan een tijd selecteren', async () => {
+    it('ik kan een tijd selecteren', async () => {
         const datepicker = await vlDatepickerPage.getTimepicker();
         await datepicker.selectHour(20);
         await datepicker.selectMinutes(25);
@@ -79,7 +79,7 @@ describe('vl-datepicker', async () => {
         assert.equal(time, '20:25');
     });
 
-    xit('ik kan een max tijd instellen', async () => {
+    it('ik kan een max tijd instellen', async () => {
         const datepicker = await vlDatepickerPage.getMinMaxTimepicker();
         await datepicker.selectHour(18);
         await datepicker.selectMinutes(20);
@@ -87,7 +87,7 @@ describe('vl-datepicker', async () => {
         assert.equal(time, '17:00');
     });
 
-    xit('ik kan voor AM of PM kiezen', async () => {
+    it('ik kan voor AM of PM kiezen', async () => {
         const datepicker = await vlDatepickerPage.getMeridianTimepicker();
         await datepicker.selectHour(12);
         await datepicker.selectMinutes(45);
@@ -101,7 +101,7 @@ describe('vl-datepicker', async () => {
     });
 
     //TODO: day, tomorrow en stuff gebruiken
-    xit('ik kan een datum en tijd selecteren', async () => {
+    it('ik kan een datum en tijd selecteren', async () => {
         const datepicker = await vlDatepickerPage.getDateTimepicker();
         await datepicker.selectDay(30);
         await datepicker.selectHour(11);
@@ -111,33 +111,33 @@ describe('vl-datepicker', async () => {
     });
 
     //TODO: dynamisch maken van datum
-    xit('ik kan programmatorisch de datum met dotted format wijzigen', async () => {
+    it('ik kan programmatorisch de datum met dotted format wijzigen', async () => {
         const datepicker = await vlDatepickerPage.getDotFormatDatepicker();
         await datepicker.selectDay(day);
         const date = await datepicker.getInputValue();
-        const tomorrow = now.plus({ days: 1 }).toFormat('dd.LL.yyyy');
-        assert.equal(date, tomorrow);
+        const today = now.toFormat('dd.LL.yyyy');
+        assert.equal(date, today);
         await vlDatepickerPage.clickDotFormatButton();
         const changedDate = await datepicker.getInputValue();
         assert.equal(changedDate, '01.12.2019');
     });    
     
-    xit('ik kan programmatorisch de datum met slash format wijzigen', async () => {
+    it('ik kan programmatorisch de datum met slash format wijzigen', async () => {
         const datepicker = await vlDatepickerPage.getSlashFormatDatepicker();
         await datepicker.selectDay(day);
         const date = await datepicker.getInputValue();
-        const tomorrow = now.plus({ days: 1 }).toFormat('dd/LL/yyyy');
-        assert.equal(date, tomorrow);
+        const today = now.toFormat('dd/LL/yyyy');
+        assert.equal(date, today);
         await vlDatepickerPage.clickSlashFormatButton();
         const changedDate = await datepicker.getInputValue();
         assert.equal(changedDate, '01/12/2019');
     });    
     
-    xit('ik kan programmatorisch de tijd met range format wijzigen', async () => {
+    it('ik kan programmatorisch de tijd met range format wijzigen', async () => {
 
     });
 
-    xit('ik kan programmatorisch de tijd veranderen', async () => {
+    it('ik kan programmatorisch de tijd veranderen', async () => {
         const datepicker = await vlDatepickerPage.getTimeFormatDatepicker();
         await datepicker.selectHour(9);
         await datepicker.selectMinutes(30);
@@ -148,14 +148,14 @@ describe('vl-datepicker', async () => {
         assert.equal(timeAfterUpdate, '11:55');
     });
 
-    xit('ik kan programmatorisch de datum en tijd wijzigen', async () => {
+    it('ik kan programmatorisch de datum en tijd wijzigen', async () => {
         const datepicker = await vlDatepickerPage.getDateTimeFormatDatepicker();
-        const tomorrow = now.plus({ days: 1 }).toFormat('dd-LL-yyyy');
+        const today = now.toFormat('dd-LL-yyyy');
         await datepicker.selectDay(day);
         await datepicker.selectHour(8);
         await datepicker.selectMinutes(15);
         const dateTime = await datepicker.getInputValue();
-        assert.equal(dateTime, tomorrow + ' 08:15');
+        assert.equal(dateTime, today + ' 08:15');
         await vlDatepickerPage.clickDateTimeFormatButton();
         const dateTimeAfterUpdate = await datepicker.getInputValue();
         assert.equal(dateTimeAfterUpdate, '01-12-2019 11:55');
