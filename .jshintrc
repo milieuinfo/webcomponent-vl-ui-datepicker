@@ -17,7 +17,7 @@
     "maxstatements": 50,
     "maxcomplexity": 13,
     "noreturnawait": true,
-    "trailingcomma": true,
+    "trailingcomma": false,
     "varstmt": true,
     "globals": {
         "it": false,
