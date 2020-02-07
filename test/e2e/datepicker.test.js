@@ -10,6 +10,9 @@ describe('vl-datepicker', async () => {
     const day = now.toFormat('d');
     const month = now.setLocale('nl').toFormat('LLLL');
     const year = now.toFormat('yyyy');
+    const hour = now.toFormat('H');
+    const minutes = now.toFormat('m');
+    const hourAMPM = now.toFormat('h');
 
     before(() => {
         return vlDatepickerPage.load();
@@ -35,7 +38,7 @@ describe('vl-datepicker', async () => {
         const datepicker = await vlDatepickerPage.getDefaultDatepicker();
         await datepicker.selectYear(year);
         await datepicker.selectDay(day);
-        await assert.eventually.isTrue(datepicker.getInputValue(), currentYear);
+        await assert.eventually.equal(datepicker.getInputValue(), currentYear);
     });
 
     it('ik kan een custom format definieren', async () => {
@@ -54,11 +57,11 @@ describe('vl-datepicker', async () => {
     it('ik kan een max datum definieren', async () => {
         const datepicker = await vlDatepickerPage.getMinMaxDatepicker();
         const maxDate = await datepicker.getMaxDate();
-        const maxDateParsed = DateTime.fromFormat(maxDate, 'dd-LL-yyyy');
+        const maxDateParsed = DateTime.fromFormat(maxDate, 'dd-LL-yyyy', { locale: 'nl' });
 
         if (maxDateParsed > now) {
             await datepicker.selectYear(maxDateParsed.year);
-            await datepicker.selectMonth(maxDateParsed.month);
+            await datepicker.selectMonth(maxDateParsed.monthLong);
         }
         await datepicker.selectDay(day);
 
@@ -100,17 +103,16 @@ describe('vl-datepicker', async () => {
         assert.equal(pmTime, '12:45');
     });
 
-    //TODO: day, tomorrow en stuff gebruiken
     it('ik kan een datum en tijd selecteren', async () => {
+        const currentDay = now.toFormat('dd-LL-yyyy');
         const datepicker = await vlDatepickerPage.getDateTimepicker();
-        await datepicker.selectDay(30);
-        await datepicker.selectHour(11);
-        await datepicker.selectMinutes(20);
+        await datepicker.selectDay(day);
+        await datepicker.selectHour(hour);
+        await datepicker.selectMinutes(minutes);
         const dateTime = await datepicker.getInputValue();
-        assert.equal(dateTime, '30-01-2020 11:20');
+        assert.equal(dateTime, currentDay + ' ' + hour + ':' + minutes);
     });
 
-    //TODO: dynamisch maken van datum
     it('ik kan programmatorisch de datum met dotted format wijzigen', async () => {
         const datepicker = await vlDatepickerPage.getDotFormatDatepicker();
         await datepicker.selectDay(day);

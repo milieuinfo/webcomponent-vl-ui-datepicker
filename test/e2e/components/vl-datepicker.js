@@ -1,5 +1,5 @@
 const { VlElement } = require('vl-ui-core');
-const { By, until } = require('selenium-webdriver');
+const { By } = require('selenium-webdriver');
 const { VlSelect } = require('vl-ui-select');
 
 class VlDatepicker extends VlElement {
@@ -148,7 +148,7 @@ class VlDatepicker extends VlElement {
 
     async selectHour(hour) {
         const ticker = await (await this._getWrapper()).findElement(By.css('.flatpickr-hour'));
-        return this._setValueInTicker(ticker, false, hour);
+        await this._setValueInTicker(ticker, false, hour);
     }
 
     async selectMinutes(minutes) {
