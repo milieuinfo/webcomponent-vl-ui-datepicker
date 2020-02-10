@@ -1,0 +1,61 @@
+@function pow($vl-number, $vl-exp) {
+  $vl-value: 1;
+  @if $vl-exp > 0 {
+    @for $vl-i from 1 through $vl-exp {
+      $vl-value: $vl-value * $vl-number;
+    }
+  } @else if $vl-exp < 0 {
+    @for $vl-i from 1 through -$vl-exp {
+      $vl-value: $vl-value / $vl-number;
+    }
+  }
+  @return $vl-value;
+}
+
+@function fact($vl-number) {
+  $vl-value: 1;
+  @if $vl-number > 0 {
+    @for $vl-i from 1 through $vl-number {
+      $vl-value: $vl-value * $vl-i;
+    }
+  }
+  @return $vl-value;
+}
+
+@function pi() {
+  @return 3.14159265359;
+}
+
+@function rad($vl-angle) {
+  $vl-unit: unit($vl-angle);
+  $vl-unitless: $vl-angle / ($vl-angle * 0 + 1);
+  // If the angle has 'deg' as unit, convert to radians.
+  @if $vl-unit == deg {
+    $vl-unitless: $vl-unitless / 180 * pi();
+  }
+  @return $vl-unitless;
+}
+
+@function sin($vl-angle) {
+  $vl-sin: 0;
+  $vl-angle: rad($vl-angle);
+  // Iterate a bunch of times.
+  @for $vl-i from 0 through 10 {
+    $vl-sin: $vl-sin + pow(-1, $vl-i) * pow($vl-angle, (2 * $vl-i + 1)) / fact(2 * $vl-i + 1);
+  }
+  @return $vl-sin;
+}
+
+@function cos($vl-angle) {
+  $vl-cos: 0;
+  $vl-angle: rad($vl-angle);
+  // Iterate a bunch of times.
+  @for $vl-i from 0 through 10 {
+    $vl-cos: $vl-cos + pow(-1, $vl-i) * pow($vl-angle, 2 * $vl-i) / fact(2 * $vl-i);
+  }
+  @return $vl-cos;
+}
+
+@function tan($vl-angle) {
+  @return sin($vl-angle) / cos($vl-angle);
+}

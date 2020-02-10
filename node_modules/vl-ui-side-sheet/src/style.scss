@@ -1,0 +1,106 @@
+// ==========================================================================
+// Vlaanderen UI -- Side-sheet
+// ==========================================================================
+@charset "utf-8";
+
+// ==========================================================================
+// Core
+// ==========================================================================
+@import "vl-ui-core/src/scss/core";
+
+$break-small: 767px;
+
+#vl-side-sheet{
+  display: none;
+  position: fixed;
+  top: 0;
+  width: var(--vl-side-sheet-width, calc(100%/3));
+  right: 0;
+  border-left: 1px solid #cbd2da;
+
+  @media screen and (max-width: $break-small) {
+    width: calc(100vw - 56px);
+    border: 0;
+    box-shadow: 0 0 2.1rem 0 rgba(0, 0, 0, 0.3);
+  }
+  height: 100vh;
+  z-index: 1001;
+  background: white;
+  padding: 2rem;
+  overflow: scroll;
+}
+
+#vl-side-sheet[open]{
+  display: block;
+}
+
+#vl-side-sheet-backdrop {
+  display: none;
+}
+
+.vl-side-sheet--left {
+  left: 0;
+  border-right: 1px solid #cbd2da;
+}
+
+#vl-side-sheet-backdrop[open] {
+  @media screen and (max-width: $break-small) {
+   display: block;
+  }
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  z-index: 1000;
+  background-color: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(2px);
+}
+
+.vl-side-sheet__close {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 0.2rem;
+  right: 0.2rem;
+  padding: 1rem;
+  border: 0;
+  background: none;
+  line-height: 1;
+  overflow: hidden; }
+.vl-side-sheet__close:hover .vl-side-sheet__close__icon, .vl-side-sheet__close:focus .vl-side-sheet__close__icon {
+  color: #05c; }
+@media screen and (max-width: 767px) {
+  .vl-side-sheet__close {
+    top: 0;
+    right: 0; } }
+.vl-side-sheet__close__icon {
+  display: flex;
+  font-size: 1.4rem;
+  line-height: 1; }
+.vl-side-sheet__close__icon::before, .vl-side-sheet__close__icon::after {
+  font-family: "vlaanderen-icon" !important;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-style: normal;
+  font-variant: normal;
+  font-weight: normal;
+  text-decoration: none;
+  text-transform: none; }
+.vl-side-sheet__close__icon::before {
+  content: "\f16f"; }
+.vl-side-sheet__close__icon.vl-icon {
+  margin-right: 0; }
+
+.vl-u-visually-hidden {
+  position: absolute !important;
+  height: 1px;
+  width: 1px;
+  overflow: hidden;
+  clip: rect(1px, 1px, 1px, 1px);
+  margin: -1px;
+  padding: 0;
+  border: 0;
+  left: 0;
+  top: 0; }

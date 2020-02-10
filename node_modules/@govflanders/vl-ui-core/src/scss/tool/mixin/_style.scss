@@ -1,0 +1,50 @@
+$vl-header-action-color: $vl-text-color !default;
+$vl-header-action-hover-color: $vl-science-blue !default;
+$vl-header-action-border-color: $vl-text-color !default;
+
+$vl-header-top-border-color: rgba(0, 0, 0, 0.1) !default;
+$vl-header-top-border-size: 0.3rem;
+
+@mixin header-has-actions($vl-bg) {
+  &::before {
+    content: "";
+    display: block;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    height: $vl-header-top-border-size;
+    background-color: $vl-bg;
+    z-index: 2;
+
+    @include respond-to(small) {
+      display: none;
+    }
+  }
+}
+
+@mixin header-actions-style($vl-bg) {
+  background-color: $vl-bg;
+}
+
+@mixin header-action-style($vl-class) {
+  color: $vl-header-action-color;
+
+  + .vl-#{$vl-class} {
+    border-left: 1px solid $vl-header-action-border-color;
+  }
+
+  a,
+  button {
+    color: $vl-header-action-color;
+
+    &:hover,
+    &:focus {
+      color: $vl-header-action-hover-color;
+    }
+  }
+}
+
+@mixin outline {
+  outline: auto $vl-outline-color 3px;
+}

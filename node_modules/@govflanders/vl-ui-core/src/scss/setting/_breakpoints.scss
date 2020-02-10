@@ -1,0 +1,12 @@
+$vl-bp-xsmall: 500px;
+$vl-bp-small: 767px;
+$vl-bp-medium: 1023px;
+$vl-bp-large: 1600px;
+
+$vl-bp-list: (
+  l: (media: "large"),
+  m: (media: "medium"),
+  s: (media: "small"),
+  xs: (media: "xsmall")
+);
+

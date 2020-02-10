@@ -1,0 +1,626 @@
+// sass-lint:disable variable-name-format mixin-name-format force-pseudo-nesting no-color-literals max-file-line-count max-line-length
+
+////
+// Grid based on Gridtacular, slightly modified to support IE9
+// https://github.com/roikles/gridtacular/
+// Docs: https://roikles.github.io/gridtacular/#
+////
+////
+// Map Get Z
+//
+// A cleaner way to deal with nested map values.
+// Created by lunelson [https://github.com/lunelson/sass-list-maps]
+//
+// @arg {map} $vl-list - provide a Sass map to be traversed
+// @arg {array} $vl-keys... - provide the array keys per depth comma seperated
+//
+// @example scss - Map Get Z
+//     map-get-z(map, first-child-key, second-child-key);
+////
+@function map-get-z($vl-list, $vl-keys...) {
+  @if $vl-list == null {
+    @return $vl-list;
+  }
+  $vl-length: length($vl-keys);
+  $vl-list: map-get($vl-list, nth($vl-keys, 1));
+  @if $vl-length > 1 {
+    @for $vl-n from 2 through $vl-length {
+      @if $vl-list == null {
+        @return $vl-list;
+      }
+      $vl-list: map-get($vl-list, nth($vl-keys, $vl-n));
+    }
+    @return $vl-list;
+  }
+  @return $vl-list;
+}
+
+////
+// Column Width
+//
+// Works out the percent width of items (gutters can be
+// any unit but items are always percent bases)
+//
+// @arg {int} $vl-list - provide a Sass map to be traversed
+// @arg {int} $vl-keys... - provide the array keys per depth comma seperated
+//
+// @example scss - Map Get Z
+//     map-get-z(map, first-child-key, second-child-key);
+////
+@function item-width($vl-number_of_items, $vl-total_items) {
+  $vl-single_col_width: 100 / $vl-total_items * 1%;
+  @return $vl-single_col_width * $vl-number_of_items;
+}
+
+////
+// At Breakpoint
+//
+// A mixin for outputting inline media queries
+// Just supply a Sass list as an argument with a min/max
+// If there are no min and max values supplied then it
+// doesnt ouput a media query
+////
+@mixin at-breakpoint($vl-min, $vl-max: null) {
+  @if ($vl-max == null and $vl-min != null) {
+    @media screen and (min-width: $vl-min) {
+      @content;
+    }
+  }
+  @elseif ($vl-min == null and $vl-max == null) {
+    @content;
+  }
+  @elseif ($vl-max != null and $vl-min == null) {
+    @media screen and (max-width: $vl-max) {
+      @content;
+    }
+  } @else {
+    @media screen and (min-width: $vl-min) and (max-width: $vl-max) {
+      @content;
+    }
+  }
+}
+
+////
+// Span Columns
+//
+// Used to set grids semantically from within
+// the stylesheet with no additional HTML markup
+////
+@mixin span-items($vl-items, $vl-total_items, $vl-ie9: false) {
+  @if $vl-ie9 {
+    width: item-width($vl-items, $vl-total_items);
+  }
+  flex-basis: item-width($vl-items, $vl-total_items);
+}
+
+////
+// Grid
+//
+// Called once per breakpoint as the gutters may be different
+// Float all direct children of the grid.
+// Adds negative padding to each row
+// Display flex and flex-wrap are used here to prevent content from
+// floating into above elements
+////
+@mixin grid($vl-grid_prefix, $vl-gutter, $vl-ie9: false) {
+  #{$vl-grid_prefix} {
+    position: relative;
+    box-sizing: border-box;
+    display: flex;
+    margin-left: -$vl-gutter;
+    flex-direction: row;
+    flex: 0 1 auto;
+    flex-wrap: wrap;
+
+    @if $vl-ie9 {
+      .no-flexbox &::after {
+        content: "";
+        display: table;
+        clear: both;
+      }
+    }
+  }
+
+  // Float children
+  #{$vl-grid_prefix} > * {
+    box-sizing: border-box;
+    padding-left: $vl-gutter;
+    position: relative;
+    @if $vl-ie9 {
+      .no-flexbox & {
+        float: left;
+      }
+    }
+  }
+}
+
+////
+// Grid with no gutters
+////
+@mixin grid-no-gutter($vl-grid_prefix, $vl-suffix: null) {
+  #{$vl-grid_prefix}--no-gutter#{$vl-suffix} {
+    margin-left: 0;
+  }
+
+  // Float children
+  #{$vl-grid_prefix}--no-gutter#{$vl-suffix} > * {
+    padding-left: 0;
+  }
+}
+
+////
+// Grid with stacked items (spanning multiple rows and showing margin between items)
+////
+@mixin grid-stacked($vl-grid_prefix, $vl-stackedsuffix, $vl-gutter) {
+  #{$vl-grid_prefix}#{$vl-stackedsuffix} {
+    margin-top: -$vl-gutter;
+  }
+
+  // Float children
+  #{$vl-grid_prefix}#{$vl-stackedsuffix} > * {
+    margin-top: $vl-gutter;
+  }
+}
+
+////
+// Control vertical centering from the "grid" element
+////
+@mixin grid-vertical-align($vl-grid_prefix, $vl-suffix: null) {
+  #{$vl-grid_prefix}--v-top#{$vl-suffix} {
+    align-items: flex-start;
+  }
+
+  #{$vl-grid_prefix}--v-center#{$vl-suffix} {
+    align-items: center;
+  }
+
+  #{$vl-grid_prefix}--v-bottom#{$vl-suffix} {
+    align-items: flex-end;
+  }
+
+  #{$vl-grid_prefix}--v-stretch#{$vl-suffix} {
+    align-items: stretch;
+  }
+
+  #{$vl-grid_prefix}--v-baseline#{$vl-suffix} {
+    align-items: stretch;
+  }
+}
+
+////
+// Control justification of the items
+// depends on rtl/ltr settings
+////
+@mixin grid-justify-content($vl-grid_prefix, $vl-suffix: null) {
+  #{$vl-grid_prefix}--align-start#{$vl-suffix} {
+    justify-content: flex-start;
+  }
+
+  #{$vl-grid_prefix}--align-end#{$vl-suffix} {
+    justify-content: flex-end;
+  }
+
+  #{$vl-grid_prefix}--align-center#{$vl-suffix} {
+    justify-content: center;
+  }
+
+  #{$vl-grid_prefix}--align-space-between#{$vl-suffix} {
+    justify-content: space-between;
+  }
+
+  #{$vl-grid_prefix}--align-space-around#{$vl-suffix} {
+    justify-content: space-around;
+  }
+}
+
+////
+// Make items fill a row
+////
+@mixin grid-item-fit($vl-item_class, $vl-suffix: null) {
+  #{$vl-item_class}fit#{$vl-suffix} {
+    flex: 1 0;
+  }
+}
+
+////
+// Apply display: flex to grid items
+// could allow for nesting but also allows content
+// to span 100% of its containers height which is
+// useful when using the stretch behavior on
+// siblings
+////
+@mixin grid-item-flex($vl-item_class, $vl-suffix: null) {
+  #{$vl-item_class}flex#{$vl-suffix} {
+    display: flex;
+  }
+}
+
+////
+// Apply negative margin to grid items
+// This pulls content out of its context
+////
+@mixin grid-item-wide($vl-grid_prefix, $vl-gutter, $vl-space: null, $vl-suffix: "--wide") {
+  @include respond-to(large_wide) {
+    #{$vl-grid_prefix}#{$vl-suffix} {
+      margin-left: calc(-#{$vl-space} - #{$vl-gutter});
+      margin-right: -$vl-space;
+    }
+  }
+}
+
+////
+// Equivalent Fractions
+//
+// This function will add additional classes
+// to make the grid system more expressive.
+// Instead of writing 4/12 you can also write 1/3
+////
+@function equivalent-fractions($vl-numerator, $vl-denominator) {
+  $vl-fractions: ();
+  @for $vl-i from -$vl-numerator through -1 {
+    @if ($vl-numerator % abs($vl-i) == 0 and $vl-denominator % abs($vl-i) == 0) {
+      $vl-fraction: (abs($vl-i): #{$vl-numerator/abs($vl-i)}-#{$vl-denominator/abs($vl-i)});
+      $vl-fractions: map-merge($vl-fractions, $vl-fraction);
+    }
+  }
+  // return map of all fractions
+  @return $vl-fractions;
+}
+
+////
+// Grid Columns
+//
+// Set the grid item widths based on the number of
+// items divided by the total number of items.
+////
+@mixin grid-items($vl-prefix: null, $vl-suffix: null, $vl-items: null, $vl-ie9: false) {
+  // Loop through the total grid items
+
+  @for $vl-i from 1 through $vl-items {
+    $vl-css_classes: equivalent-fractions($vl-i, $vl-items);
+    $vl-item_class: null;
+
+    // Generate classes from Equivalent fractions
+
+    @each $vl-key, $vl-css_class in $vl-css_classes {
+      $vl-full_css_class: #{$vl-prefix}#{$vl-css-class}#{$vl-suffix};
+      $vl-item_class: $vl-item_class, $vl-full_css_class;
+    }
+
+    // Output item classes
+
+    #{$vl-item_class} {
+      @if $vl-ie9 {
+        .no-flexbox & {
+          width: item-width($vl-i, $vl-items);
+        }
+      }
+      flex-basis: item-width($vl-i, $vl-items);
+      max-width: item-width($vl-i, $vl-items);
+      min-width: item-width($vl-i, $vl-items);
+    }
+  }
+}
+
+////
+// Push Class
+//
+// Set the push classes that will incrementally indent
+// the item by a maximum number of total-items -1
+////
+@mixin grid-push($vl-prefix: null, $vl-suffix: null, $vl-items: null) {
+  #{$vl-prefix}reset#{$vl-suffix} {
+    margin-left: 0;
+  }
+
+  @for $vl-i from 1 through $vl-items - 1 {
+    $vl-css_classes: equivalent-fractions($vl-i, $vl-items);
+    $vl-push_class: null;
+
+    @each $vl-key, $vl-css_class in $vl-css_classes {
+      $vl-full_css_class: #{$vl-prefix}#{$vl-css_class}#{$vl-suffix};
+      $vl-push_class: $vl-push_class, $vl-full_css_class;
+    }
+
+    #{$vl-push_class} {
+      margin-left: item-width($vl-i, $vl-items);
+    }
+  }
+}
+
+////
+// Omega class
+//
+// An omega declaration that is breakpoint specific
+// Basically it floats an element to the right taking
+// it out of order potentially.
+////
+@mixin grid-omega($vl-prefix: null, $vl-suffix: null) {
+  #{$vl-prefix}omega#{$vl-suffix} {
+    margin-left: auto;
+  }
+}
+
+////
+// Debug
+//
+// Outputs the current breakpoint name to quickly debug
+// each breakpoint.
+////
+@mixin grid-debug {
+  body::after {
+    box-sizing: border-box;
+    position: fixed;
+    display: block;
+    bottom: 10px;
+    right: 10px;
+    padding: 5px 28px 5px 20px;
+    font-size: 12px;
+    color: #777;
+    border-radius: 3px;
+    background-color: #f7f7f7;
+    box-shadow: 0 2px 2px rgba(#000, 0.3);
+    z-index: z("grid");
+  }
+}
+
+@mixin grid-debug-responsive($vl-breakpoint_name, $vl-debug_bg: #000) {
+  body::after {
+    content: "#{$vl-breakpoint_name}";
+    background: linear-gradient(
+      to right,
+      #f7f7f7,
+      #f7f7f7 90%,
+      $vl-debug_bg 90%,
+      $vl-debug_bg 100%
+    );
+  }
+}
+
+////
+// Class debug
+//
+// On hovering a grid element a
+// tooltip appears with details on the applied classes
+// this may only be useful for the demo
+////
+
+@mixin class-debug($vl-grid_prefix) {
+  #{$vl-grid_prefix} > *:hover::after {
+    content: attr(class);
+    position: absolute;
+    right: 0;
+    border-radius: 3px;
+    background: #f7f7f7;
+    box-shadow: 0 2px 2px rgba(#000, 0.3);
+    padding: 5px;
+    font-size: 11px;
+  }
+}
+
+////
+// Grid Generate
+//
+// Pulls the whole thing together ready for output
+// kept seperate from grid-generate as it is DRYer
+// this way.
+////
+@mixin grid-generate($vl-grid_args) {
+  // Set variable defaults
+
+  $vl-default_grid_name: "vl-grid";
+  $vl-default_item_name: "span--";
+  $vl-default_push: false;
+  $vl-default_push_name: "push--";
+  $vl-default_omega: true;
+  $vl-default_debug_display: false;
+  $vl-default_class_debug_display: false;
+  $vl-default_ie9_support: false;
+  $vl-default_stacked_suffix: "--is-stacked";
+  $vl-default_wide_suffix: "--wide";
+  $vl-default_stacked: true;
+
+  // Check if the user has submitted defaults
+  // If they have then use the user submitted values
+  // otherwise fall back to the defined defaults
+
+  $vl-grid_name: null;
+  $vl-grid_prefix: null;
+
+  // If grid class has been defined
+  @if (map-has-key(map-get($vl-grid_args, config), gridclass)) {
+    $vl-grid_name: map-get-z($vl-grid_args, config, gridclass);
+    $vl-grid_prefix: #{"." + map-get-z($vl-grid_args, config, gridclass)};
+  } @else {
+    $vl-grid_name: $vl-default_grid_name;
+    $vl-grid_prefix: #{"." + $vl-grid_name};
+  }
+
+  $vl-item_name: null;
+  // If item class has been defined
+  @if (map-has-key(map-get($vl-grid_args, config), itemclass)) {
+    $vl-item_name: map-get-z($vl-grid_args, config, itemclass);
+  } @else {
+    $vl-item_name: $vl-default_item_name;
+  }
+
+  $vl-push: null;
+  //If push has been defined
+  @if (map-has-key(map-get($vl-grid_args, config), push)) {
+    $vl-push: map-get-z($vl-grid_args, config, push);
+  } @else {
+    $vl-push: $vl-default_push;
+  }
+
+  $vl-push_name: null;
+  // If pushclass has been defined
+  @if (map-has-key(map-get($vl-grid_args, config), pushclass)) {
+    $vl-push_name: map-get-z($vl-grid_args, config, pushclass);
+  } @else {
+    $vl-push_name: $vl-default_push_name;
+  }
+
+  $vl-omega: null;
+  // If omega has been defined
+  @if (map-has-key(map-get($vl-grid_args, config), omega)) {
+    $vl-omega: map-get-z($vl-grid_args, config, omega);
+  } @else {
+    $vl-omega: $vl-default_omega;
+  }
+
+  $vl-debug_display: null;
+  // If debug_display has been defined
+  @if (map-has-key(map-get($vl-grid_args, config), debug)) {
+    $vl-debug_display: map-get-z($vl-grid_args, config, debug);
+  } @else {
+    $vl-debug_display: $vl-default_debug_display;
+  }
+
+  $vl-class_debug_display: null;
+  // If debug_display has been defined
+  @if (map-has-key(map-get($vl-grid_args, config), classdebug)) {
+    $vl-class_debug_display: map-get-z($vl-grid_args, config, classdebug);
+  } @else {
+    $vl-class_debug_display: $vl-default_class_debug_display;
+  }
+
+  $vl-ie9: null;
+  // If IE9 support has been defined
+  @if (map-has-key(map-get($vl-grid_args, config), ie9)) {
+    $vl-ie9: map-get-z($vl-grid_args, config, ie9);
+  } @else {
+    $vl-ie9: $vl-default_ie9_support;
+  }
+
+  $vl-stacked: null;
+  //If stacked has been defined
+  @if (map-has-key(map-get($vl-grid_args, config), stacked)) {
+    $vl-stacked: map-get-z($vl-grid_args, config, stacked);
+  } @else {
+    $vl-stacked: $vl-default_stacked;
+  }
+
+  $vl-stacked_suffix: null;
+  // If pushclass has been defined
+  @if (map-has-key(map-get($vl-grid_args, config), stackedsuffix)) {
+    $vl-stacked_suffix: map-get-z($vl-grid_args, config, stackedsuffix);
+  } @else {
+    $vl-stacked_suffix: $vl-default_stacked_suffix;
+  }
+
+  // if grid include breakpoint debug box
+  @if ($vl-debug_display) {
+    @include grid-debug;
+  }
+
+  // Check that there are defined grids
+  @if (map-has-key($vl-grid_args, grids)) {
+    // Grid default values
+    $vl-grids: map-get($vl-grid_args, grids);
+    $vl-item_prefix: #{"." + $vl-item_name};
+    $vl-push_prefix: #{"." + $vl-push_name};
+
+    @each $vl-grid_name, $vl-grid_map in $vl-grids {
+      // Set defaults
+
+      $vl-default_items: 12;
+      $vl-default_suffix: null;
+      $vl-default_breakpoint_min: null;
+      $vl-default_breakpoint_max: null;
+      $vl-default_gutter: 24px;
+      $vl-default_debug_bg: #000;
+      $vl-default_debug_name: $vl-grid_name;
+
+      $vl-items: null;
+      // If item class has been defined
+      @if (map-has-key($vl-grid_map, items)) {
+        $vl-items: map-get($vl-grid_map, items);
+      } @else {
+        $vl-items: $vl-default_items;
+      }
+
+      $vl-suffix: null;
+      // If item class has been defined
+      @if (map-has-key($vl-grid_map, suffix)) {
+        $vl-suffix: map-get($vl-grid_map, suffix);
+      } @else {
+        $vl-suffix: $vl-default_suffix;
+      }
+
+      $vl-breakpoint_min: null;
+      // If breakpoint min has been defined
+      @if (map-has-key($vl-grid_map, breakpoint_min)) {
+        $vl-breakpoint_min: map-get($vl-grid_map, breakpoint_min);
+      } @else {
+        $vl-breakpoint_min: $vl-default_breakpoint_min;
+      }
+
+      $vl-breakpoint_max: null;
+      // If breakpoint max has been defined
+      @if (map-has-key($vl-grid_map, breakpoint_max)) {
+        $vl-breakpoint_max: map-get($vl-grid_map, breakpoint_max);
+      } @else {
+        $vl-breakpoint_max: $vl-default_breakpoint_max;
+      }
+
+      $vl-gutter: null;
+      // If gutter has been defined
+      @if (map-has-key($vl-grid_map, gutter)) {
+        $vl-gutter: map-get($vl-grid_map, gutter);
+      } @else {
+        $vl-gutter: $vl-default_gutter;
+      }
+
+      $vl-debug_bg: null;
+      // If debug_bg is defined
+      @if (map-has-key($vl-grid_map, debug_bg)) {
+        $vl-debug_bg: map-get($vl-grid_map, debug_bg);
+      } @else {
+        $vl-debug_bg: $vl-default_debug_bg;
+      }
+
+      $vl-debug_name: null;
+      // If debug_name is defined
+      @if (map-has-key($vl-grid_map, debug_name)) {
+        $vl-debug_name: map-get($vl-grid_map, debug_name);
+      } @else {
+        $vl-debug_name: $vl-default_debug_name;
+      }
+
+      // Include the necessary mixins to generate the grids
+      @include at-breakpoint($vl-breakpoint_min, $vl-breakpoint_max) {
+        @include grid($vl-grid_prefix, $vl-gutter, $vl-ie9);
+        @include grid-no-gutter($vl-grid_prefix, $vl-suffix);
+        @include grid-vertical-align($vl-grid_prefix, $vl-suffix);
+        @include grid-justify-content($vl-grid_prefix, $vl-suffix);
+        @include grid-item-fit($vl-item_prefix, $vl-suffix);
+        @include grid-item-flex($vl-item_prefix, $vl-suffix);
+        @include grid-items($vl-item_prefix, $vl-suffix, $vl-items, $vl-ie9);
+
+        @if ($vl-stacked) {
+          @include grid-stacked($vl-grid_prefix, $vl-stacked_suffix, $vl-gutter);
+        }
+
+        @if ($vl-push) {
+          @include grid-push($vl-push_prefix, $vl-suffix, $vl-items);
+        }
+
+        @if ($vl-omega) {
+          @include grid-omega($vl-item_prefix, $vl-suffix);
+        }
+
+        @if ($vl-debug_display) {
+          @include grid-debug-responsive($vl-debug_name, $vl-debug_bg);
+        }
+
+        @if ($vl-class_debug_display) {
+          @include class-debug($vl-grid_prefix);
+        }
+      }
+    }
+  } @else {
+    @error "No Gridtacular grids defined!";
+  }
+
+  @include grid-item-wide($vl-grid_prefix, $vl-spacing-medium, $vl-grid-wide-expansion, $vl-default_wide_suffix);
+}
