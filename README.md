@@ -1,7 +1,7 @@
 # vl-ui-datepicker
 ![GitHub issues](https://img.shields.io/github/issues-raw/milieuinfo/webcomponent-vl-ui-datepicker) ![GitHub pull requests](https://img.shields.io/github/issues-pr-raw/milieuinfo/webcomponent-vl-ui-datepicker) ![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/milieuinfo/webcomponent-vl-ui-datepicker)
 
-De "datepicker" UI component van Webuniversum Vlaanderen als Web Component
+Gebruik de datepicker om de gebruiker een datum te laten selecteren op een intuitïeve manier.
 
 ## Installatie
 ``` bash
