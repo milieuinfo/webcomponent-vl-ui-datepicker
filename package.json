@@ -60,7 +60,7 @@
     "release:prepare:build:node:replace:dist:local": "replace \"from ['\\\"]/dist/(.*)['\\\"]\" \"from 'vl-ui-datepicker/dist/\\$1'\" vl-datepicker.src.js",
     "release:prepare:build:node:replace:src:local": "replace \"from ['\\\"]/src/(.*)['\\\"]\" \"from 'vl-ui-datepicker/src/\\$1'\" vl-datepicker.src.js",
     "release:prepare:build:node:explode": "npm explore vl-ui-util -- npm run explode -- --fileName=vl-datepicker.src.js",
-    "release:prepare:commit": "git add -f . && git commit --amend --no-edit && git pull",
+    "release:prepare:commit": "git add -f vl-* && git commit --amend --no-edit && git pull",
     "release:testless": "np --yolo",
     "demo": "http-server"
   },
