@@ -1,9 +1,0 @@
-// Adding fallback for broken images
-img.vl-image--error {
-  overflow-wrap: break-word;
-  padding: 10px;
-  line-height: 1.25;
-  font-size: 1.6rem;
-  color: var(--vl-theme-fg-color);
-  background-color: $vl-alt-bg;
-}
