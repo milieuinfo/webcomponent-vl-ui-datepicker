@@ -1,6 +1,5 @@
 const VlDatepicker = require('../components/vl-datepicker');
-const { Page } = require('vl-ui-core');
-const { Config } = require('vl-ui-core');
+const { Page, Config } = require('vl-ui-core').Test;
 
 class VlDatepickerPage extends Page {
     async _getDatepicker(selector) {

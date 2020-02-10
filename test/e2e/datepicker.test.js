@@ -1,5 +1,4 @@
-
-const { assert, driver } = require('vl-ui-core').Test;
+const { driver } = require('vl-ui-core').Test.Setup;
 const VlDatepickerPage = require('./pages/vl-datepicker.page');
 
 describe('vl-datepicker', async () => {
@@ -7,5 +6,9 @@ describe('vl-datepicker', async () => {
 
     before(() => {
         return vlDatepickerPage.load();
+    });
+
+    after(async () => {
+        return driver.quit();
     });
 });
