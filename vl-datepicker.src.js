@@ -5,7 +5,7 @@ import 'vl-ui-input-field';
 import 'vl-ui-icon';
 import '@govflanders/vl-ui-util/dist/js/util.min.js';
 import '@govflanders/vl-ui-core/dist/js/core.min.js';
-import '/dist/datepicker.js';
+import 'vl-ui-datepicker/dist/datepicker.js';
 
 /**
  * VlDatepicker
