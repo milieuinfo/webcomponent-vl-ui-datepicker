@@ -156,7 +156,7 @@ class VlDatepicker extends VlElement {
     }
 
     async selectHour(hour) {
-        await this._openFlatpickr();
+        //await this._openFlatpickr();
         const ticker = await (await this._getWrapper()).findElement(By.css('.flatpickr-hour'));
         if (await this._isAmPm() && hour > 12) {
             return this._setValueInTicker(ticker, false, hour - 12);
@@ -166,6 +166,7 @@ class VlDatepicker extends VlElement {
     }
 
     async selectMinutes(minutes) {
+        
         const ticker = await (await this._getWrapper()).findElement(By.css('.flatpickr-minute'));
         if (minutes % 5 == 0) {
             await this._setValueInTicker(ticker, true, minutes);
@@ -176,7 +177,7 @@ class VlDatepicker extends VlElement {
     }
 
     async selectDay(day) {
-        await this._openFlatpickr();
+        //await this._openFlatpickr();
         const dayMap = await this._getDaysMap();
         const dayArray = dayMap.filter(w => w.text == day).filter(d => d.isPreviousMonth === false);
         if (dayArray.length === 0) {

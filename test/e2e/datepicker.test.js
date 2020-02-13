@@ -78,9 +78,11 @@ describe('vl-datepicker', async () => {
 
     it('ik kan een tijd selecteren', async () => {
         const datepicker = await vlDatepickerPage.getTimepicker();
+        await datepicker._openFlatpickr();
         await datepicker.selectHour(20);
         await datepicker.selectMinutes(25);
         await assert.eventually.equal(datepicker.getInputValue(), '20:25');
+        await (await datepicker._getToggleButton()).click();
     });
 
     // it('ik kan een max tijd instellen', async () => {
