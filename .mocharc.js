@@ -1,7 +1,7 @@
 module.exports = {
     "full-trace": true,
     "reporter": 'spec',
-    "slow": "4000",
+    "slow": "5000",
     "spec": ["test/**/*.test.js"],
-    "timeout": '5000'
+    "timeout": '10000'
 }
