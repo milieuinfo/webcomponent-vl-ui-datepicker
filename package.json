@@ -41,7 +41,7 @@
   "devDependencies": {
     "@govflanders/vl-ui-datepicker": "3.9.1",
     "luxon": "^1.22.0",
-    "vl-ui-modal": "^2.0.1",
+    "vl-ui-modal": "^2.1.0",
     "vl-ui-select": "^3.0.1",
     "vl-ui-side-sheet": "^2.0.1",
     "vl-ui-util": "^4.0.1"
