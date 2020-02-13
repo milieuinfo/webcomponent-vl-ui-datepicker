@@ -1,5 +1,5 @@
 const { VlElement } = require('vl-ui-core').Test;
-const { By } = require('selenium-webdriver');
+const { By, until } = require('selenium-webdriver');
 const { VlSelect } = require('vl-ui-select').Test;
 
 class VlDatepicker extends VlElement {
@@ -65,11 +65,6 @@ class VlDatepicker extends VlElement {
         const arrowUp = await tickerWrapper.findElement(By.css('span.arrowUp'));
         return arrowUp.click();
     }
-
-    async takeScreenshot(driver, file){
-        let image = await driver.takeScreenshot();
-        await writeFile(file, image, 'base64');
-      }
 
     async _increaseWith(ticker, times) {
         for (let index = 0; index < times; index++) {
