@@ -1,0 +1,28 @@
+{
+    "curly":true,
+    "eqeqeq": true,
+    "esversion": 8,
+    "immed": true,
+    "bitwise": true,
+    "newcap": true,
+    "noempty": true,
+    "unused": "strict",
+    "node": true,
+    "camelcase":true,
+    "undef": true,
+    "strict": false,
+    "trailing": true,
+    "maxparams": 7,
+    "maxdepth": 5,
+    "maxstatements": 50,
+    "maxcomplexity": 13,
+    "noreturnawait": true,
+    "trailingcomma": false,
+    "varstmt": true,
+    "globals": {
+        "it": false,
+        "describe": false,
+        "before": false,
+        "after": false
+    }
+  }
