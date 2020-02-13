@@ -29,11 +29,11 @@
     "demo": "http-server"
   },
   "dependencies": {
-    "vl-ui-button": "^2.0.0",
-    "vl-ui-core": "^3.1.1",
-    "vl-ui-icon": "2.1.1",
-    "vl-ui-input-field": "1.1.2",
-    "vl-ui-input-group": "2.0.0"
+    "vl-ui-button": "^3.0.0",
+    "vl-ui-core": "^4.0.0",
+    "vl-ui-icon": "^3.0.0",
+    "vl-ui-input-field": "^2.0.0",
+    "vl-ui-input-group": "^3.0.0"
   },
   "peerDependencies": {
     "vl-ui-core": "^3.0.0"
@@ -41,10 +41,10 @@
   "devDependencies": {
     "@govflanders/vl-ui-datepicker": "3.9.1",
     "luxon": "^1.22.0",
-    "vl-ui-modal": "^1.0.18",
-    "vl-ui-select": "^2.1.2",
-    "vl-ui-side-sheet": "^1.0.0",
-    "vl-ui-util": "^3.4.2"
+    "vl-ui-modal": "^2.0.1",
+    "vl-ui-select": "^3.0.1",
+    "vl-ui-side-sheet": "^2.0.1",
+    "vl-ui-util": "^4.0.1"
   },
   "publishConfig": {
     "registry": "http://artifactory-pr-build.lb.cumuli.be:8081/artifactory/api/npm/acd-npm/"

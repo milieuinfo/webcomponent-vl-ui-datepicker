@@ -1,3 +1,5 @@
 module.exports = { 
-    'VlDatepicker': require('./test/e2e/components/vl-datepicker')
+    Test: {
+        'VlDatepicker': require('./test/e2e/components/vl-datepicker')
+    }
 }
