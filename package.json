@@ -44,7 +44,7 @@
     "release:prepare:build:es6": "npm run release:prepare:build:es6:copy && npm run release:prepare:build:es6:replace",
     "release:prepare:build:es6:copy": "cp -R -f ./src/*.src.js ./vl-datepicker.js",
     "release:prepare:build:es6:replace": "npm run release:prepare:build:es6:replace:css && npm run release:prepare:build:es6:replace:dist && npm run release:prepare:build:es6:replace:src",
-    "release:prepare:build:es6:replace:css": "replace '\\.\\./style.css' '/node_modules/vl-ui-datepicker/style.css' vl-datepicker.js",
+    "release:prepare:build:es6:replace:css": "replace \"'/style.css'\" \"'/node_modules/vl-ui-datepicker/style.css'\" vl-datepicker.js",
     "release:prepare:build:es6:replace:dist": "replace \"import ['\\\"]/dist/(.*)['\\\"]\" \"import '/node_modules/vl-ui-datepicker/dist/\\$1'\" vl-datepicker.js",
     "release:prepare:build:es6:replace:src": "replace \"from ['\\\"]/src/(.*)['\\\"]\" \"from '/node_modules/vl-ui-datepicker/src/\\$1'\" vl-datepicker.js",
     "release:prepare:build:es6:min": "npm run release:prepare:build:es6:min:copy && npm run release:prepare:build:es6:min:explode && npm run release:prepare:build:es6:min:minify",
@@ -65,38 +65,25 @@
     "demo": "http-server"
   },
   "dependencies": {
-    "vl-ui-button": "^3.0.0",
+    "vl-ui-button": "^3.0.1",
     "vl-ui-core": "^4.0.0",
-    "vl-ui-icon": "^3.0.0",
-    "vl-ui-input-field": "^2.0.0",
-    "vl-ui-input-group": "^3.0.0"
+    "vl-ui-icon": "^3.0.1",
+    "vl-ui-input-field": "^2.0.1",
+    "vl-ui-input-group": "^3.0.1"
   },
   "peerDependencies": {
-    "vl-ui-button": "^3.0.0",
+    "vl-ui-button": "^3.0.1",
     "vl-ui-core": "^4.0.0",
-    "vl-ui-icon": "^3.0.0",
-    "vl-ui-input-field": "^2.0.0",
-    "vl-ui-input-group": "^3.0.0"
+    "vl-ui-icon": "^3.0.1",
+    "vl-ui-input-field": "^2.0.1",
+    "vl-ui-input-group": "^3.0.1"
   },
   "devDependencies": {
     "@govflanders/vl-ui-datepicker": "3.9.1",
     "luxon": "^1.22.0",
-    "vl-ui-modal": "^2.1.0",
-    "vl-ui-select": "^3.0.1",
-    "vl-ui-side-sheet": "^2.0.1",
-    "vl-ui-util": "^4.0.1"
-  },
-  "publishConfig": {
-    "registry": "http://artifactory-pr-build.lb.cumuli.be:8081/artifactory/api/npm/acd-npm/"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/milieuinfo/webcomponent-vl-ui-datepicker.git"
-  },
-  "author": "DIDM",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/milieuinfo/webcomponent-vl-ui-datepicker/issues"
-  },
-  "homepage": "https://github.com/milieuinfo/webcomponent-vl-ui-datepicker#readme"
+    "vl-ui-modal": "^2.1.1",
+    "vl-ui-select": "^3.0.2",
+    "vl-ui-side-sheet": "^2.0.2",
+    "vl-ui-util": "^4.0.3"
+  }
 }
