@@ -1,7 +1,6 @@
 
 const { assert, driver } = require('vl-ui-core').Test.Setup;
 const { DateTime } = require('luxon');
-const { By } = require('selenium-webdriver');
 const VlDatepickerPage = require('./pages/vl-datepicker.page');
 
 describe('vl-datepicker', async () => {
@@ -101,7 +100,8 @@ describe('vl-datepicker', async () => {
         await assert.eventually.equal(datepicker.getInputValue(), '12:45');
     });
 
-    it('ik kan een datum en tijd selecteren', async () => {
+    // tijdelijk uitgeschakeld door probleem met W3C mode in FF (strictFileInteractability)
+    xit('ik kan een datum en tijd selecteren', async () => {
         const today = now.toFormat('dd-LL-yyyy hh:mm');
         const datepicker = await vlDatepickerPage.getDateTimepicker();
         await datepicker.selectDay(currentDay);
@@ -159,7 +159,7 @@ describe('vl-datepicker', async () => {
     });
 
     afterEach(async () => {
-        return (await driver.findElement(By.css('h1'))).click();
+        return driver.navigate().refresh();
     });
 
     after(async () => {

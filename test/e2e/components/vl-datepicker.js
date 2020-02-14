@@ -171,6 +171,7 @@ class VlDatepicker extends VlElement {
         if (minutes % 5 == 0) {
             await this._setValueInTicker(ticker, true, minutes);
         } else {
+            await ticker.click();
             await ticker.sendKeys(minutes);
         }
         return (await this._getToggleButton()).click();
