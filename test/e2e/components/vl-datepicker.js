@@ -1,5 +1,5 @@
 const { VlElement } = require('vl-ui-core').Test;
-const { By, until } = require('selenium-webdriver');
+const { By } = require('selenium-webdriver');
 const { VlSelect } = require('vl-ui-select').Test;
 
 class VlDatepicker extends VlElement {
@@ -23,7 +23,7 @@ class VlDatepicker extends VlElement {
 
     async _isVisible() {
         const elementArray = await (await this._getWrapper()).findElements(By.css('.flatpickr-calendar'));
-        if(elementArray.length == 0) {
+        if (elementArray.length == 0) {
             return false;
         }
         const flatpickr = await this._getFlatpicker();
@@ -69,6 +69,7 @@ class VlDatepicker extends VlElement {
     async _increaseWith(ticker, times) {
         for (let index = 0; index < times; index++) {
             await this._increase(ticker);
+            await this.driver.sleep(300);
         }
         return Promise.resolve();
     }
@@ -76,6 +77,7 @@ class VlDatepicker extends VlElement {
     async _decreaseWith(ticker, times) {
         for (let index = 0; index < times; index++) {
             await this._decrease(ticker);
+            await this.driver.sleep(300);
         }
         return Promise.resolve();
     }
@@ -159,21 +161,17 @@ class VlDatepicker extends VlElement {
         await this._openFlatpickr();
         const ticker = await (await this._getWrapper()).findElement(By.css('.flatpickr-hour'));
         if (await this._isAmPm() && hour > 12) {
-            return this._setValueInTicker(ticker, false, hour - 12);
+            await ticker.sendKeys(hour - 12);
         } else {
-            return this._setValueInTicker(ticker, false, hour);
+            await ticker.sendKeys(hour);
         }
+        return Promise.resolve();
     }
-    
+
     async selectMinutes(minutes) {
         await this._openFlatpickr();
         const ticker = await (await this._getWrapper()).findElement(By.css('.flatpickr-minute'));
-        if (minutes % 5 == 0) {
-            await this._setValueInTicker(ticker, true, minutes);
-        } else {
-            await ticker.click();
-            await ticker.sendKeys(minutes);
-        }
+        await this.driver.executeScript('return arguments[0].value="' + minutes + '";', ticker);
         return (await this._getToggleButton()).click();
     }
 
