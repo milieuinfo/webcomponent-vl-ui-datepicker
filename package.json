@@ -28,7 +28,7 @@
     "test": "npm run test:unit && npm run test:e2e",
     "test:unit": "wct --config-file ./wct.local.conf.json",
     "test:e2e": "npm run test:server:start && npm run test:e2e:chrome && echo 'FIREFOX DISABLED'",
-    "test:e2e:grid": "npm run test:server:start && npm run test:e2e:chrome:grid && echo 'FIREFOX DISABLED",
+    "test:e2e:grid": "npm run test:server:start && npm run test:e2e:chrome:grid && echo 'FIREFOX DISABLED'",
     "test:grid": "wct --config-file ./wct.docker.conf.json && npm run test:e2e:grid",
     "posttest:e2e": "pkill -f http-server",
     "test:e2e:chrome": "mocha --chrome",
