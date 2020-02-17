@@ -161,8 +161,10 @@ class VlDatepicker extends VlElement {
         await this._openFlatpickr();
         const ticker = await (await this._getWrapper()).findElement(By.css('.flatpickr-hour'));
         if (await this._isAmPm() && hour > 12) {
+            await ticker.click();
             await ticker.sendKeys(hour - 12);
         } else {
+            await ticker.click();
             await ticker.sendKeys(hour);
         }
         return Promise.resolve();
