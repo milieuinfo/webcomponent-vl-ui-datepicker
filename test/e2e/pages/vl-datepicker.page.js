@@ -4,6 +4,10 @@ const { By } = require('selenium-webdriver');
 
 class VlDatepickerPage extends Page {
     async _getDatepicker(selector) {
+        await this.driver.wait(async () => {
+            let el = await this.driver.findElement(By.css(selector));
+            return el.isDisplayed();
+        }, 3000);
         return new VlDatepicker(this.driver, selector);
     }
 

@@ -151,9 +151,9 @@ describe('vl-datepicker', async () => {
         const datepicker = await vlDatepickerPage.getDateTimeFormatDatepicker();
         const today = now.toFormat('dd-LL-yyyy');
         await datepicker.selectDay(currentDay);
-        await datepicker.selectHour(8);
+        await datepicker.selectHour(12);
         await datepicker.selectMinutes(15);
-        await assert.eventually.equal(datepicker.getInputValue(), today + ' 08:15');
+        await assert.eventually.equal(datepicker.getInputValue(), today + ' 12:15');
         await vlDatepickerPage.clickDateTimeFormatButton();
         await assert.eventually.equal(datepicker.getInputValue(), '01-12-2019 11:55');
     });
