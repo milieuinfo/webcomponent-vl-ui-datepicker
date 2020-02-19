@@ -44,7 +44,7 @@
     "release:prepare:build:es6": "npm run release:prepare:build:es6:copy && npm run release:prepare:build:es6:replace",
     "release:prepare:build:es6:copy": "cp -R -f ./src/*.src.js ./vl-datepicker.js",
     "release:prepare:build:es6:replace": "npm run release:prepare:build:es6:replace:css && npm run release:prepare:build:es6:replace:dist && npm run release:prepare:build:es6:replace:src",
-    "release:prepare:build:es6:replace:css": "replace \"'/style.css'\" \"'/node_modules/vl-ui-datepicker/style.css'\" vl-datepicker.js",
+    "release:prepare:build:es6:replace:css": "replace \"('|\\\")/style.css('|\\\")\" \"'/node_modules/vl-ui-datepicker/style.css'\" vl-datepicker.js",
     "release:prepare:build:es6:replace:dist": "replace \"import ['\\\"]/dist/(.*)['\\\"]\" \"import '/node_modules/vl-ui-datepicker/dist/\\$1'\" vl-datepicker.js",
     "release:prepare:build:es6:replace:src": "replace \"from ['\\\"]/src/(.*)['\\\"]\" \"from '/node_modules/vl-ui-datepicker/src/\\$1'\" vl-datepicker.js",
     "release:prepare:build:es6:min": "npm run release:prepare:build:es6:min:copy && npm run release:prepare:build:es6:min:explode && npm run release:prepare:build:es6:min:minify",
