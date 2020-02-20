@@ -175,9 +175,12 @@ class VlDatepicker extends VlElement {
 
     async _selectTimeComponent(inputGetter, value) {
         await this._openFlatpickr();
-        const ticker = await inputGetter();
-        await ticker.click();
-        await this.driver.wait(async () => await this.driver.switchTo().activeElement().getTagName() === 'vl-datepicker', 2500);
+        const input = await inputGetter();
+        await this.driver.sleep(300);
+        await input.click();
+        await this.driver.sleep(300);
+        await input.click();
+        await this._waitForDatePickerToBeActiveElement();
         await this.__sendKeysWithoutReachabilityCheck(value);
         await this._closeFlatpickr();
     }
@@ -254,6 +257,10 @@ class VlDatepicker extends VlElement {
             value = value.toString();
         }
         await this.driver.actions().sendKeys(value).perform();
+    }
+
+    async _waitForDatePickerToBeActiveElement() {
+        await this.driver.wait(async () => await this.driver.switchTo().activeElement().getTagName() === 'vl-datepicker', 2500);
     }
 }
 
