@@ -56,7 +56,7 @@ describe('vl-datepicker', async () => {
     it('ik kan een max datum definieren', async () => {
         const datepicker = await vlDatepickerPage.getMinMaxDatepicker();
         await datepicker.selectMonth('mei');
-        await datepicker.selectDay(16);
+        await datepicker.selectDay('16');
 
         await assert.eventually.isTrue(datepicker._isVisible());
         await assert.eventually.isEmpty(datepicker.getInputValue());
@@ -76,22 +76,27 @@ describe('vl-datepicker', async () => {
 
     it('ik kan een tijd selecteren', async () => {
         const datepicker = await vlDatepickerPage.getTimepicker();
-        await datepicker.selectHour(8);
-        await datepicker.selectMinutes(25);
+        await datepicker.selectHour('08');
+        await datepicker.selectMinutes('25');
         await assert.eventually.equal(datepicker.getInputValue(), '08:25');
+    });
+
+    it('ik kan een min tijd instellen', async () => {
+        const datepicker = await vlDatepickerPage.getMinMaxTimepicker();
+        await datepicker.selectHour('08');
+        await assert.eventually.equal(datepicker.getInputValue(), '09:00');
     });
 
     it('ik kan een max tijd instellen', async () => {
         const datepicker = await vlDatepickerPage.getMinMaxTimepicker();
-        await datepicker.selectHour(18);
-        await datepicker.selectMinutes(20);
+        await datepicker.selectHour('18');
         await assert.eventually.equal(datepicker.getInputValue(), '17:00');
     });
 
     it('ik kan voor AM of PM kiezen', async () => {
         const datepicker = await vlDatepickerPage.getMeridianTimepicker();
-        await datepicker.selectHour(12);
-        await datepicker.selectMinutes(45);
+        await datepicker.selectHour('12');
+        await datepicker.selectMinutes('45');
         await datepicker.setAm();
         await assert.eventually.equal(datepicker.getInputValue(), '00:45');
 
@@ -138,8 +143,8 @@ describe('vl-datepicker', async () => {
 
     it('ik kan programmatorisch de tijd veranderen', async () => {
         const datepicker = await vlDatepickerPage.getTimeFormatDatepicker();
-        await datepicker.selectHour(23);
-        await datepicker.selectMinutes(30);
+        await datepicker.selectHour('23');
+        await datepicker.selectMinutes('30');
         await assert.eventually.equal(datepicker.getInputValue(), '23:30');
         await vlDatepickerPage.clickTimeFormatButton();
         await assert.eventually.equal(datepicker.getInputValue(), '11:55');
@@ -149,8 +154,8 @@ describe('vl-datepicker', async () => {
         const datepicker = await vlDatepickerPage.getDateTimeFormatDatepicker();
         const today = now.toFormat('dd-LL-yyyy');
         await datepicker.selectDay(currentDay);
-        await datepicker.selectHour(12);
-        await datepicker.selectMinutes(15);
+        await datepicker.selectHour('12');
+        await datepicker.selectMinutes('15');
         await assert.eventually.equal(datepicker.getInputValue(), today + ' 12:15');
         await vlDatepickerPage.clickDateTimeFormatButton();
         await assert.eventually.equal(datepicker.getInputValue(), '01-12-2019 11:55');

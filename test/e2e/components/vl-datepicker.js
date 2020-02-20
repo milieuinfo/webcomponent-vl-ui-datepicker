@@ -166,19 +166,19 @@ class VlDatepicker extends VlElement {
     }
 
     async selectHour(hour) {
-        await this._openFlatpickr();
-        const hourToInput = await this._isAmPm() && hour > 12 ? hour - 12 : hour;
-        const ticker = await this._getHourInput();
-        await ticker.click();
-        await this.__sendKeysWithoutReachabilityCheck(hourToInput);
-        await this._closeFlatpickr();
+        await this._selectTimeComponent(this._getHourInput.bind(this), await this._isAmPm() && hour > 12 ? hour - 12 : hour);
     }
 
     async selectMinutes(minutes) {
+        await this._selectTimeComponent(this._getMinuteInput.bind(this), minutes);
+    }
+
+    async _selectTimeComponent(inputGetter, value) {
         await this._openFlatpickr();
-        const ticker = await this._getMinuteInput();
+        const ticker = await inputGetter();
         await ticker.click();
-        await this.__sendKeysWithoutReachabilityCheck(minutes);
+        await this.driver.wait(async () => await this.driver.switchTo().activeElement().getTagName() === 'vl-datepicker', 2500);
+        await this.__sendKeysWithoutReachabilityCheck(value);
         await this._closeFlatpickr();
     }
 
