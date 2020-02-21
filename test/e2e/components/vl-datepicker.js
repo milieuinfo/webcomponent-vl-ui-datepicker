@@ -176,8 +176,9 @@ class VlDatepicker extends VlElement {
     async _selectTimeComponent(inputGetter, value) {
         await this._openFlatpickr();
         const input = await inputGetter();
+        await this.driver.sleep(300);
         await input.click();
-        await this.driver.sleep(1000);
+        await this.driver.sleep(300);
         await this.__sendKeysWithoutInteractabilityCheck(value);
         await this._closeFlatpickr();
     }
