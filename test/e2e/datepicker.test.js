@@ -163,7 +163,4 @@ describe('vl-datepicker', async () => {
         return (await driver.findElement(By.css('h1'))).click();
     });
 
-    after(async () => {
-        return driver.quit();
-    });
 });

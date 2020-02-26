@@ -1,3 +1,3 @@
 module.exports = { 
-    VlDatepicker: require('../vl-datepicker.src.js').VlDatepicker
+    VlDatepicker: require('../dist/vl-datepicker.src.js').VlDatepicker
 }
