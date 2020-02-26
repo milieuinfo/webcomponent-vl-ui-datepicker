@@ -3,12 +3,11 @@
     <title>vl-datepicker voorbeeld</title>
     <meta name="viewport" content="width=device-width">
 
-    <script type="module" src="/node_modules/vl-ui-modal/vl-modal.js"></script>
-    <script type="module" src="/node_modules/vl-ui-side-sheet/vl-side-sheet.js"></script>
-    <script type="module" src="/src/vl-datepicker.src.js"></script>
+    <script type="module" src="/node_modules/vl-ui-side-sheet/dist/vl-side-sheet.js"></script>
+    <script type="module" src="/src/vl-datepicker.js"></script>
     <script type="module" src="demo.js"></script>
     
-    <link rel="stylesheet" type="text/css" href="/node_modules/vl-ui-button/style.css"/>
+    <link rel="stylesheet" type="text/css" href="/node_modules/vl-ui-button/dist/style.css"/>
 </head>
 
 <body>
@@ -216,30 +215,6 @@
         </pre>
         <div class="demo">
             <vl-datepicker id="success-datepicker" success></vl-datepicker>
-        </div>
-    </div>
-
-    <div>
-        <h2>Modal met datepicker</h2>
-        <pre>
-            <code class="line-numbers language-markup">
-                &lt;button is=&quot;vl-button&quot; data-vl-modal-open=&quot;modal-1&quot;&gt;Open&lt;/button&gt;
-                &lt;vl-modal id=&quot;modal-1&quot; data-title=&quot;Modal&quot; closable not-cancellable&gt;
-                    &lt;span slot=&quot;content&quot;&gt;
-                        Datepicker in een modal
-                        &lt;vl-datepicker&gt;&lt;/vl-datepicker&gt;
-                    &lt;/span&gt;
-                &lt;/vl-modal&gt;
-            </code>
-        </pre>
-        <div class="demo">
-            <button is="vl-button" data-vl-modal-open="modal-1">Open</button>
-            <vl-modal id="modal-1" data-title="Modal" closable not-cancellable>
-                <span slot="content">
-                    Datepicker in een modal
-                    <vl-datepicker></vl-datepicker>
-                </span>
-            </vl-modal>
         </div>
     </div>
 
