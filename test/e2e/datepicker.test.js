@@ -162,7 +162,4 @@ describe('vl-datepicker', async () => {
         return driver.navigate().refresh();
     });
 
-    after(async () => {
-        return driver.quit();
-    });
 });

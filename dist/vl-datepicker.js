@@ -1,11 +1,11 @@
-import { VlElement, define } from '/node_modules/vl-ui-core/vl-core.js';
-import '/node_modules/vl-ui-button/vl-button.js';
-import '/node_modules/vl-ui-input-group/vl-input-group.js';
-import '/node_modules/vl-ui-input-field/vl-input-field.js';
-import '/node_modules/vl-ui-icon/vl-icon.js';
-import '/node_modules/@govflanders/vl-ui-util/dist/js/util.min.js';
-import '/node_modules/@govflanders/vl-ui-core/dist/js/core.min.js';
-import '/node_modules/vl-ui-datepicker/dist/datepicker.js';
+import { VlElement, define } from '/node_modules/vl-ui-core/dist/vl-core.js';
+import '/node_modules/vl-ui-button/dist/vl-button.js';
+import '/node_modules/vl-ui-input-group/dist/vl-input-group.js';
+import '/node_modules/vl-ui-input-field/dist/vl-input-field.js';
+import '/node_modules/vl-ui-icon/dist/vl-icon.js';
+import '/node_modules/@govflanders/vl-ui-util/dist/js/util.js';
+import '/node_modules/@govflanders/vl-ui-core/dist/js/core.js';
+import '/node_modules/vl-ui-datepicker/lib/datepicker.js';
 
 /**
  * VlDatepicker
@@ -34,10 +34,10 @@ export class VlDatepicker extends VlElement(HTMLElement) {
     constructor() {
         super(`
             <style>
-                @import '/node_modules/vl-ui-datepicker/style.css';
-                @import '/node_modules/vl-ui-button/style.css';
-                @import '/node_modules/vl-ui-input-field/style.css';
-                @import '/node_modules/vl-ui-icon/style.css';
+                @import '/node_modules/vl-ui-datepicker/dist/style.css';
+                @import '/node_modules/vl-ui-button/dist/style.css';
+                @import '/node_modules/vl-ui-input-field/dist/style.css';
+                @import '/node_modules/vl-ui-icon/dist/style.css';
 
                 #wrapper {
                     position: relative;
