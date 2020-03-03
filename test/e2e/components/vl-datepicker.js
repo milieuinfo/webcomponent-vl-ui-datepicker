@@ -1,58 +1,66 @@
-const {VlElement} = require('vl-ui-core').Test;
-const {By} = require('selenium-webdriver');
-const {VlSelect} = require('vl-ui-select').Test;
+const { VlElement } = require('vl-ui-core').Test;
+const { By } = require('selenium-webdriver');
+const { VlSelect } = require('vl-ui-select').Test; // TODO introductie Select page object
 
 class VlDatepicker extends VlElement {
-    async _getWrapper() {
-        return this.shadowRoot;
-    }
-
     async _getMonthSelect() {
-        await this._openFlatpickr();
-        const element = await (await this._getWrapper()).findElement(By.css('select.flatpickr-monthDropdown-months'));
-        return new VlSelect(this.driver, element);
+        const select = await this.shadowRoot.findElement(By.css('select.flatpickr-monthDropdown-months'));
+        return new VlSelect(this.driver, select);
     }
 
     async _getToggleButton() {
-        return (await this._getWrapper()).findElement(By.css('#button'));
+        return this.shadowRoot.findElement(By.css('#button'));
     }
 
     async _getFlatpicker() {
-        return (await this._getWrapper()).findElement(By.css('.flatpickr-calendar'));
+        return this.shadowRoot.findElement(By.css('.flatpickr-calendar'));
     }
 
-    async _isVisible() {
-        const elementArray = await (await this._getWrapper()).findElements(By.css('.flatpickr-calendar'));
-        if (elementArray.length == 0) {
+    async _getDayElements() {
+        return this.shadowRoot.findElements(By.css('span.flatpickr-day:not(.prevMonthDay):not(.nextMonthDay)'));
+    }
+
+    async _getYearElement() {
+        return this.shadowRoot.findElement(By.css('.cur-year'));
+    }
+
+    async isOpen() {
+        try {
+            const flatpickr = await this._getFlatpicker();
+            return flatpickr.hasClass('open');
+        } catch {
             return false;
         }
-        const flatpickr = await this._getFlatpicker();
-        return flatpickr.hasClass('open');
     }
 
-    async _openFlatpickr() {
-        if (!(await this._isVisible())) {
+    async open() {
+        if (!(await this.isOpen())) {
             (await this._getToggleButton()).click();
         }
     }
 
-    async _closeFlatpickr() {
-        if (await this._isVisible()) {
-            (await this._getToggleButton()).click()
+    async close() {
+        if (await this.isOpen()) {
+            (await this._getToggleButton()).click();
         }
     }
 
-    async _getDays() {
-        return (await this._getWrapper()).findElements(By.css('span.flatpickr-day'));
-    }
-
-    async _getDaysMap() {
-        const allDays = await this._getDays();
-        return Promise.all(allDays.map(async (day) => {
-            const text = await day.getText();
-            const isPreviousMonth = (await day.getAttribute('class')).includes('prevMonthDay');
-            return {text: text, webElement: day, isPreviousMonth: isPreviousMonth}
+    async _getDayElementByText(text) {
+        const dayElements = await this._getDayElements();
+        const dayMap = await Promise.all(dayElements.map(async (dayElement) => {
+            return {
+                text: await dayElement.getText(), 
+                webElement: dayElement
+            };
         }));
+        const match = dayMap.find((dayElement) => {
+            return dayElement.text == text;
+        });
+        if (match) {
+            return match.webElement;
+        } else {
+            throw new Error('Dag niet gevonden!');
+        }
     }
 
     async _getHours() {
@@ -61,7 +69,7 @@ class VlDatepicker extends VlElement {
     }
 
     async _getHourInput() {
-        return (await this._getWrapper()).findElement(By.css('input.flatpickr-hour'));
+        return this.shadowRoot.findElement(By.css('input.flatpickr-hour'));
     }
 
     async _getMinutes() {
@@ -70,7 +78,7 @@ class VlDatepicker extends VlElement {
     }
 
     async _getMinuteInput() {
-        return (await this._getWrapper()).findElement(By.css('input.flatpickr-minute'));
+        return this.shadowRoot.findElement(By.css('input.flatpickr-minute'));
     }
 
     async _increase(ticker) {
@@ -82,14 +90,14 @@ class VlDatepicker extends VlElement {
     async _increaseWith(ticker, times) {
         for (let index = 0; index < times; index++) {
             await this._increase(ticker);
-            await this.driver.sleep(300);
+            // await this.driver.sleep(300);
         }
     }
 
     async _decreaseWith(ticker, times) {
         for (let index = 0; index < times; index++) {
             await this._decrease(ticker);
-            await this.driver.sleep(300);
+            // await this.driver.sleep(300);
         }
     }
 
@@ -100,43 +108,38 @@ class VlDatepicker extends VlElement {
     }
 
     async _getSelectedYear() {
-        const input = await (await this._getWrapper()).findElement(By.css('.numInput'));
+        const input = await this.shadowRoot.findElement(By.css('.numInput'));
         return input.getAttribute('value');
     }
 
-    async _calculateDifference(value, originalValue, minutes) {
-        let difference = value - originalValue;
-        if (minutes) {
-            difference = Math.floor(difference / 5);
-        }
+    async _calculateDifference(value, originalValue) {
+        const difference = Math.floor(value - originalValue);
         return Math.abs(difference);
     }
 
-    async _setValueInTicker(ticker, minutes, value) {
-        await this._openFlatpickr();
-        const originalValue = await (await ticker).getAttribute('value');
+    async _setValueInTicker(ticker, value) {
+        const originalValue = Number(await ticker.getAttribute('value'));
+        const difference = await this._calculateDifference(value, originalValue);
         if (value > originalValue) {
-            const difference = await this._calculateDifference(value, originalValue, minutes);
             await this._increaseWith(ticker, difference);
         } else {
-            const difference = await this._calculateDifference(value, originalValue, minutes);
             await this._decreaseWith(ticker, difference);
         }
     }
 
     async _isAmPm() {
-        const elements = await (await this._getWrapper()).findElements(By.css('.flatpickr-am-pm'));
+        const elements = await this.shadowRoot.findElements(By.css('.flatpickr-am-pm'));
         return elements.length > 0;
     }
 
     async _getMeridian() {
-        const element = await (await this._getWrapper()).findElement(By.css('.flatpickr-am-pm'));
+        const element = await this.shadowRoot.findElement(By.css('.flatpickr-am-pm'));
         const meridian = await element.getText();
         return meridian.toLowerCase();
     }
 
     async _toggleMeridian() {
-        const element = await (await this._getWrapper()).findElement(By.css('.flatpickr-am-pm'));
+        const element = await this.shadowRoot.findElement(By.css('.flatpickr-am-pm'));
         await element.click();
     }
 
@@ -155,43 +158,39 @@ class VlDatepicker extends VlElement {
     }
 
     async getInputValue() {
-        const input = await (await this._getWrapper()).findElement(By.css('#input'));
+        const input = await this.shadowRoot.findElement(By.css('#input'));
         return input.getAttribute('value');
     }
 
     async getSelectedMonth() {
-        await this._openFlatpickr();
+        await this.open();
         const select = await this._getMonthSelect();
         return select.getSelectedValue();
     }
 
     async selectHour(hour) {
-        await this._selectTimeComponent(this._getHourInput.bind(this), await this._isAmPm() && hour > 12 ? hour - 12 : hour);
+        await this.open();
+        await this._selectTimeComponent(await this._getHourInput(), await this._isAmPm() && hour > 12 ? hour - 12 : hour);
     }
 
     async selectMinutes(minutes) {
-        await this._selectTimeComponent(this._getMinuteInput.bind(this), minutes);
+        await this.open();
+        await this._selectTimeComponent(await this._getMinuteInput(), minutes);
     }
 
-    async _selectTimeComponent(inputGetter, value) {
-        await this._openFlatpickr();
-        const input = await inputGetter();
-        await this.driver.sleep(300);
+    async _selectTimeComponent(input, value) {
+        input = await new VlElement(this.driver, input);
+        await input.hover();
         await input.click();
         await this.driver.sleep(300);
         await this.__sendKeysWithoutInteractabilityCheck(value);
-        await this._closeFlatpickr();
+        await this.close();
     }
 
     async selectDay(day) {
-        await this._openFlatpickr();
-        const dayMap = await this._getDaysMap();
-        const dayArray = dayMap.filter(w => w.text == day).filter(d => d.isPreviousMonth === false);
-        if (dayArray.length === 0) {
-            throw new Error('Dag niet gevonden!');
-        }
-        await dayArray[0].webElement.click();
-        await this._closeFlatpickr();
+        await this.open();
+        const dayElement = await this._getDayElementByText(day);
+        await dayElement.click();
     }
 
     async selectRange(from, to) {
@@ -200,18 +199,19 @@ class VlDatepicker extends VlElement {
     }
 
     async selectMonth(month) {
-        await this._openFlatpickr();
+        await this.open();
         const select = await this._getMonthSelect();
         await select.selectByText(month);
     }
 
     async selectYear(year) {
-        const ticker = (await this._getWrapper()).findElement(By.css('.cur-year'));
+        await this.open();
+        const ticker = await this._getYearElement();
         await this._setValueInTicker(ticker, year);
     }
 
     async getIcon() {
-        return (await this._getWrapper()).findElement(By.css('#icon'));
+        return this.shadowRoot.findElement(By.css('#icon'));
     }
 
     async getFormat() {
