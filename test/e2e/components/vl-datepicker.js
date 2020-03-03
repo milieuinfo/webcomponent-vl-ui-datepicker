@@ -1,6 +1,6 @@
 const { VlElement } = require('vl-ui-core').Test;
 const { By } = require('selenium-webdriver');
-const { VlSelect } = require('vl-ui-select').Test; // TODO introductie Select page object
+const { VlSelect } = require('vl-ui-select').Test; // TODO introductie Select page object op vl-ui-core niveau
 
 class VlDatepicker extends VlElement {
     async _getMonthSelect() {
@@ -22,6 +22,10 @@ class VlDatepicker extends VlElement {
 
     async _getYearElement() {
         return this.shadowRoot.findElement(By.css('.cur-year'));
+    }
+
+    async _getMeridianElement() {
+        return this.shadowRoot.findElement(By.css('.flatpickr-am-pm'));
     }
 
     async isOpen() {
@@ -90,14 +94,12 @@ class VlDatepicker extends VlElement {
     async _increaseWith(ticker, times) {
         for (let index = 0; index < times; index++) {
             await this._increase(ticker);
-            // await this.driver.sleep(300);
         }
     }
 
     async _decreaseWith(ticker, times) {
         for (let index = 0; index < times; index++) {
             await this._decrease(ticker);
-            // await this.driver.sleep(300);
         }
     }
 
@@ -128,18 +130,17 @@ class VlDatepicker extends VlElement {
     }
 
     async _isAmPm() {
-        const elements = await this.shadowRoot.findElements(By.css('.flatpickr-am-pm'));
-        return elements.length > 0;
+        return this.hasAttribute('am-pm');
     }
 
     async _getMeridian() {
-        const element = await this.shadowRoot.findElement(By.css('.flatpickr-am-pm'));
+        const element = await this._getMeridianElement();
         const meridian = await element.getText();
         return meridian.toLowerCase();
     }
 
     async _toggleMeridian() {
-        const element = await this.shadowRoot.findElement(By.css('.flatpickr-am-pm'));
+        const element = await this._getMeridianElement();
         await element.click();
     }
 
@@ -170,20 +171,20 @@ class VlDatepicker extends VlElement {
 
     async selectHour(hour) {
         await this.open();
-        await this._selectTimeComponent(await this._getHourInput(), await this._isAmPm() && hour > 12 ? hour - 12 : hour);
+        const input = await new VlElement(this.driver, await this._getHourInput());
+        await this._selectTimeComponent(input, await this._isAmPm() && hour > 12 ? hour - 12 : hour);
     }
 
     async selectMinutes(minutes) {
         await this.open();
-        await this._selectTimeComponent(await this._getMinuteInput(), minutes);
+        const input = await new VlElement(this.driver, await this._getMinuteInput());
+        await this._selectTimeComponent(input, minutes);
     }
 
     async _selectTimeComponent(input, value) {
-        input = await new VlElement(this.driver, input);
         await input.hover();
         await input.click();
-        await this.driver.sleep(300);
-        await this.__sendKeysWithoutInteractabilityCheck(value);
+        await input.sendKeys(value);
         await this.close();
     }
 
@@ -248,13 +249,6 @@ class VlDatepicker extends VlElement {
 
     async isSuccess() {
         return this.hasAttribute('success');
-    }
-
-    async __sendKeysWithoutInteractabilityCheck(value) {
-        if (typeof value.toString === 'function') {
-            value = value.toString();
-        }
-        await this.driver.actions().sendKeys(value).perform();
     }
 }
 
