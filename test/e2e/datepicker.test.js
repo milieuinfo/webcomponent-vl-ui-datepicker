@@ -97,11 +97,11 @@ describe('vl-datepicker', async () => {
     });
 
     it('als gebruiker kan ik een datum en tijd selecteren', async () => {
-        const today = now.toFormat('dd-LL-yyyy HH:mm');
+        const today = now.toFormat('dd-LL-yyyy 16:45');
         const datepicker = await vlDatepickerPage.getDateTimepicker();
         await datepicker.selectDay(now.day);
-        await datepicker.selectHour(now.hour);
-        await datepicker.selectMinutes(now.minute);
+        await datepicker.selectHour(16);
+        await datepicker.selectMinutes(45);
         await assert.eventually.equal(datepicker.getInputValue(), today);
     });
 

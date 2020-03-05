@@ -121,17 +121,15 @@ class VlDatepicker extends VlElement {
     }
 
     async _setValueInTicker(ticker, value) {
+        const tickerStep = Number(await ticker.getAttribute('step')) || 1;
         const originalValue = Number(await ticker.getAttribute('value'));
         const difference = await this._calculateDifference(value, originalValue);
+        const times = difference / tickerStep;
         if (value > originalValue) {
-            await this._increaseWith(ticker, difference);
+            await this._increaseWith(ticker, times);
         } else {
-            await this._decreaseWith(ticker, difference);
+            await this._decreaseWith(ticker, times);
         }
-    }
-
-    async _isAmPm() {
-        return this.hasAttribute('am-pm');
     }
 
     async _getMeridian() {
@@ -173,13 +171,13 @@ class VlDatepicker extends VlElement {
     async selectHour(hour) {
         await this.open();
         const input = await new VlElement(this.driver, await this._getHourInput());
-        await this._selectTimeComponent(input, await this._isAmPm() && hour > 12 ? hour - 12 : hour);
+        await this._setValueInTicker(input, hour);
     }
 
     async selectMinutes(minutes) {
         await this.open();
         const input = await new VlElement(this.driver, await this._getMinuteInput());
-        await this._selectTimeComponent(input, minutes);
+        await this._setValueInTicker(input, minutes);
     }
 
     async _selectTimeComponent(input, value) {
