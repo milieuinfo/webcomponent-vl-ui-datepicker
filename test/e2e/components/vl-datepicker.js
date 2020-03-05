@@ -32,7 +32,7 @@ class VlDatepicker extends VlElement {
         try {
             const flatpickr = await this._getFlatpicker();
             return flatpickr.hasClass('open');
-        } catch {
+        } catch (error) {
             return false;
         }
     }
@@ -52,8 +52,9 @@ class VlDatepicker extends VlElement {
     async _getDayElementByText(text) {
         const dayElements = await this._getDayElements();
         const dayMap = await Promise.all(dayElements.map(async (dayElement) => {
+            const text = await dayElement.getText();
             return {
-                text: await dayElement.getText(), 
+                text: text,
                 webElement: dayElement
             };
         }));
@@ -184,7 +185,7 @@ class VlDatepicker extends VlElement {
     async _selectTimeComponent(input, value) {
         await input.hover();
         await input.click();
-        await input.sendKeys(value);
+        await this.__sendKeysWithoutInteractabilityCheck(value);
         await this.close();
     }
 
@@ -249,6 +250,13 @@ class VlDatepicker extends VlElement {
 
     async isSuccess() {
         return this.hasAttribute('success');
+    }
+
+    async __sendKeysWithoutInteractabilityCheck(value) {
+        if (typeof value.toString === 'function') {
+            value = value.toString();
+        }
+        await this.driver.actions().sendKeys(value).perform();
     }
 }
 
