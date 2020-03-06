@@ -42,7 +42,7 @@ describe('vl-datepicker', async () => {
         await assert.eventually.equal(datepicker.getInputValue(), today);
     });
 
-    it('als gebruiker kan ik een op voorahnd ingevulde datum zien', async () => {
+    it('als gebruiker kan ik een op voorhand ingevulde datum zien', async () => {
         const today = now.toFormat('dd/LL/yyyy');
         const datepicker = await vlDatepickerPage.getDefaultDateDatepicker();
         await assert.eventually.equal(datepicker.getInputValue(), today);
@@ -65,9 +65,13 @@ describe('vl-datepicker', async () => {
         assert.equal(range, `${now.toFormat('dd.LL.yyyy')} tot ${tomorrow.toFormat('dd.LL.yyyy')}`);
     });
 
-    // TODO test voor Date-rangepicker met niet-beschikbare datums?
-
-    // TODO test voor Datepicker met alternatieve visualisatie?
+    it('als gebruiker kan ik een geselecteerde datum lezen in een ander formaat', async () => {
+        const datepicker = await vlDatepickerPage.getAlternatieveVisualisatieDatepicker();
+        await datepicker.selectYear(2018);
+        await datepicker.selectMonth('augustus');
+        await datepicker.selectDay(29);
+        await assert.eventually.equal(datepicker.getVisualisedValue(), 'woensdag 29 aug 2018');
+    });
 
     it('als gebruiker kan ik een tijd selecteren', async () => {
         const datepicker = await vlDatepickerPage.getTimepicker();
@@ -97,12 +101,13 @@ describe('vl-datepicker', async () => {
     });
 
     it('als gebruiker kan ik een datum en tijd selecteren', async () => {
-        const today = now.toFormat('dd-LL-yyyy 16:45');
         const datepicker = await vlDatepickerPage.getDateTimepicker();
-        await datepicker.selectDay(now.day);
-        await datepicker.selectHour(16);
-        await datepicker.selectMinutes(45);
-        await assert.eventually.equal(datepicker.getInputValue(), today);
+        await datepicker.selectYear(2018);
+        await datepicker.selectMonth('augustus');
+        await datepicker.selectDay(29);
+        await datepicker.selectHour(19);
+        await datepicker.selectMinutes(0);
+        await assert.eventually.equal(datepicker.getInputValue(), '29-08-2018 19:00');
     });
 
     it('als gebruiker kan ik een datum kiezen door op een voorgedefinieerde knop te klikken', async () => {
@@ -132,13 +137,28 @@ describe('vl-datepicker', async () => {
         await assert.eventually.equal(datepicker.getInputValue(), '01-12-2019 11:55');
     });
 
-    // TODO test voor Datepicker error
+    it('als gebruiker kan ik zien dat er een probleem is met de gekozen datum', async () => {
+        const datepicker = await vlDatepickerPage.getErrorDatepicker();
+        await assert.eventually.isTrue(datepicker.isError());
+    });
 
-    // TODO test voor Datepicker succes
+    it('als gebruiker kan ik zien dat de gekozen datum ok is', async () => {
+        const datepicker = await vlDatepickerPage.getSuccessDatepicker();
+        await assert.eventually.isTrue(datepicker.isSuccess());
+    });
 
-    // TODO test voor Modal met datepicker tenzij gecovered in vl-ui-modal
+    it('als gebruiker kan ik interageren met een datepicker die op een sidesheet staat', async () => {
+        await vlDatepickerPage.clickOpenSideSheetButton();
 
-    // TODO test voor Sidesheet met datepicker, vermoedelijk geïntroduceerd omdat er een bug was, onderzoeken of er nood is aan een e2e test om de bug te coveren
+        const datepicker = await vlDatepickerPage.getSidesheetDatepicker();
+        await datepicker.selectYear(2018);
+        await datepicker.selectMonth('augustus');
+        await datepicker.selectDay(29);
+        await assert.eventually.equal(datepicker.getInputValue(), '29.08.2018');
+    });
+
+    // TODO test voor Date-rangepicker met niet-beschikbare datums?
+    // Is precies niet geïmplementeerd...
 
     afterEach(async () => {
         return driver.navigate().refresh();

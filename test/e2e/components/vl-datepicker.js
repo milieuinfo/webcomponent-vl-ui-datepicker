@@ -1,5 +1,5 @@
 const { VlElement } = require('vl-ui-core').Test;
-const { By } = require('selenium-webdriver');
+const { By } = require('vl-ui-core').Test.Setup;
 const { VlSelect } = require('vl-ui-select').Test; // TODO introductie Select page object op vl-ui-core niveau
 
 class VlDatepicker extends VlElement {
@@ -159,6 +159,11 @@ class VlDatepicker extends VlElement {
 
     async getInputValue() {
         const input = await this.shadowRoot.findElement(By.css('#input'));
+        return input.getAttribute('value');
+    }
+
+    async getVisualisedValue() {
+        const input = await this.shadowRoot.findElement(By.css('.js-vl-datepicker-input:not(#input)'));
         return input.getAttribute('value');
     }
 

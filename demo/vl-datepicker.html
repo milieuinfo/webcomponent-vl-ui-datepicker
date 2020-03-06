@@ -229,9 +229,9 @@
             </code>
         </pre>
         <div class="demo">
-            <button is="vl-button" onclick="document.querySelector('#side-sheet-1').open()">Open</button>
+            <button id="sidesheet-open-button" is="vl-button" onclick="document.querySelector('#side-sheet-1').open()">Open</button>
             <vl-side-sheet left id="side-sheet-1" style="--vl-side-sheet-width: 360px;">
-                <vl-datepicker></vl-datepicker>
+                <vl-datepicker id="sidesheet-datepicker"></vl-datepicker>
             </vl-side-sheet>
         </div>
     </div>
