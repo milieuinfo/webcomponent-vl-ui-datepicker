@@ -88,6 +88,7 @@ class VlDatepicker extends VlElement {
 
     async _increase(ticker) {
         const tickerWrapper = await ticker.findElement(By.xpath('..'));
+        await tickerWrapper.hover();
         const arrowUp = await tickerWrapper.findElement(By.css('span.arrowUp'));
         await arrowUp.click();
     }
@@ -106,6 +107,7 @@ class VlDatepicker extends VlElement {
 
     async _decrease(ticker) {
         const tickerWrapper = await ticker.findElement(By.xpath('..'));
+        await tickerWrapper.hover();
         const arrowDown = await tickerWrapper.findElement(By.css('span.arrowDown'));
         await arrowDown.click();
     }

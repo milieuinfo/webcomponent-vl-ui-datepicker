@@ -8,7 +8,7 @@ describe('vl-datepicker', async () => {
     const now = DateTime.local();
     const tomorrow = now.plus({ day: 1 });
 
-    before(async () => {
+    beforeEach(() => {
         return vlDatepickerPage.load();
     });
 
@@ -63,6 +63,14 @@ describe('vl-datepicker', async () => {
         await datepicker.selectRange(now.day, tomorrow.day);
         const range = await datepicker.getInputValue();
         assert.equal(range, `${now.toFormat('dd.LL.yyyy')} tot ${tomorrow.toFormat('dd.LL.yyyy')}`);
+    });
+
+    it('als gebruiker kan ik geen datums selecteren die niet beschikbaar zijn', async () => {
+        const datepicker = await vlDatepickerPage.getDisabledDatesDatepicker();
+        await datepicker.selectYear(2019);
+        await datepicker.selectMonth('april');
+        await datepicker.selectDay(1);
+        await assert.eventually.equal(datepicker.getInputValue(), '');
     });
 
     it('als gebruiker kan ik een geselecteerde datum lezen in een ander formaat', async () => {
@@ -155,13 +163,6 @@ describe('vl-datepicker', async () => {
         await datepicker.selectMonth('augustus');
         await datepicker.selectDay(29);
         await assert.eventually.equal(datepicker.getInputValue(), '29.08.2018');
-    });
-
-    // TODO test voor Date-rangepicker met niet-beschikbare datums?
-    // Is precies niet geïmplementeerd...
-
-    afterEach(async () => {
-        return driver.navigate().refresh();
     });
 
 });

@@ -9,7 +9,9 @@ class VlDatepickerPage extends Page {
             let el = await this.driver.findElement(By.css(selector));
             return el.isDisplayed();
         }, 3000);
-        return new VlDatepicker(this.driver, selector);
+        const datepicker = await new VlDatepicker(this.driver, selector);
+        await datepicker.scrollIntoView();
+        return datepicker;
     }
 
     async _getButton(selector) {
@@ -34,6 +36,10 @@ class VlDatepickerPage extends Page {
 
     async getRangeDatepicker() {
         return this._getDatepicker('#range-datepicker');
+    }
+
+    async getDisabledDatesDatepicker() {
+        return this._getDatepicker('#disabled-dates-datepicker');
     }
 
     async getAlternatieveVisualisatieDatepicker() {
