@@ -38,10 +38,6 @@ class VlDatepickerPage extends Page {
         return this._getDatepicker('#range-datepicker');
     }
 
-    async getDisabledDatesDatepicker() {
-        return this._getDatepicker('#disabled-dates-datepicker');
-    }
-
     async getAlternatieveVisualisatieDatepicker() {
         return this._getDatepicker('#alternatieve-visualisatie-datepicker');
     }

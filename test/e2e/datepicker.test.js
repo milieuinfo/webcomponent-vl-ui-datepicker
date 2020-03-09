@@ -65,14 +65,6 @@ describe('vl-datepicker', async () => {
         assert.equal(range, `${now.toFormat('dd.LL.yyyy')} tot ${tomorrow.toFormat('dd.LL.yyyy')}`);
     });
 
-    it('als gebruiker kan ik geen datums selecteren die niet beschikbaar zijn', async () => {
-        const datepicker = await vlDatepickerPage.getDisabledDatesDatepicker();
-        await datepicker.selectYear(2019);
-        await datepicker.selectMonth('april');
-        await datepicker.selectDay(1);
-        await assert.eventually.equal(datepicker.getInputValue(), '');
-    });
-
     it('als gebruiker kan ik een geselecteerde datum lezen in een ander formaat', async () => {
         const datepicker = await vlDatepickerPage.getAlternatieveVisualisatieDatepicker();
         await datepicker.selectYear(2018);
