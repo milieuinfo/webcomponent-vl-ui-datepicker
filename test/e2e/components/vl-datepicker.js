@@ -1,11 +1,11 @@
-const { VlElement } = require('vl-ui-core').Test;
-const { By } = require('vl-ui-core').Test.Setup;
-const { VlSelect } = require('vl-ui-select').Test; // TODO introductie Select page object op vl-ui-core niveau
+const {VlElement} = require('vl-ui-core').Test;
+const {By} = require('vl-ui-core').Test.Setup;
 
 class VlDatepicker extends VlElement {
+
     async _getMonthSelect() {
         const select = await this.shadowRoot.findElement(By.css('select.flatpickr-monthDropdown-months'));
-        return new VlSelect(this.driver, select);
+        return new VlMonthSelect(this.driver, select);
     }
 
     async _getToggleButton() {
@@ -68,18 +68,8 @@ class VlDatepicker extends VlElement {
         }
     }
 
-    async _getHours() {
-        const input = await this._getHourInput();
-        return input.getAttribute('value');
-    }
-
     async _getHourInput() {
         return this.shadowRoot.findElement(By.css('input.flatpickr-hour'));
-    }
-
-    async _getMinutes() {
-        const input = await this._getMinuteInput();
-        return input.getAttribute('value');
     }
 
     async _getMinuteInput() {
@@ -110,11 +100,6 @@ class VlDatepicker extends VlElement {
         await tickerWrapper.hover();
         const arrowDown = await tickerWrapper.findElement(By.css('span.arrowDown'));
         await arrowDown.click();
-    }
-
-    async _getSelectedYear() {
-        const input = await this.shadowRoot.findElement(By.css('.numInput'));
-        return input.getAttribute('value');
     }
 
     async _calculateDifference(value, originalValue) {
@@ -169,12 +154,6 @@ class VlDatepicker extends VlElement {
         return input.getAttribute('value');
     }
 
-    async getSelectedMonth() {
-        await this.open();
-        const select = await this._getMonthSelect();
-        return select.getSelectedValue();
-    }
-
     async selectHour(hour) {
         await this.open();
         const input = await new VlElement(this.driver, await this._getHourInput());
@@ -185,13 +164,6 @@ class VlDatepicker extends VlElement {
         await this.open();
         const input = await new VlElement(this.driver, await this._getMinuteInput());
         await this._setValueInTicker(input, minutes);
-    }
-
-    async _selectTimeComponent(input, value) {
-        await input.hover();
-        await input.click();
-        await this.__sendKeysWithoutInteractabilityCheck(value);
-        await this.close();
     }
 
     async selectDay(day) {
@@ -208,7 +180,7 @@ class VlDatepicker extends VlElement {
     async selectMonth(month) {
         await this.open();
         const select = await this._getMonthSelect();
-        await select.selectByText(month);
+        await select.select(month);
     }
 
     async selectYear(year) {
@@ -237,10 +209,6 @@ class VlDatepicker extends VlElement {
         return this.getAttribute('type');
     }
 
-    async getDisabledDates() {
-        return this.getAttribute('disabled-dates');
-    }
-
     async getVisualisationFormat() {
         return this.getAttribute('visual-format');
     }
@@ -256,12 +224,21 @@ class VlDatepicker extends VlElement {
     async isSuccess() {
         return this.hasAttribute('success');
     }
+}
 
-    async __sendKeysWithoutInteractabilityCheck(value) {
-        if (typeof value.toString === 'function') {
-            value = value.toString();
-        }
-        await this.driver.actions().sendKeys(value).perform();
+class VlMonthSelect extends VlElement {
+    async select(month) {
+        const options = await this.findElements(By.css(`option`));
+        const option = (await this._mapVisibleText(options)).filter(m => m.visibleText === month)[0];
+        return option.webElement.click();
+    }
+
+    async _mapVisibleText(options) {
+        return Promise.all(options.map(async (option) => {
+            const textContent = await option.getAttribute('textContent');
+            const visibleText = textContent.replace(/\s+/g, ' ').trim();
+            return { webElement: option, visibleText: visibleText };
+        }));
     }
 }
 
