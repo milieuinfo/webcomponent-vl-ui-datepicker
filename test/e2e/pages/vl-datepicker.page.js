@@ -111,15 +111,6 @@ class VlDatepickerPage extends Page {
         return this._getDatepicker('#success-datepicker');
     }
 
-    async clickOpenSideSheetButton() {
-        const button = await this._getButton('#sidesheet-open-button');
-        await button.click();
-    }
-
-    async getSidesheetDatepicker() {
-        return this._getDatepicker('#sidesheet-datepicker');
-    }
-
     async load() {
         return super.load(Config.baseUrl + '/demo/vl-datepicker.html');
     }

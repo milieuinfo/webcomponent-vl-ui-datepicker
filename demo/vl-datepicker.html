@@ -3,7 +3,6 @@
     <title>vl-datepicker voorbeeld</title>
     <meta name="viewport" content="width=device-width">
 
-    <script type="module" src="/node_modules/vl-ui-side-sheet/dist/vl-side-sheet.js"></script>
     <script type="module" src="/src/vl-datepicker.js"></script>
     <script type="module" src="demo.js"></script>
     
@@ -203,24 +202,6 @@
         </pre>
         <div class="demo">
             <vl-datepicker id="success-datepicker" success></vl-datepicker>
-        </div>
-    </div>
-
-    <div>
-        <h2>Sidesheet met datepicker</h2>
-        <pre>
-            <code class="line-numbers language-markup">
-                &lt;button is=&quot;vl-button&quot; onclick=&quot;document.querySelector(&apos;#side-sheet-1&apos;).open()&quot;&gt;Open&lt;/button&gt;
-                &lt;vl-side-sheet left id=&quot;side-sheet-1&quot; style=&quot;--vl-side-sheet-width: 360px;&quot;&gt;
-                    &lt;vl-datepicker&gt;&lt;/vl-datepicker&gt;
-                &lt;/vl-side-sheet&gt;
-            </code>
-        </pre>
-        <div class="demo">
-            <button id="sidesheet-open-button" is="vl-button" onclick="document.querySelector('#side-sheet-1').open()">Open</button>
-            <vl-side-sheet left id="side-sheet-1" style="--vl-side-sheet-width: 360px;">
-                <vl-datepicker id="sidesheet-datepicker"></vl-datepicker>
-            </vl-side-sheet>
         </div>
     </div>
 </body>

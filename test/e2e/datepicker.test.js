@@ -48,13 +48,13 @@ describe('vl-datepicker', async () => {
         await assert.eventually.equal(datepicker.getInputValue(), today);
     });
 
-    it('als gebruiker kan ik alleen een toegelaten datum kiezen, wanneer ik een foutieve datum kies blijft de datepicker open staan', async () => {
+    it('als gebruiker kan ik alleen een toegelaten datum kiezen, wanneer ik een foutieve datum kies blijft de datepicker open staan en heeft de vorige waarde', async () => {
         const datepicker = await vlDatepickerPage.getMinMaxDatepicker();
-        await datepicker.selectDay(16);
-        await assert.eventually.isTrue(datepicker.isOpen());
-        await assert.eventually.isEmpty(datepicker.getInputValue());
         await datepicker.selectDay(15);
         await assert.eventually.isFalse(datepicker.isOpen());
+        await assert.eventually.equal(datepicker.getInputValue(), '15.05.2019');
+        await datepicker.selectDay(16);
+        await assert.eventually.isTrue(datepicker.isOpen());
         await assert.eventually.equal(datepicker.getInputValue(), '15.05.2019');
     });
 
@@ -146,15 +146,4 @@ describe('vl-datepicker', async () => {
         const datepicker = await vlDatepickerPage.getSuccessDatepicker();
         await assert.eventually.isTrue(datepicker.isSuccess());
     });
-
-    it('als gebruiker kan ik interageren met een datepicker die op een sidesheet staat', async () => {
-        await vlDatepickerPage.clickOpenSideSheetButton();
-
-        const datepicker = await vlDatepickerPage.getSidesheetDatepicker();
-        await datepicker.selectYear(2018);
-        await datepicker.selectMonth('augustus');
-        await datepicker.selectDay(29);
-        await assert.eventually.equal(datepicker.getInputValue(), '29.08.2018');
-    });
-
 });
