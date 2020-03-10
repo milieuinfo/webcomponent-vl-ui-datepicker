@@ -3,7 +3,6 @@
     <title>vl-datepicker voorbeeld</title>
     <meta name="viewport" content="width=device-width">
 
-    <script type="module" src="/node_modules/vl-ui-side-sheet/dist/vl-side-sheet.js"></script>
     <script type="module" src="/src/vl-datepicker.js"></script>
     <script type="module" src="demo.js"></script>
     
@@ -77,18 +76,6 @@
     </div>
 
     <div>
-        <h2>Date-rangepicker met niet-beschikbare datums</h2>
-        <pre>
-            <code class="line-numbers language-markup">
-                &lt;vl-datepicker format="Y-m-d" type="range" min-date="2019-04-10" max-date="2019-06-15" disabled-dates='["2019-04-15","2019-04-17","2019-04-19",{"from": "2019-04-25", "to": "2019-05-06"}]'&gt;&lt;/vl-datepicker&gt;
-            </code>
-        </pre>
-        <div class="demo">
-            <vl-datepicker id="niet-beschikbaar-datepicker" format="Y-m-d" type="range" min-date="2019-04-10" max-date="2019-06-15" disabled-dates='["2019-04-15","2019-04-17","2019-04-19",{"from": "2019-04-25", "to": "2019-05-06"}]'></vl-datepicker>
-        </div>
-    </div>
-
-    <div>
         <h2>Datepicker met alternatieve visualisatie</h2>
         <pre>
             <code class="line-numbers language-markup">
@@ -144,7 +131,7 @@
             </code>
         </pre>
         <div class="demo">
-            <vl-datepicker id="date-time-datepicker" type="date-time" format="d-m-Y H:i" am-pm></vl-datepicker>
+            <vl-datepicker id="date-time-datepicker" type="date-time" format="d-m-Y H:i"></vl-datepicker>
         </div>
     </div>
 
@@ -215,24 +202,6 @@
         </pre>
         <div class="demo">
             <vl-datepicker id="success-datepicker" success></vl-datepicker>
-        </div>
-    </div>
-
-    <div>
-        <h2>Sidesheet met datepicker</h2>
-        <pre>
-            <code class="line-numbers language-markup">
-                &lt;button is=&quot;vl-button&quot; onclick=&quot;document.querySelector(&apos;#side-sheet-1&apos;).open()&quot;&gt;Open&lt;/button&gt;
-                &lt;vl-side-sheet left id=&quot;side-sheet-1&quot; style=&quot;--vl-side-sheet-width: 360px;&quot;&gt;
-                    &lt;vl-datepicker&gt;&lt;/vl-datepicker&gt;
-                &lt;/vl-side-sheet&gt;
-            </code>
-        </pre>
-        <div class="demo">
-            <button is="vl-button" onclick="document.querySelector('#side-sheet-1').open()">Open</button>
-            <vl-side-sheet left id="side-sheet-1" style="--vl-side-sheet-width: 360px;">
-                <vl-datepicker></vl-datepicker>
-            </vl-side-sheet>
         </div>
     </div>
 </body>

@@ -1,10 +1,21 @@
 const VlDatepicker = require('../components/vl-datepicker');
 const { Page, Config } = require('vl-ui-core').Test;
-const { By } = require('selenium-webdriver');
+const { By } = require('vl-ui-core').Test.Setup;
+const { VlButton } = require('vl-ui-button').Test;
 
 class VlDatepickerPage extends Page {
     async _getDatepicker(selector) {
-        return new VlDatepicker(this.driver, selector);
+        await this.driver.wait(async () => {
+            let el = await this.driver.findElement(By.css(selector));
+            return el.isDisplayed();
+        }, 3000);
+        const datepicker = await new VlDatepicker(this.driver, selector);
+        await datepicker.scrollIntoView();
+        return datepicker;
+    }
+
+    async _getButton(selector) {
+        return new VlButton(this.driver, selector);
     }
 
     async getDefaultDatepicker() {
@@ -25,6 +36,10 @@ class VlDatepickerPage extends Page {
 
     async getRangeDatepicker() {
         return this._getDatepicker('#range-datepicker');
+    }
+
+    async getAlternatieveVisualisatieDatepicker() {
+        return this._getDatepicker('#alternatieve-visualisatie-datepicker');
     }
 
     async getTimepicker() {
@@ -48,15 +63,17 @@ class VlDatepickerPage extends Page {
     }
 
     async clickDotFormatButton() {
-        return (await this.driver.findElement(By.css('#button-1'))).click();
+        const button = await this._getButton('#button-1');
+        await button.click();
     }
-    
+
     async getSlashFormatDatepicker() {
         return this._getDatepicker('#datepicker-2');
     }
 
     async clickSlashFormatButton() {
-        return (await this.driver.findElement(By.css('#button-2'))).click();
+        const button = await this._getButton('#button-2');
+        await button.click();
     }
 
     async getRangeFormatDatepicker() {
@@ -64,7 +81,8 @@ class VlDatepickerPage extends Page {
     }
 
     async clickRangeFormatButton() {
-        return (await this.driver.findElement(By.css('#button-3'))).click();
+        const button = await this._getButton('#button-3');
+        await button.click();
     }
 
     async getTimeFormatDatepicker() {
@@ -72,7 +90,8 @@ class VlDatepickerPage extends Page {
     }
 
     async clickTimeFormatButton() {
-        return (await this.driver.findElement(By.css('#button-4'))).click();
+        const button = await this._getButton('#button-4');
+        await button.click();
     }
 
     async getDateTimeFormatDatepicker() {
@@ -80,7 +99,16 @@ class VlDatepickerPage extends Page {
     }
 
     async clickDateTimeFormatButton() {
-        return (await this.driver.findElement(By.css('#button-5'))).click();
+        const button = await this._getButton('#button-5');
+        await button.click();
+    }
+
+    async getErrorDatepicker() {
+        return this._getDatepicker('#error-datepicker');
+    }
+
+    async getSuccessDatepicker() {
+        return this._getDatepicker('#success-datepicker');
     }
 
     async load() {
