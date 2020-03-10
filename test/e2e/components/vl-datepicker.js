@@ -229,7 +229,7 @@ class VlDatepicker extends VlElement {
 class VlMonthSelect extends VlElement {
     async select(month) {
         const options = await this.findElements(By.css(`option`));
-        const option = (await this._mapVisibleText(options)).filter(m => m.visibleText === month)[0];
+        const option = (await this._mapVisibleText(options)).find(m => m.visibleText === month);
         return option.webElement.click();
     }
 
