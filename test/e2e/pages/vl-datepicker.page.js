@@ -5,10 +5,6 @@ const { VlButton } = require('vl-ui-button').Test;
 
 class VlDatepickerPage extends Page {
     async _getDatepicker(selector) {
-        await this.driver.wait(async () => {
-            let el = await this.driver.findElement(By.css(selector));
-            return el.isDisplayed();
-        }, 3000);
         const datepicker = await new VlDatepicker(this.driver, selector);
         await datepicker.scrollIntoView();
         return datepicker;
