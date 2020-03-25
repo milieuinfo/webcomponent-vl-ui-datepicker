@@ -45,7 +45,7 @@
   },
   "dependencies": {
     "vl-ui-button": "^5.0.1",
-    "vl-ui-core": "^5.1.1",
+    "vl-ui-core": "^5.1.2",
     "vl-ui-icon": "^4.0.1",
     "vl-ui-input-field": "^3.0.0",
     "vl-ui-input-group": "^4.0.0"
