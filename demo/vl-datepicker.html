@@ -1,208 +1,102 @@
 <html>
+
 <head>
     <title>vl-datepicker voorbeeld</title>
     <meta name="viewport" content="width=device-width">
 
     <script type="module" src="/src/vl-datepicker.js"></script>
-    <script type="module" src="demo.js"></script>
-    
-    <link rel="stylesheet" type="text/css" href="/node_modules/vl-ui-button/dist/style.css"/>
+    <script type="module" src="/node_modules/vl-ui-demo/dist/vl-demo-all.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="/node_modules/vl-ui-button/dist/style.css" />
 </head>
 
 <body>
-    <h1>vl-datepicker demo</h1>
-    <p>
-        <a href="https://overheid.vlaanderen.be/webuniversum/v3/documentation/forms/vl-ui-datepicker">Meer voorbeelden en documentatie</a>.
-    </p>
-
-    <div>
-        <h2>Datepicker</h2>
-        <pre>
-            <code class="line-numbers language-markup">
-                &lt;vl-datepicker&gt;&lt;/vl-datepicker&gt;
-            </code>
-        </pre>
-        <div class="demo">
+    <vl-demo-page data-vl-webcomponent="vl-datepicker"
+        data-vl-link="https://overheid.vlaanderen.be/webuniversum/v3/documentation/forms/vl-ui-datepicker">
+        <vl-demo data-vl-title="Datepicker">
             <vl-datepicker id="default-datepicker"></vl-datepicker>
-        </div>
-    </div>
+        </vl-demo>
 
-    <div>
-        <h2>Datepicker met custom format</h2>
-        <pre>
-            <code class="line-numbers language-markup">
-                &lt;vl-datepicker format="d/m/Y"&gt;&lt;/vl-datepicker&gt;
-            </code>
-        </pre>
-        <div class="demo">
+        <vl-demo data-vl-title="Datepicker met custom format">
             <vl-datepicker id="custom-format-datepicker" format="d/m/Y"></vl-datepicker>
-        </div>
-    </div>
+        </vl-demo>
 
-    <div>
-        <h2>Datepicker met vandaag als vooringevulde datum</h2>
-        <pre>
-            <code class="line-numbers language-markup">
-                &lt;vl-datepicker format="d/m/Y" selected-date='today'&gt;&lt;/vl-datepicker&gt;
-            </code>
-        </pre>
-        <div class="demo">
+        <vl-demo data-vl-title="Datepicker met vandaag als vooringevulde datum">
             <vl-datepicker id="prefilled-datepicker" format="d/m/Y" selected-date='today'></vl-datepicker>
-        </div>
-    </div>
+        </vl-demo>
 
-    <div>
-        <h2>Datepicker met min/max datums</h2>
-        <pre>
-            <code class="line-numbers language-markup">
-                &lt;vl-datepicker min-date="10-05-2019" max-date="15-05-2019"&gt;&lt;/vl-datepicker&gt;
-            </code>
-        </pre>
-        <div class="demo">
+        <vl-demo data-vl-title="Datepicker met min/max datums">
             <vl-datepicker id="min-max-datepicker" min-date="10-05-2019" max-date="15-05-2019"></vl-datepicker>
-        </div>
-    </div>
+        </vl-demo>
 
-    <div>
-        <h2>Date-rangepicker</h2>
-        <pre>
-            <code class="line-numbers language-markup">
-                &lt;vl-datepicker type="range"&gt;&lt;/vl-datepicker&gt;
-            </code>
-        </pre>
-        <div class="demo">
+        <vl-demo data-vl-title="Date-rangepicker">
             <vl-datepicker id="range-datepicker" type="range"></vl-datepicker>
-        </div>
-    </div>
+        </vl-demo>
 
-    <div>
-        <h2>Datepicker met alternatieve visualisatie</h2>
-        <pre>
-            <code class="line-numbers language-markup">
-                &lt;vl-datepicker type="date" visual-format="l d M Y"&gt;&lt;/vl-datepicker&gt;
-            </code>
-        </pre>
-        <div class="demo">
-            <vl-datepicker id="alternatieve-visualisatie-datepicker" type="date" visual-format="l d M Y"></vl-datepicker>
-        </div>
-    </div>
+        <vl-demo data-vl-title="Datepicker met alternatieve visualisatie">
+            <vl-datepicker id="alternatieve-visualisatie-datepicker" type="date" visual-format="l d M Y">
+            </vl-datepicker>
+        </vl-demo>
 
-    <div>
-        <h2>Timepicker</h2>
-        <pre>
-            <code class="line-numbers language-markup">
-                &lt;vl-datepicker type="time" format="H:i"&gt;&lt;/vl-datepicker&gt;
-            </code>
-        </pre>
-        <div class="demo">
+        <vl-demo data-vl-title="Timepicker">
             <vl-datepicker id="timepicker-datepicker" type="time" format="H:i"></vl-datepicker>
-        </div>
-    </div>
+        </vl-demo>
 
-    <div>
-        <h2>Timepicker met min/max (9:00-17:00)</h2>
-        <pre>
-            <code class="line-numbers language-markup">
-                &lt;vl-datepicker type="time" format="H:i" min-time="09:00" max-time="17:00"&gt;&lt;/vl-datepicker&gt;
-            </code>
-        </pre>
-        <div class="demo">
-            <vl-datepicker id="timepicker-min-max-datepicker" type="time" format="H:i" min-time="09:00" max-time="17:00"></vl-datepicker>
-        </div>
-    </div>
+        <vl-demo data-vl-title="Timepicker met min/max (9:00-17:00)">
+            <vl-datepicker id="timepicker-min-max-datepicker" type="time" format="H:i" min-time="09:00"
+                max-time="17:00"></vl-datepicker>
+        </vl-demo>
 
-    <div>
-        <h2>Timepicker met AM/PM notatie</h2>
-        <pre>
-            <code class="line-numbers language-markup">
-                &lt;vl-datepicker type="time" format="H:i" am-pm&gt;&lt;/vl-datepicker&gt;
-            </code>
-        </pre>
-        <div class="demo">
+        <vl-demo data-vl-title="Timepicker met AM/PM notatie">
             <vl-datepicker id="timepicker-am-pm-datepicker" type="time" format="H:i" am-pm></vl-datepicker>
-        </div>
-    </div>
+        </vl-demo>
 
-    <div>
-        <h2>Date en timepicker</h2>
-        <pre>
-            <code class="line-numbers language-markup">
-                &lt;vl-datepicker type="date-time" format="d-m-Y H:i" am-pm&gt;&lt;/vl-datepicker&gt;
-            </code>
-        </pre>
-        <div class="demo">
+        <vl-demo data-vl-title="Date en timepicker">
             <vl-datepicker id="date-time-datepicker" type="date-time" format="d-m-Y H:i"></vl-datepicker>
-        </div>
-    </div>
+        </vl-demo>
 
-    <div>
-        <h2>Datepicker kan programmatisch gewijzigd worden</h2>
-        <pre>
-            <code class="line-numbers language-markup">
-                &lt;vl-datepicker id="datepicker-1"&gt;&lt;/vl-datepicker&gt;
-                &lt;button is="vl-button" onclick="document.querySelector('#datepicker-1').value = '01.12.2019'"&gt;Kies 01.12.2019&lt;/button&gt;
-                
-                &lt;vl-datepicker id="datepicker-2" format="d/m/Y"&gt;&lt;/vl-datepicker&gt;
-                &lt;button is="vl-button" onclick="document.querySelector('#datepicker-2').value = '01/12/2019'"&gt;Kies 01/12/2019&lt;/button&gt;
-                
-                &lt;vl-datepicker id="datepicker-3" type="range"&gt;&lt;/vl-datepicker&gt;
-                &lt;button is="vl-button" onclick="document.querySelector('#datepicker-3').value = ['01.12.2019', '10.12.2019']"&gt;Kies 01.12.2019 tot 10.12.2019&lt;/button&gt;
-                
-                &lt;vl-datepicker id="datepicker-4" type="time" format="H:i"&gt;&lt;/vl-datepicker&gt;
-                &lt;button is="vl-button" onclick="document.querySelector('#datepicker-4').value = ['11:55']"&gt;Kies 11:55&lt;/button&gt;
-                
-                &lt;vl-datepicker id="datepicker-5" type="date-time" format="d-m-Y H:i" am-pm&gt;&lt;/vl-datepicker&gt;
-                &lt;button is="vl-button" onclick="document.querySelector('#datepicker-5').value = ['01-12-2019 11:55']"&gt;Kies 01-12-2019 11:55&lt;/button&gt;
-            </code>
-        </pre>
-        <div class="demo">
-            <vl-datepicker id="datepicker-1"></vl-datepicker>
-            <button id="button-1" is="vl-button" onclick="document.querySelector('#datepicker-1').value = '01.12.2019'">Kies 01.12.2019</button>
-        </div>
+        <vl-demo data-vl-title="Datepicker kan programmatisch gewijzigd worden">
+            <div class="demo">
+                <vl-datepicker id="datepicker-1"></vl-datepicker>
+                <button id="button-1" is="vl-button"
+                    onclick="document.querySelector('#datepicker-1').value = '01.12.2019'">Kies 01.12.2019</button>
+            </div>
 
-        <div class="demo">
-            <vl-datepicker id="datepicker-2" format="d/m/Y"></vl-datepicker>
-            <button id="button-2" is="vl-button" onclick="document.querySelector('#datepicker-2').value = '01/12/2019'">Kies 01/12/2019</button>
-        </div>
+            <div class="demo">
+                <vl-datepicker id="datepicker-2" format="d/m/Y"></vl-datepicker>
+                <button id="button-2" is="vl-button"
+                    onclick="document.querySelector('#datepicker-2').value = '01/12/2019'">Kies 01/12/2019</button>
+            </div>
 
-        <div class="demo">
-            <vl-datepicker id="datepicker-3" type="range"></vl-datepicker>
-            <button id="button-3" is="vl-button" onclick="document.querySelector('#datepicker-3').value = ['01.12.2019', '10.12.2019']">Kies 01.12.2019 tot 10.12.2019</button>
-        </div>
+            <div class="demo">
+                <vl-datepicker id="datepicker-3" type="range"></vl-datepicker>
+                <button id="button-3" is="vl-button"
+                    onclick="document.querySelector('#datepicker-3').value = ['01.12.2019', '10.12.2019']">Kies
+                    01.12.2019 tot 10.12.2019</button>
+            </div>
 
-        <div class="demo">
-            <vl-datepicker id="datepicker-4" type="time" format="H:i"></vl-datepicker>
-            <button id="button-4" is="vl-button" onclick="document.querySelector('#datepicker-4').value = ['11:55']">Kies 11:55</button>
-        </div>
+            <div class="demo">
+                <vl-datepicker id="datepicker-4" type="time" format="H:i"></vl-datepicker>
+                <button id="button-4" is="vl-button"
+                    onclick="document.querySelector('#datepicker-4').value = ['11:55']">Kies 11:55</button>
+            </div>
 
-        <div class="demo">
-            <vl-datepicker id="datepicker-5" type="date-time" format="d-m-Y H:i" am-pm></vl-datepicker>
-            <button id="button-5" is="vl-button" onclick="document.querySelector('#datepicker-5').value = ['01-12-2019 11:55']">Kies 01-12-2019 11:55</button>
-        </div>
-    </div>
+            <div class="demo">
+                <vl-datepicker id="datepicker-5" type="date-time" format="d-m-Y H:i" am-pm></vl-datepicker>
+                <button id="button-5" is="vl-button"
+                    onclick="document.querySelector('#datepicker-5').value = ['01-12-2019 11:55']">Kies 01-12-2019
+                    11:55</button>
+            </div>
+        </vl-demo>
 
-    <div>
-        <h2>Datepicker error</h2>
-        <pre>
-            <code class="line-numbers language-markup">
-                &lt;vl-datepicker error&gt;&lt;/vl-datepicker&gt;
-            </code>
-        </pre>
-        <div class="demo">
+        <vl-demo data-vl-title="Datepicker error">
             <vl-datepicker id="error-datepicker" error></vl-datepicker>
-        </div>
-    </div>
+        </vl-demo>
 
-    <div>
-        <h2>Datepicker succes</h2>
-        <pre>
-            <code class="line-numbers language-markup">
-                &lt;vl-datepicker success&gt;&lt;/vl-datepicker&gt;
-            </code>
-        </pre>
-        <div class="demo">
+        <vl-demo data-vl-title="Datepicker succes">
             <vl-datepicker id="success-datepicker" success></vl-datepicker>
-        </div>
-    </div>
+        </vl-demo>
+    </vl-demo-page>
 </body>
+
 </html>
