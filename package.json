@@ -59,7 +59,7 @@
   },
   "devDependencies": {
     "@govflanders/vl-ui-datepicker": "3.9.1",
-    "luxon": "^1.22.0",
+    "luxon": "^1.24.1",
     "vl-ui-button": "^5.0.1",
     "vl-ui-util": "^5.1.7"
   }
