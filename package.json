@@ -45,14 +45,14 @@
   },
   "dependencies": {
     "vl-ui-input-addon": "^3.1.1",
-    "vl-ui-core": "milieuinfo/webcomponent-vl-ui-core",
+    "vl-ui-core": "^5.5.1",
     "vl-ui-icon": "^5.0.0",
     "vl-ui-input-field": "^3.0.0",
     "vl-ui-input-group": "^4.0.0"
   },
   "peerDependencies": {
     "vl-ui-input-addon": "^3.1.1",
-    "vl-ui-core": "milieuinfo/webcomponent-vl-ui-core",
+    "vl-ui-core": "^5.5.1",
     "vl-ui-icon": "^5.0.0",
     "vl-ui-input-field": "^3.0.0",
     "vl-ui-input-group": "^4.0.0"
@@ -61,6 +61,6 @@
     "@govflanders/vl-ui-datepicker": "3.9.1",
     "luxon": "^1.24.1",
     "vl-ui-button": "^5.0.1",
-    "vl-ui-util": "github:milieuinfo/webcomponent-vl-ui-util"
+    "vl-ui-util": "^5.2.0"
   }
 }
