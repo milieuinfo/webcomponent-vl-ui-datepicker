@@ -1,4 +1,6 @@
 const {assert, driver} = require('vl-ui-core').Test.Setup;
+const {VlHeader} = require('vl-ui-header').Test;
+const {VlFooter} = require('vl-ui-footer').Test;
 const {DateTime} = require('luxon');
 const VlDatepickerPage = require('./pages/vl-datepicker.page');
 
@@ -8,8 +10,12 @@ describe('vl-datepicker', async () => {
   const now = DateTime.local();
   const tomorrow = now.plus({day: 1});
 
-  beforeEach(() => {
-    return vlDatepickerPage.load();
+  beforeEach(async () => {
+    await vlDatepickerPage.load();
+    const header = await new VlHeader(driver);
+    const footer = await new VlFooter(driver);
+    await header.remove();
+    await footer.remove();
   });
 
   it('als ik alleen een dag selecteer, word automatisch de huidige maand en het huidige jaar gekozen', async () => {
