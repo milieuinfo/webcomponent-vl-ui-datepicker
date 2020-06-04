@@ -110,8 +110,8 @@ class VlDatepickerPage extends Page {
 
   async load() {
     await super.load(Config.baseUrl + '/demo/vl-datepicker.html');
-    const header = await new VlHeader(driver);
-    const footer = await new VlFooter(driver);
+    const header = await new VlHeader(this.driver);
+    const footer = await new VlFooter(this.driver);
     await header.remove();
     await footer.remove();
   }
