@@ -1,6 +1,8 @@
 const VlDatepicker = require('../components/vl-datepicker');
 const {Page, Config} = require('vl-ui-core').Test;
 const {VlButton} = require('vl-ui-button').Test;
+const {VlHeader} = require('vl-ui-header').Test;
+const {VlFooter} = require('vl-ui-footer').Test;
 
 class VlDatepickerPage extends Page {
   async _getDatepicker(selector) {
@@ -107,7 +109,11 @@ class VlDatepickerPage extends Page {
   }
 
   async load() {
-    return super.load(Config.baseUrl + '/demo/vl-datepicker.html');
+    await super.load(Config.baseUrl + '/demo/vl-datepicker.html');
+    const header = await new VlHeader(driver);
+    const footer = await new VlFooter(driver);
+    await header.remove();
+    await footer.remove();
   }
 }
 
