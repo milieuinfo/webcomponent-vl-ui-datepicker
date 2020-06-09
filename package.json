@@ -60,8 +60,6 @@
   "devDependencies": {
     "@govflanders/vl-ui-datepicker": "3.9.1",
     "vl-ui-button": "^5.0.2",
-    "vl-ui-util": "^5.2.2",
-    "vl-ui-header": "^3.1.1",
-    "vl-ui-footer": "^3.1.1"
+    "vl-ui-util": "^5.2.3"
   }
 }
