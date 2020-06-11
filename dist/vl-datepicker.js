@@ -13,7 +13,6 @@ import '/node_modules/vl-ui-datepicker/lib/datepicker.js';
  * @classdesc Gebruik de vl-datepicker om de gebruiker op een gebruiksvriendelijke manier een datum of tijd te laten selecteren.
  *
  * @extends HTMLElement
- * @mixin vlElement
  *
  * @property {(range | time | date-time)} type - Attribuut bepaalt het soort datepicker.
  * @property {string} format - Attribuut bepaalt het formaat van de datum/tijd waarde, standaard 'd.m.Y' (-> 31.12.2019).
