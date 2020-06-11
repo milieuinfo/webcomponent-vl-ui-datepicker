@@ -107,7 +107,7 @@ class VlDatepickerPage extends Page {
   }
 
   async load() {
-    await super.load(Config.baseUrl + '/demo/vl-datepicker.html?no-header=true&no-footer=true');
+    await super.load(Config.baseUrl + '/demo/vl-datepicker.html');
   }
 }
 
