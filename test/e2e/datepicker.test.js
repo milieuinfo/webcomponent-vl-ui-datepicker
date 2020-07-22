@@ -61,8 +61,7 @@ describe('vl-datepicker', async () => {
   it('als gebruiker kan ik een datum range selecteren', async () => {
     const datepicker = await vlDatepickerPage.getRangeDatepicker();
     await datepicker.selectRange(now.day, tomorrow.day);
-    const range = await datepicker.getInputValue();
-    assert.equal(range, `${now.toFormat('dd.LL.yyyy')} tot ${tomorrow.toFormat('dd.LL.yyyy')}`);
+    await assert.eventually.equal(datepicker.getInputValue(), `${now.toFormat('dd.LL.yyyy')} tot ${tomorrow.toFormat('dd.LL.yyyy')}`);
   });
 
   it('als gebruiker kan ik een geselecteerde datum lezen in een ander formaat', async () => {
