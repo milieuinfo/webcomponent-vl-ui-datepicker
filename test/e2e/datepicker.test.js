@@ -9,7 +9,7 @@ describe('vl-datepicker', async () => {
   const tomorrow = now.plus({day: 1});
 
   beforeEach(async () => {
-    await vlDatepickerPage.load();
+    return vlDatepickerPage.load();
   });
 
   it('als ik alleen een dag selecteer, word automatisch de huidige maand en het huidige jaar gekozen', async () => {
