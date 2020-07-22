@@ -155,13 +155,15 @@ class VlDatepicker extends VlElement {
 
   async selectHour(hour) {
     await this.open();
-    const input = await new VlElement(this.driver, await this._getHourInput());
+    const element = await this._getHourInput();
+    const input = await new VlElement(this.driver, element);
     await this._setValueInTicker(input, hour);
   }
 
   async selectMinutes(minutes) {
     await this.open();
-    const input = await new VlElement(this.driver, await this._getMinuteInput());
+    const element = await this._getMinuteInput();
+    const input = await new VlElement(this.driver, element);
     await this._setValueInTicker(input, minutes);
   }
 
