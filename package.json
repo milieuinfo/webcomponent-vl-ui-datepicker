@@ -51,7 +51,7 @@
     "vl-ui-input-group": "^4.0.4"
   },
   "devDependencies": {
-    "@govflanders/vl-ui-datepicker": "3.9.1",
+    "@govflanders/vl-ui-datepicker": "3.11.5",
     "vl-ui-button": "^5.0.4",
     "vl-ui-util": "^5.2.10"
   }
