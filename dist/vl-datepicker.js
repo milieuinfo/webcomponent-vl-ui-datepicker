@@ -13,18 +13,19 @@ import '/node_modules/vl-ui-datepicker/lib/datepicker.js';
  * @classdesc Gebruik de vl-datepicker om de gebruiker op een gebruiksvriendelijke manier een datum of tijd te laten selecteren.
  *
  * @extends HTMLElement
+ * @mixes vlElement
  *
- * @property {(range | time | date-time)} type - Attribuut bepaalt het soort datepicker.
- * @property {string} format - Attribuut bepaalt het formaat van de datum/tijd waarde, standaard 'd.m.Y' (-> 31.12.2019).
- * @property {string} visual-format - Attribuut bepaalt het visueel formaat van de datum/tijd waarde.
- * @property {string} selected-date - Attribuut voor een vooringestelde datum conform het ingestelde formaat (bv. '03-10-2019') of 'today' voor vandaag.
- * @property {string} min-date - Attribuut voor een minimum datum conform het ingestelde formaat (bv. '01-01-2019') of 'today' voor vandaag.
- * @property {string} max-date - Attribuut voor een maximum datum conform het ingestelde format (bv. '31-12-2019') of 'today' voor vandaag.
- * @property {string} min-time - Attribuut voor een minimum tijd conform het ingestelde formaat (bv. '09:00').
- * @property {string} max-time - Attribuut voor een maximum tijd conform het ingestelde format (bv. '17:00').
- * @property {boolean} am-pm - Attribuut om de 12-uurs AM/PM timepicker te activeren.
- * @property {boolean} error - Attribuut om aan te geven dat de datepicker een error bevat.
- * @property {boolean} success - Attribuut om aan te geven dat de datepicker geen error bevat.
+ * @property {(range | time | date-time)} data-vl-type - Attribuut bepaalt het soort datepicker.
+ * @property {string} data-vl-format - Attribuut bepaalt het formaat van de datum/tijd waarde, standaard 'd.m.Y' (-> 31.12.2019).
+ * @property {string} data-vl-visual-format - Attribuut bepaalt het visueel formaat van de datum/tijd waarde.
+ * @property {string} data-vl-selected-date - Attribuut voor een vooringestelde datum conform het ingestelde formaat (bv. '03-10-2019') of 'today' voor vandaag.
+ * @property {string} data-vl-min-date - Attribuut voor een minimum datum conform het ingestelde formaat (bv. '01-01-2019') of 'today' voor vandaag.
+ * @property {string} data-vl-max-date - Attribuut voor een maximum datum conform het ingestelde format (bv. '31-12-2019') of 'today' voor vandaag.
+ * @property {string} data-vl-min-time - Attribuut voor een minimum tijd conform het ingestelde formaat (bv. '09:00').
+ * @property {string} data-vl-max-time - Attribuut voor een maximum tijd conform het ingestelde format (bv. '17:00').
+ * @property {boolean} data-vl-am-pm - Attribuut om de 12-uurs AM/PM timepicker te activeren.
+ * @property {boolean} data-vl-error - Attribuut om aan te geven dat de datepicker een error bevat.
+ * @property {boolean} data-vl-success - Attribuut om aan te geven dat de datepicker geen error bevat.
  *
  * @see {@link https://www.github.com/milieuinfo/webcomponent-vl-ui-datepicker/releases/latest|Release notes}
  * @see {@link https://www.github.com/milieuinfo/webcomponent-vl-ui-datepicker/issues|Issues}
@@ -34,20 +35,20 @@ export class VlDatepicker extends vlElement(HTMLElement) {
   constructor() {
     super(`
       <style>
-          @import '/node_modules/vl-ui-datepicker/dist/style.css';
-          @import '/node_modules/vl-ui-input-addon/dist/style.css';
-          @import '/node_modules/vl-ui-input-field/dist/style.css';
-          @import '/node_modules/vl-ui-icon/dist/style.css';
+        @import '/node_modules/vl-ui-datepicker/dist/style.css';
+        @import '/node_modules/vl-ui-input-addon/dist/style.css';
+        @import '/node_modules/vl-ui-input-field/dist/style.css';
+        @import '/node_modules/vl-ui-icon/dist/style.css';
 
-          #wrapper {
-              position: relative;
-          }
+        #wrapper {
+          position: relative;
+        }
       </style>
       <div is="vl-input-group" id="wrapper" data-vl-datepicker>
-          <input id="input" is="vl-input-field" block type="text" class="js-vl-datepicker-input"/>
-          <button id="button" is="vl-button-input-addon" type="button" class="js-vl-datepicker-toggle">
-              <span id="icon" is="vl-icon" icon="calendar"></span>
-          </button>
+        <input id="input" is="vl-input-field" data-vl-block type="text" class="js-vl-datepicker-input"/>
+        <button id="button" is="vl-button-input-addon" type="button" class="js-vl-datepicker-toggle">
+          <span id="icon" is="vl-icon" data-vl-icon="calendar"></span>
+        </button>
       </div>
     `);
   }
@@ -154,17 +155,17 @@ export class VlDatepicker extends vlElement(HTMLElement) {
 
   _errorChangedCallback(oldValue, newValue) {
     if (newValue != undefined) {
-      this._inputElement.setAttribute('error', '');
+      this._inputElement.setAttribute('data-vl-error', '');
     } else {
-      this._inputElement.removeAttribute('error');
+      this._inputElement.removeAttribute('data-vl-error');
     }
   }
 
   _successChangedCallback(oldValue, newValue) {
     if (newValue != undefined) {
-      this._inputElement.setAttribute('success', '');
+      this._inputElement.setAttribute('data-vl-success', '');
     } else {
-      this._inputElement.removeAttribute('success');
+      this._inputElement.removeAttribute('data-vl-success');
     }
   }
 }

@@ -19,55 +19,55 @@
 
     <test-fixture id="vl-datepicker-type-range-fixture">
         <template>
-            <vl-datepicker type="range"></vl-datepicker>
+            <vl-datepicker data-vl-type="range"></vl-datepicker>
         </template>
     </test-fixture>
 
     <test-fixture id="vl-datepicker-type-time-fixture">
         <template>
-            <vl-datepicker type="time"></vl-datepicker>
+            <vl-datepicker data-vl-type="time"></vl-datepicker>
         </template>
     </test-fixture>
 
     <test-fixture id="vl-datepicker-type-date-time-fixture">
         <template>
-            <vl-datepicker type="date-time"></vl-datepicker>
+            <vl-datepicker data-vl-type="date-time"></vl-datepicker>
         </template>
     </test-fixture>
 
     <test-fixture id="vl-datepicker-format-fixture">
         <template>
-            <vl-datepicker format="Y-m-d"></vl-datepicker>
+            <vl-datepicker data-vl-format="Y-m-d"></vl-datepicker>
         </template>
     </test-fixture>
 
     <test-fixture id="vl-datepicker-visual-format-fixture">
         <template>
-            <vl-datepicker visual-format="l d M Y"></vl-datepicker>
+            <vl-datepicker data-vl-visual-format="l d M Y"></vl-datepicker>
         </template>
     </test-fixture>
 
     <test-fixture id="vl-datepicker-selected-date-fixture">
         <template>
-            <vl-datepicker selected-date="03/12/1988"></vl-datepicker>
+            <vl-datepicker data-vl-selected-date="03/12/1988"></vl-datepicker>
         </template>
     </test-fixture>
 
     <test-fixture id="vl-datepicker-min-max-date-fixture">
         <template>
-            <vl-datepicker type="time" min-date="11/10/2019" max-date="13/10/2019"></vl-datepicker>
+            <vl-datepicker data-vl-type="time" data-vl-min-date="11/10/2019" data-vl-max-date="13/10/2019"></vl-datepicker>
         </template>
     </test-fixture>
 
     <test-fixture id="vl-datepicker-min-max-time-fixture">
         <template>
-            <vl-datepicker type="time" min-time="09:00" max-time="17:00"></vl-datepicker>
+            <vl-datepicker data-vl-type="time" data-vl-min-time="09:00" data-vl-max-time="17:00"></vl-datepicker>
         </template>
     </test-fixture>
 
     <test-fixture id="vl-datepicker-am-pm-time-fixture">
         <template>
-            <vl-datepicker type="time" am-pm></vl-datepicker>
+            <vl-datepicker data-vl-type="time" data-vl-am-pm></vl-datepicker>
         </template>
     </test-fixture>
 
@@ -181,7 +181,7 @@
               const inputGroupElement = datepicker.shadowRoot.querySelector('#wrapper');
               const inputElement = inputGroupElement.querySelector('#input');
               assert.isFalse(inputElement.hasAttribute(attribute));
-              datepicker.setAttribute(attribute, '');
+              datepicker.setAttribute(`data-vl-${attribute}`, '');
               assert.isTrue(inputElement.hasAttribute(attribute));
             });
           });
