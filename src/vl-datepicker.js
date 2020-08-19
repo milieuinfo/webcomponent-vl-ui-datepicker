@@ -37,12 +37,13 @@ export class VlDatepicker extends vlElement(HTMLElement) {
     super(`
       <style>
         @import '/src/style.css';
-        @import '/node_modules/vl-ui-input-addon/dist/style.css';
-        @import '/node_modules/vl-ui-input-field/dist/style.css';
-        @import '/node_modules/vl-ui-icon/dist/style.css';
 
         #wrapper {
           position: relative;
+        }
+
+        .flatpickr-calendar {
+          display: none;
         }
       </style>
       <div is="vl-input-group" id="wrapper" data-vl-datepicker>
@@ -180,4 +181,6 @@ export class VlDatepicker extends vlElement(HTMLElement) {
   }
 }
 
-define('vl-datepicker', VlDatepicker);
+customElements.whenDefined('vl-input-field').then(() => {
+  define('vl-datepicker', VlDatepicker);
+});

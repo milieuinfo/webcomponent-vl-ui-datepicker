@@ -75,10 +75,6 @@
       suite('<vl-datepicker>', () => {
         const sandbox = sinon.createSandbox();
 
-        setup((done) => {
-          customElements.whenDefined('vl-datepicker').then(done);
-        });
-
         teardown(() => {
           sandbox.restore();
         });
