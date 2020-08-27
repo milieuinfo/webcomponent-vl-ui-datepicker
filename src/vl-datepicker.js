@@ -26,6 +26,7 @@ import '/lib/datepicker.js';
  * @property {boolean} data-vl-am-pm - Attribuut om de 12-uurs AM/PM timepicker te activeren.
  * @property {boolean} data-vl-error - Attribuut om aan te geven dat de datepicker een error bevat.
  * @property {boolean} data-vl-success - Attribuut om aan te geven dat de datepicker geen error bevat.
+ * @property {boolean} data-vl-value - Attribuut om aan de waarde te definiëren.
  *
  * @see {@link https://www.github.com/milieuinfo/webcomponent-vl-ui-datepicker/releases/latest|Release notes}
  * @see {@link https://www.github.com/milieuinfo/webcomponent-vl-ui-datepicker/issues|Issues}
@@ -70,6 +71,7 @@ export class VlDatepicker extends vlElement(HTMLElement) {
       'am-pm',
       'error',
       'success',
+      'value',
     ];
   }
 
@@ -87,7 +89,11 @@ export class VlDatepicker extends vlElement(HTMLElement) {
   }
 
   set value(value) {
-    this._inputElement._flatpickr.setDate(value, false, this._format);
+    if (this._inputElement._flatpickr) {
+      this._inputElement._flatpickr.setDate(value, false, this._format);
+    } else {
+      this._inputElement.value = value;
+    }
   }
 
   get _attributePrefix() {
@@ -159,6 +165,10 @@ export class VlDatepicker extends vlElement(HTMLElement) {
     } else {
       this._inputElement.removeAttribute('data-vl-error');
     }
+  }
+
+  _valueChangedCallback(oldValue, newValue) {
+    this.value = newValue;
   }
 
   _successChangedCallback(oldValue, newValue) {
