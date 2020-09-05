@@ -1,4 +1,4 @@
-import {vlElement, define, awaitUntill} from 'vl-ui-core';
+import {vlElement, define, awaitUntil} from 'vl-ui-core';
 import 'vl-ui-input-addon';
 import 'vl-ui-input-group';
 import 'vl-ui-input-field';
@@ -82,7 +82,7 @@ export class VlDatepicker extends vlElement(HTMLElement) {
    */
   dress() {
     if (!this._dressed) {
-      awaitUntill(() => this._inputElement.classList.contains('vl-input-field')).then(() => {
+      awaitUntil(() => this._inputElement.classList.contains('vl-input-field')).then(() => {
         vl.datepicker.dress(this._element);
       });
     }
@@ -184,7 +184,5 @@ export class VlDatepicker extends vlElement(HTMLElement) {
   }
 }
 
-customElements.whenDefined('vl-input-field').then(() => {
-  define('vl-datepicker', VlDatepicker);
-});
+define('vl-datepicker', VlDatepicker);
 
