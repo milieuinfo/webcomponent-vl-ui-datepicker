@@ -1,4 +1,4 @@
-import {vlElement, define} from '/node_modules/vl-ui-core/dist/vl-core.js';
+import {vlElement, define, awaitUntil} from '/node_modules/vl-ui-core/dist/vl-core.js';
 import '/node_modules/vl-ui-input-addon/dist/vl-input-addon.js';
 import '/node_modules/vl-ui-input-group/dist/vl-input-group.js';
 import '/node_modules/vl-ui-input-field/dist/vl-input-field.js';
@@ -37,12 +37,13 @@ export class VlDatepicker extends vlElement(HTMLElement) {
     super(`
       <style>
         @import '/src/style.css';
-        @import '/node_modules/vl-ui-input-addon/dist/style.css';
-        @import '/node_modules/vl-ui-input-field/dist/style.css';
-        @import '/node_modules/vl-ui-icon/dist/style.css';
 
         #wrapper {
           position: relative;
+        }
+
+        .flatpickr-calendar {
+          display: none;
         }
       </style>
       <div is="vl-input-group" id="wrapper" data-vl-datepicker>
@@ -81,7 +82,9 @@ export class VlDatepicker extends vlElement(HTMLElement) {
    */
   dress() {
     if (!this._dressed) {
-      vl.datepicker.dress(this._element);
+      awaitUntil(() => this._inputElement.classList.contains('vl-input-field')).then(() => {
+        vl.datepicker.dress(this._element);
+      });
     }
   }
 

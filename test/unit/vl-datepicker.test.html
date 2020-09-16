@@ -71,8 +71,10 @@
         </template>
     </test-fixture>
 
-    <script>
-      suite('<vl-datepicker>', () => {
+    <script type="module">
+      import {awaitUntil} from 'vl-ui-core/dist/vl-core';
+
+      suite('vl-datepicker', () => {
         const sandbox = sinon.createSandbox();
 
         setup((done) => {
@@ -93,11 +95,11 @@
           assert.isTrue(buttonElement.classList.contains('js-vl-datepicker-toggle'));
         });
 
-        test('de dress methode called vl.modal.dress met de dialog', () => {
-          sandbox.spy(window.vl.datepicker, 'dress');
+        test('de dress methode called vl.modal.dress met het input group element', async () => {
+          sandbox.spy(vl.datepicker, 'dress');
           const datepicker = fixture('vl-datepicker-fixture');
           const inputGroupElement = datepicker.shadowRoot.querySelector('#wrapper');
-          assert(window.vl.datepicker.dress.calledWith(inputGroupElement));
+          await awaitUntil(() => vl.datepicker.dress.calledWith(inputGroupElement));
         });
 
         test('heeft ondersteuning voor type datepicker range', () => {
