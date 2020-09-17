@@ -77,10 +77,6 @@
       suite('vl-datepicker', () => {
         const sandbox = sinon.createSandbox();
 
-        setup((done) => {
-          customElements.whenDefined('vl-datepicker').then(done);
-        });
-
         teardown(() => {
           sandbox.restore();
         });
@@ -88,7 +84,7 @@
         test('heeft correcte configuratie', () => {
           const datepicker = fixture('vl-datepicker-fixture');
           const inputGroupElement = datepicker.shadowRoot.querySelector('#wrapper');
-          const inputElement = inputGroupElement.querySelector('#input');
+          const inputElement = datepicker._inputElement;
           const buttonElement = datepicker.shadowRoot.querySelector('#button');
           assert.isTrue(inputGroupElement.hasAttribute('data-vl-datepicker'));
           assert.isTrue(inputElement.classList.contains('js-vl-datepicker-input'));
@@ -180,8 +176,7 @@
         test('zal het success en error attribuut doorgeven aan het input veld', () => {
           ['success', 'error'].forEach((attribute) => {
             const datepicker = fixture('vl-datepicker-format-fixture');
-            const inputGroupElement = datepicker.shadowRoot.querySelector('#wrapper');
-            const inputElement = inputGroupElement.querySelector('#input');
+            const inputElement = datepicker._inputElement;
             assert.isFalse(inputElement.hasAttribute(attribute));
             datepicker.setAttribute(`data-vl-${attribute}`, '');
             assert.isTrue(inputElement.hasAttribute(attribute));
@@ -193,6 +188,24 @@
           const value = '01.12.2020';
           datepicker.setAttribute('data-vl-value', value);
           assert.equal(datepicker.value, value);
+        });
+
+        test('geeft een change event voor een datum wijziging', (done) => {
+          const datepicker = fixture('vl-datepicker-fixture');
+          datepicker.addEventListener('change', (e) => {
+            assert.equal(e.target.value, '20.11.2019');
+            done();
+          });
+          awaitUntil(() => datepicker._dressed).then(() => datepicker._inputElement._flatpickr.setDate(new Date(2019, 10, 20), true));
+        });
+
+        test('geeft ook een change event voor een datum wijziging wanneer de datepicker visueel een ander formaat toont', (done) => {
+          const datepicker = fixture('vl-datepicker-visual-format-fixture');
+          datepicker.addEventListener('change', (e) => {
+            assert.equal(e.target.value, '20.11.2019');
+            done();
+          });
+          awaitUntil(() => datepicker._dressed).then(() => datepicker._inputElement._flatpickr.setDate(new Date(2019, 10, 20), true));
         });
       });
     </script>

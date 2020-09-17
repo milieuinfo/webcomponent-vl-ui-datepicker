@@ -62,7 +62,7 @@ describe('vl-datepicker', async () => {
     const datepicker = await vlDatepickerPage.getRangeDatepicker();
     await datepicker.selectRange(now.day, tomorrow.day);
     const range = await datepicker.getInputValue();
-    assert.equal(range, `${now.toFormat('dd.LL.yyyy')} tot ${tomorrow.toFormat('dd.LL.yyyy')}`);
+    assert.equal(range, `${now.toFormat('dd.LL.yyyy')} tot en met ${tomorrow.toFormat('dd.LL.yyyy')}`);
   });
 
   it('als gebruiker kan ik een geselecteerde datum lezen in een ander formaat', async () => {
@@ -124,7 +124,7 @@ describe('vl-datepicker', async () => {
     datepicker = await vlDatepickerPage.getRangeFormatDatepicker();
     await assert.eventually.equal(datepicker.getInputValue(), '');
     await vlDatepickerPage.clickRangeFormatButton();
-    await assert.eventually.equal(datepicker.getInputValue(), '01.12.2019 tot 10.12.2019');
+    await assert.eventually.equal(datepicker.getInputValue(), '01.12.2019 tot en met 10.12.2019');
 
     datepicker = await vlDatepickerPage.getTimeFormatDatepicker();
     await assert.eventually.equal(datepicker.getInputValue(), '');

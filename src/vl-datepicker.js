@@ -57,6 +57,7 @@ export class VlDatepicker extends vlElement(HTMLElement) {
 
   connectedCallback() {
     this.dress();
+    this._registerChangeEvent();
   }
 
   static get _observedAttributes() {
@@ -93,7 +94,7 @@ export class VlDatepicker extends vlElement(HTMLElement) {
 
   set value(value) {
     if (this._inputElement._flatpickr) {
-      this._inputElement._flatpickr.setDate(value, false, this._format);
+      this._inputElement._flatpickr.setDate(value, true, this._format);
     } else {
       this._inputElement.value = value;
     }
@@ -109,6 +110,10 @@ export class VlDatepicker extends vlElement(HTMLElement) {
 
   get _format() {
     return this.getAttribute('format');
+  }
+
+  get _dressed() {
+    return this._inputElement._flatpickr != undefined;
   }
 
   _typeChangedCallback(oldValue, newValue) {
@@ -180,6 +185,10 @@ export class VlDatepicker extends vlElement(HTMLElement) {
     } else {
       this._inputElement.removeAttribute('data-vl-success');
     }
+  }
+
+  _registerChangeEvent() {
+    this._inputElement.addEventListener('change', () => this.dispatchEvent(new Event('change')));
   }
 }
 
