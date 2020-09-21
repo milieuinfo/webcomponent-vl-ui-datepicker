@@ -2,10 +2,18 @@ import {vlElement, define, awaitUntil} from '/node_modules/vl-ui-core/dist/vl-co
 import '/node_modules/vl-ui-input-addon/dist/vl-input-addon.js';
 import '/node_modules/vl-ui-input-group/dist/vl-input-group.js';
 import '/node_modules/vl-ui-input-field/dist/vl-input-field.js';
+import {vlFormValidation} from '/node_modules/vl-ui-form-validation/dist/vl-form-validation.js';
+import {vlPattern} from '/node_modules/vl-ui-pattern/dist/vl-pattern.js';
+import '/node_modules/vl-ui-form-message/dist/vl-form-message.js';
 import '/node_modules/vl-ui-icon/dist/vl-icon.js';
 import '/node_modules/@govflanders/vl-ui-util/dist/js/util.js';
 import '/node_modules/@govflanders/vl-ui-core/dist/js/core.js';
 import '/lib/datepicker.js';
+
+Promise.all([
+  vlFormValidation.ready(),
+  vlPattern.ready(),
+]).then(() => define('vl-datepicker', VlDatepicker));
 
 /**
  * VlDatepicker
@@ -33,31 +41,8 @@ import '/lib/datepicker.js';
  * @see {@link https://webcomponenten.omgeving.vlaanderen.be/demo/vl-datepicker.html|Demo}
  */
 export class VlDatepicker extends vlElement(HTMLElement) {
-  constructor() {
-    super(`
-      <style>
-        @import '/src/style.css';
-
-        #wrapper {
-          position: relative;
-        }
-
-        .flatpickr-calendar {
-          display: none;
-        }
-      </style>
-      <div is="vl-input-group" id="wrapper" data-vl-datepicker>
-        <input id="input" is="vl-input-field" data-vl-block type="text" class="js-vl-datepicker-input"/>
-        <button id="button" is="vl-button-input-addon" type="button" class="js-vl-datepicker-toggle">
-          <span id="icon" is="vl-icon" data-vl-icon="calendar"></span>
-        </button>
-      </div>
-    `);
-  }
-
-  connectedCallback() {
-    this.dress();
-    this._registerChangeEvent();
+  static get formAssociated() {
+    return true;
   }
 
   static get _observedAttributes() {
@@ -74,16 +59,103 @@ export class VlDatepicker extends vlElement(HTMLElement) {
       'error',
       'success',
       'value',
+      'error-message',
+      'error-placeholder',
+      'data-required',
+      'pattern',
+      'pattern-prefix',
     ];
+  }
+
+  constructor() {
+    super(`
+      <style>
+        @import '/src/style.css';
+        @import '/node_modules/vl-ui-form-message/dist/style.css';
+
+        #wrapper {
+          position: relative;
+        }
+
+        .flatpickr-calendar {
+          display: none;
+        }
+      </style>
+      <div is="vl-input-group" id="wrapper" data-vl-datepicker>
+        <input id="input" is="vl-input-field" data-vl-block type="text" class="js-vl-datepicker-input"/>
+        <button id="button" is="vl-button-input-addon" type="button" class="js-vl-datepicker-toggle">
+          <span id="icon" is="vl-icon" data-vl-icon="calendar"></span>
+        </button>
+      </div>
+    `);
+    this._internals = this.attachInternals();
+  }
+
+  connectedCallback() {
+    this._dress();
+    this._registerChangeEvent();
+  }
+
+  disconnectedCallback() {
+    if (this._observer) {
+      this._observer.disconnect();
+    }
+  }
+
+  /**
+   * Geeft de waarde van het naam attribuut terug.
+   *
+   * @return {string}
+   */
+  get name() {
+    return this.getAttribute('name');
+  }
+
+  /**
+   * Returns a reference to the parent <form> element.
+   *
+   * @return {HTMLFormElement}
+   */
+  get form() {
+    return this._internals.form;
+  }
+
+  /**
+   * Returns the element's current validity state.
+   *
+   * @return {ValidityState}
+   */
+  get validity() {
+    return this._internals.validity;
+  }
+
+  /**
+   * Returns a localized message that describes the validation constraints that the control does not satisfy (if any). This is the empty string if the control is not a candidate for constraint validation (willvalidate is false), or it satisfies its constraints. This value can be set by the setCustomValidity method.
+   *
+   * @return {string}
+   */
+  get validationMessage() {
+    return this._internals.validationMessage;
+  }
+
+  /**
+   * Returns whether the element is a candidate for constraint validation.
+   *
+   * @return {boolean}
+   */
+  get willValidate() {
+    return this._internals.willValidate;
   }
 
   /**
    * Initialiseer de datepicker config.
    */
-  dress() {
+  _dress() {
     if (!this._dressed) {
       awaitUntil(() => this._inputElement.classList.contains('vl-input-field')).then(() => {
         vl.datepicker.dress(this._element);
+        this._dressFormValidation();
+        this._dressPattern();
       });
     }
   }
@@ -187,9 +259,56 @@ export class VlDatepicker extends vlElement(HTMLElement) {
     }
   }
 
+  _errorMessageChangedCallback(oldValue, newValue) {
+    this._inputElement.setAttribute('data-vl-error-message', newValue);
+  }
+
+  _errorPlaceholderChangedCallback(oldValue, newValue) {
+    this._inputElement.setAttribute('data-vl-error-placeholder', newValue);
+  }
+
+  _dataRequiredChangedCallback(oldValue, newValue) {
+    this._inputElement.setAttribute('data-required', newValue);
+  }
+
+  _patternChangedCallback(oldValue, newValue) {
+    this._inputElement.setAttribute('data-vl-pattern', newValue);
+  }
+
+  _patternPrefixChangedCallback(oldValue, newValue) {
+    this._inputElement.setAttribute('data-vl-pattern-prefix', newValue);
+  }
+
   _registerChangeEvent() {
     this._inputElement.addEventListener('change', () => this.dispatchEvent(new Event('change')));
   }
-}
 
-define('vl-datepicker', VlDatepicker);
+  _dressFormValidation() {
+    if (this.form) {
+      this.setAttribute('data-vl-success-class', 'vl-datepicker--success');
+      this.setAttribute('data-vl-error-class', 'vl-datepicker--error');
+      Object.assign(this, vlFormValidation);
+      this.dress(this.form);
+      this._observer = this._observeFormValidationClasses();
+    }
+  }
+
+  _dressPattern() {
+    Object.assign(this, vlPattern);
+    this.dress(this);
+  }
+
+  _observeFormValidationClasses() {
+    const observer = new MutationObserver((mutations) => {
+      ['error', 'success'].forEach((type) => {
+        if (mutations.find((mutation) => mutation.target.classList.contains(`vl-datepicker--${type}`))) {
+          this.setAttribute(`data-vl-${type}`, '');
+        } else {
+          this.removeAttribute(`data-vl-${type}`);
+        }
+      });
+    });
+    observer.observe(this, {attributes: true, attributeFilter: ['class']});
+    return observer;
+  }
+}
