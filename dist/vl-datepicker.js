@@ -4,7 +4,6 @@ import '/node_modules/vl-ui-input-group/dist/vl-input-group.js';
 import '/node_modules/vl-ui-input-field/dist/vl-input-field.js';
 import {vlFormValidation} from '/node_modules/vl-ui-form-validation/dist/vl-form-validation.js';
 import {vlPattern} from '/node_modules/vl-ui-pattern/dist/vl-pattern.js';
-import '/node_modules/vl-ui-form-message/dist/vl-form-message.js';
 import '/node_modules/vl-ui-icon/dist/vl-icon.js';
 import '/node_modules/@govflanders/vl-ui-util/dist/js/util.js';
 import '/node_modules/@govflanders/vl-ui-core/dist/js/core.js';
@@ -71,7 +70,6 @@ export class VlDatepicker extends vlElement(HTMLElement) {
     super(`
       <style>
         @import '/node_modules/vl-ui-datepicker/dist/style.css';
-        @import '/node_modules/vl-ui-form-message/dist/style.css';
 
         #wrapper {
           position: relative;
