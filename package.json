@@ -38,10 +38,10 @@
   },
   "dependencies": {
     "vl-ui-core": "^6.0.0",
-    "vl-ui-form-validation": "milieuinfo/webcomponent-vl-ui-form-validation#datepicker",
+    "vl-ui-form-validation": "github:milieuinfo/webcomponent-vl-ui-form-validation#datepicker",
     "vl-ui-icon": "^5.2.0",
     "vl-ui-input-addon": "^3.1.5",
-    "vl-ui-input-field": "milieuinfo/webcomponent-vl-ui-input-field#validation",
+    "vl-ui-input-field": "github:milieuinfo/webcomponent-vl-ui-input-field#validation",
     "vl-ui-input-group": "^4.0.5",
     "vl-ui-pattern": "^1.0.5"
   },
