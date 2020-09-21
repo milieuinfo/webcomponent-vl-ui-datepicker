@@ -40,10 +40,6 @@ Promise.all([
  * @see {@link https://webcomponenten.omgeving.vlaanderen.be/demo/vl-datepicker.html|Demo}
  */
 export class VlDatepicker extends vlElement(HTMLElement) {
-  static get formAssociated() {
-    return true;
-  }
-
   static get _observedAttributes() {
     return [
       'type',
@@ -63,6 +59,7 @@ export class VlDatepicker extends vlElement(HTMLElement) {
       'data-required',
       'pattern',
       'pattern-prefix',
+      'name',
     ];
   }
 
@@ -87,7 +84,6 @@ export class VlDatepicker extends vlElement(HTMLElement) {
         </button>
       </div>
     `);
-    this._internals = this.attachInternals();
   }
 
   connectedCallback() {
@@ -111,39 +107,12 @@ export class VlDatepicker extends vlElement(HTMLElement) {
   }
 
   /**
-   * Returns a reference to the parent <form> element.
+   * Geeft het form element terug.
    *
    * @return {HTMLFormElement}
    */
   get form() {
-    return this._internals.form;
-  }
-
-  /**
-   * Returns the element's current validity state.
-   *
-   * @return {ValidityState}
-   */
-  get validity() {
-    return this._internals.validity;
-  }
-
-  /**
-   * Returns a localized message that describes the validation constraints that the control does not satisfy (if any). This is the empty string if the control is not a candidate for constraint validation (willvalidate is false), or it satisfies its constraints. This value can be set by the setCustomValidity method.
-   *
-   * @return {string}
-   */
-  get validationMessage() {
-    return this._internals.validationMessage;
-  }
-
-  /**
-   * Returns whether the element is a candidate for constraint validation.
-   *
-   * @return {boolean}
-   */
-  get willValidate() {
-    return this._internals.willValidate;
+    return this.closest('form');
   }
 
   /**
@@ -276,6 +245,13 @@ export class VlDatepicker extends vlElement(HTMLElement) {
 
   _patternPrefixChangedCallback(oldValue, newValue) {
     this._inputElement.setAttribute('data-vl-pattern-prefix', newValue);
+  }
+
+  _nameChangedCallback(oldValue, newValue) {
+    if (this._inputElement.name != newValue) {
+      this._inputElement.name = newValue;
+      this.setAttribute('name', newValue);
+    }
   }
 
   _registerChangeEvent() {
