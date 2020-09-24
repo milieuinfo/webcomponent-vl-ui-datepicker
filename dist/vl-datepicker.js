@@ -34,6 +34,8 @@ Promise.all([
  * @property {boolean} data-vl-error - Attribuut om aan te geven dat de datepicker een error bevat.
  * @property {boolean} data-vl-success - Attribuut om aan te geven dat de datepicker geen error bevat.
  * @property {boolean} data-vl-value - Attribuut om aan de waarde te definiëren.
+ * @property {string} data-vl-pattern - Attribuut om aan te geven aan welk patroon de input moet voldoen.
+ * @property {string} data-vl-name - Attribuut om aan de waarde te definiëren.
  *
  * @see {@link https://www.github.com/milieuinfo/webcomponent-vl-ui-datepicker/releases/latest|Release notes}
  * @see {@link https://www.github.com/milieuinfo/webcomponent-vl-ui-datepicker/issues|Issues}
@@ -54,11 +56,7 @@ export class VlDatepicker extends vlElement(HTMLElement) {
       'error',
       'success',
       'value',
-      'error-message',
-      'error-placeholder',
-      'data-required',
       'pattern',
-      'pattern-prefix',
       'name',
     ];
   }
@@ -226,24 +224,8 @@ export class VlDatepicker extends vlElement(HTMLElement) {
     }
   }
 
-  _errorMessageChangedCallback(oldValue, newValue) {
-    this._inputElement.setAttribute('data-vl-error-message', newValue);
-  }
-
-  _errorPlaceholderChangedCallback(oldValue, newValue) {
-    this._inputElement.setAttribute('data-vl-error-placeholder', newValue);
-  }
-
-  _dataRequiredChangedCallback(oldValue, newValue) {
-    this._inputElement.setAttribute('data-required', newValue);
-  }
-
   _patternChangedCallback(oldValue, newValue) {
     this._inputElement.setAttribute('data-vl-pattern', newValue);
-  }
-
-  _patternPrefixChangedCallback(oldValue, newValue) {
-    this._inputElement.setAttribute('data-vl-pattern-prefix', newValue);
   }
 
   _nameChangedCallback(oldValue, newValue) {
@@ -268,8 +250,9 @@ export class VlDatepicker extends vlElement(HTMLElement) {
   }
 
   _dressPattern() {
+    vl.pattern.undressAll();
     Object.assign(this, vlPattern);
-    this.dress(this);
+    this.dress(this._inputElement);
   }
 
   _observeFormValidationClasses() {
