@@ -84,7 +84,7 @@ export class VlDatepicker extends vlElement(HTMLElement) {
   }
 
   connectedCallback() {
-    this._dress();
+    this.dress();
     this._registerChangeEvent();
   }
 
@@ -115,7 +115,7 @@ export class VlDatepicker extends vlElement(HTMLElement) {
   /**
    * Initialiseer de datepicker config.
    */
-  _dress() {
+  dress() {
     if (!this._dressed) {
       awaitUntil(() => this._inputElement.classList.contains('vl-input-field')).then(() => {
         vl.datepicker.dress(this._element);
@@ -245,6 +245,7 @@ export class VlDatepicker extends vlElement(HTMLElement) {
       this.setAttribute('data-vl-error-class', 'vl-datepicker--error');
       Object.assign(this, vlFormValidation);
       this.dress(this.form);
+      this.dress = this._dress;
       this._observer = this._observeFormValidationClasses();
     }
   }
@@ -253,6 +254,7 @@ export class VlDatepicker extends vlElement(HTMLElement) {
     vl.pattern.undressAll();
     Object.assign(this, vlPattern);
     this.dress(this._inputElement);
+    this.dress = this._dress;
   }
 
   _observeFormValidationClasses() {
