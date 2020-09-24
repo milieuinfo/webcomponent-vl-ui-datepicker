@@ -38,21 +38,17 @@
   },
   "dependencies": {
     "vl-ui-core": "^6.0.0",
-    "vl-ui-form-validation": "^3.3.0",
     "vl-ui-icon": "^5.2.0",
     "vl-ui-input-addon": "^3.1.5",
     "vl-ui-input-field": "^3.2.5",
-    "vl-ui-input-group": "^4.0.5",
-    "vl-ui-pattern": "^1.0.5"
+    "vl-ui-input-group": "^4.0.5"
   },
   "peerDependencies": {
     "vl-ui-core": "^6.0.0",
-    "vl-ui-form-validation": "^3.3.0",
     "vl-ui-icon": "^5.2.0",
     "vl-ui-input-addon": "^3.1.5",
     "vl-ui-input-field": "^3.2.5",
-    "vl-ui-input-group": "^4.0.5",
-    "vl-ui-pattern": "^1.0.5"
+    "vl-ui-input-group": "^4.0.5"
   },
   "devDependencies": {
     "@govflanders/vl-ui-datepicker": "^3.11.5",
