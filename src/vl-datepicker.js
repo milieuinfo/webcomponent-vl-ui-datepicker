@@ -54,11 +54,6 @@ export class VlDatepicker extends vlElement(HTMLElement) {
       'error',
       'success',
       'value',
-      'error-message',
-      'error-placeholder',
-      'data-required',
-      'pattern',
-      'pattern-prefix',
       'name',
     ];
   }
@@ -224,26 +219,6 @@ export class VlDatepicker extends vlElement(HTMLElement) {
     } else {
       this._inputElement.removeAttribute('data-vl-success');
     }
-  }
-
-  _errorMessageChangedCallback(oldValue, newValue) {
-    this._inputElement.setAttribute('data-vl-error-message', newValue);
-  }
-
-  _errorPlaceholderChangedCallback(oldValue, newValue) {
-    this._inputElement.setAttribute('data-vl-error-placeholder', newValue);
-  }
-
-  _dataRequiredChangedCallback(oldValue, newValue) {
-    this._inputElement.setAttribute('data-required', newValue);
-  }
-
-  _patternChangedCallback(oldValue, newValue) {
-    this._inputElement.setAttribute('data-vl-pattern', newValue);
-  }
-
-  _patternPrefixChangedCallback(oldValue, newValue) {
-    this._inputElement.setAttribute('data-vl-pattern-prefix', newValue);
   }
 
   _nameChangedCallback(oldValue, newValue) {
