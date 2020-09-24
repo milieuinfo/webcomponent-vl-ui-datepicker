@@ -33,9 +33,9 @@ Promise.all([
  * @property {boolean} data-vl-am-pm - Attribuut om de 12-uurs AM/PM timepicker te activeren.
  * @property {boolean} data-vl-error - Attribuut om aan te geven dat de datepicker een error bevat.
  * @property {boolean} data-vl-success - Attribuut om aan te geven dat de datepicker geen error bevat.
- * @property {boolean} data-vl-value - Attribuut om aan de waarde te definiëren.
+ * @property {boolean} data-vl-value - Attribuut om de waarde te definiëren.
  * @property {string} data-vl-pattern - Attribuut om aan te geven aan welk patroon de input moet voldoen.
- * @property {string} data-vl-name - Attribuut om aan de waarde te definiëren.
+ * @property {string} data-vl-name - Attribuut om aan de naam te definiëren.
  *
  * @see {@link https://www.github.com/milieuinfo/webcomponent-vl-ui-datepicker/releases/latest|Release notes}
  * @see {@link https://www.github.com/milieuinfo/webcomponent-vl-ui-datepicker/issues|Issues}
