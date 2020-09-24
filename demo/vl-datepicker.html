@@ -17,14 +17,10 @@
 <body is="vl-body">
     <vl-demo-page data-vl-webcomponent="vl-datepicker" data-vl-link="https://overheid.vlaanderen.be/webuniversum/v3/documentation/forms/vl-ui-datepicker">
         <vl-demo data-vl-title="Datepicker">
-            <form>
-                <vl-datepicker id="einde-datum" data-required="true" data-vl-error-message="Gelieve een geldige datum in te geven" data-vl-error-placeholder="einde-datum-error" data-vl-name="test"></vl-datepicker>
-                <p is="vl-form-validation-message" error data-vl-error-id="einde-datum-error"></p>
-                <button is="vl-button">submit</button>
-            </form>
+            <vl-datepicker id="default-datepicker"></vl-datepicker>
         </vl-demo>
 
-        <!-- <vl-demo data-vl-title="Datepicker met custom format">
+        <vl-demo data-vl-title="Datepicker met custom format">
             <vl-datepicker id="custom-format-datepicker" data-vl-format="d/m/Y"></vl-datepicker>
         </vl-demo>
 
@@ -101,7 +97,7 @@
 
         <vl-demo data-vl-title="Datepicker succes">
             <vl-datepicker id="success-datepicker" data-vl-success></vl-datepicker>
-        </vl-demo> -->
+        </vl-demo>
     </vl-demo-page>
 </body>
 
