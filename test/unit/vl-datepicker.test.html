@@ -71,11 +71,33 @@
         </template>
     </test-fixture>
 
+    <test-fixture id="vl-datepicker-inside-form-fixture">
+      <template>
+        <form>
+          <vl-datepicker></vl-datepicker>
+        </form>
+      </template>
+    </test-fixture>
+
+    <test-fixture id="vl-datepicker-pattern-fixture">
+      <template>
+        <vl-datepicker data-vl-pattern="date"></vl-datepicker>
+      </template>
+    </test-fixture>
+
     <script type="module">
       import {awaitUntil} from 'vl-ui-core/dist/vl-core';
 
       suite('vl-datepicker', () => {
         const sandbox = sinon.createSandbox();
+
+        setup((done) => {
+          customElements.whenDefined('vl-datepicker').then(() => {
+            sandbox.spy(vl.formValidation, 'dress');
+            sandbox.spy(vl.pattern, 'dress');
+            done();
+          });
+        });
 
         teardown(() => {
           sandbox.restore();
@@ -206,6 +228,38 @@
             done();
           });
           awaitUntil(() => datepicker._dressed).then(() => datepicker._inputElement._flatpickr.setDate(new Date(2019, 10, 20), true));
+        });
+
+        test('indien de datepicker onderdeel is van een formulier zal de validatie geactiveerd worden', (done) => {
+          fixture('vl-datepicker-fixture');
+          assert(window.vl.formValidation.dress.notCalled);
+          const form = fixture('vl-datepicker-inside-form-fixture');
+          const datepicker = form.querySelector('vl-datepicker');
+          awaitUntil(() => datepicker._dressed).then(() => {
+            assert(window.vl.formValidation.dress.calledWith(form));
+            done();
+          });
+        });
+
+        test('de datepicker zal de pattern dress functie uitvoeren wanneer het data-vl-pattern attribuut aanwezig is', (done) => {
+          fixture('vl-datepicker-fixture');
+          assert(window.vl.pattern.dress.notCalled);
+          const datepicker = fixture('vl-datepicker-pattern-fixture');
+          awaitUntil(() => datepicker._dressed).then(() => {
+            assert(window.vl.pattern.dress.calledWith(datepicker._inputElement));
+            done();
+          });
+        });
+
+        test('de validatie succes en error class attributen worden correct gezet indien de datepicker onderdeel is van een formulier', () => {
+          const field = fixture('vl-datepicker-fixture');
+          const formField = fixture('vl-datepicker-inside-form-fixture').querySelector('vl-datepicker');
+          awaitUntil(() => datepicker._dressed).then(() => {
+            ['success', 'error'].forEach((type) => {
+              assert.isFalse(field.hasAttribute(`data-vl-${type}-class`));
+              assert.equal(formField.getAttribute(`data-vl-${type}-class`), 'vl-datepicker--' + type);
+            });
+          });
         });
       });
     </script>
