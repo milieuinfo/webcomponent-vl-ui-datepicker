@@ -261,6 +261,12 @@
             });
           });
         });
+
+        test('kan programmatisch focus activeren', (done) => {
+          const field = fixture('vl-datepicker-fixture');
+          field._inputElement.addEventListener('focus', () => done());
+          field.focus();
+        });
       });
     </script>
 </body>
