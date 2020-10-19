@@ -142,7 +142,7 @@ export class VlDatepicker extends vlElement(HTMLElement) {
    * Geeft focus aan het datepicker input element.
    */
   focus() {
-    this._inputElement.focus();
+    this._visibleInputElement.focus();
   }
 
   get _attributePrefix() {
@@ -151,6 +151,10 @@ export class VlDatepicker extends vlElement(HTMLElement) {
 
   get _inputElement() {
     return this._element.querySelector('#input');
+  }
+
+  get _visibleInputElement() {
+    return this._element.querySelector('input:not([type="hidden"])');
   }
 
   get _format() {
