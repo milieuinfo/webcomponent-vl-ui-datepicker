@@ -251,14 +251,32 @@
           });
         });
 
-        test('de validatie succes en error class attributen worden correct gezet indien de datepicker onderdeel is van een formulier', () => {
+        test('de validatie succes en error class attributen worden correct gezet indien de datepicker onderdeel is van een formulier', (done) => {
           const field = fixture('vl-datepicker-fixture');
           const formField = fixture('vl-datepicker-inside-form-fixture').querySelector('vl-datepicker');
-          awaitUntil(() => datepicker._dressed).then(() => {
+          awaitUntil(() => field._dressed).then(() => {
             ['success', 'error'].forEach((type) => {
               assert.isFalse(field.hasAttribute(`data-vl-${type}-class`));
               assert.equal(formField.getAttribute(`data-vl-${type}-class`), 'vl-datepicker--' + type);
             });
+            done();
+          });
+        });
+
+        test('kan programmatisch focus activeren', (done) => {
+          const field = fixture('vl-datepicker-fixture');
+          awaitUntil(() => field._dressed).then(() => {
+            field._visibleInputElement.addEventListener('focus', () => done());
+            field.focus();
+          });
+        });
+
+        test('kan programmatisch focus activeren in combinatie met visual-format attribuut', (done) => {
+          debugger;
+          const field = fixture('vl-datepicker-visual-format-fixture');
+          awaitUntil(() => field._dressed).then(() => {
+            field._visibleInputElement.addEventListener('focus', () => done());
+            field.focus();
           });
         });
       });

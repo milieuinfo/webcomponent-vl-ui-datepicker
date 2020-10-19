@@ -113,6 +113,18 @@ export class VlDatepicker extends vlElement(HTMLElement) {
     return this.closest('form');
   }
 
+  get value() {
+    return this._inputElement.value;
+  }
+
+  set value(value) {
+    if (this._inputElement._flatpickr) {
+      this._inputElement._flatpickr.setDate(value, true, this._format);
+    } else {
+      this._inputElement.value = value;
+    }
+  }
+
   /**
    * Initialiseer de datepicker config.
    */
@@ -126,16 +138,11 @@ export class VlDatepicker extends vlElement(HTMLElement) {
     }
   }
 
-  get value() {
-    return this._inputElement.value;
-  }
-
-  set value(value) {
-    if (this._inputElement._flatpickr) {
-      this._inputElement._flatpickr.setDate(value, true, this._format);
-    } else {
-      this._inputElement.value = value;
-    }
+  /**
+   * Geeft focus aan het datepicker input element.
+   */
+  focus() {
+    this._visibleInputElement.focus();
   }
 
   get _attributePrefix() {
@@ -144,6 +151,10 @@ export class VlDatepicker extends vlElement(HTMLElement) {
 
   get _inputElement() {
     return this._element.querySelector('#input');
+  }
+
+  get _visibleInputElement() {
+    return this._element.querySelector('input:not([type="hidden"])');
   }
 
   get _format() {
