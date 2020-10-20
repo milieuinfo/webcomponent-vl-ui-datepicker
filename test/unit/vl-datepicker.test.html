@@ -71,7 +71,7 @@
         </template>
     </test-fixture>
 
-    <test-fixture id="vl-datepicker-inside-form-fixture">
+    <test-fixture id="vl-datepicker-form-fixture">
       <template>
         <form>
           <vl-datepicker></vl-datepicker>
@@ -234,10 +234,10 @@
 
         test('de datepicker zal de pattern dress functie uitvoeren wanneer het data-vl-pattern attribuut aanwezig is', (done) => {
           fixture('vl-datepicker-fixture');
-          assert(window.vl.pattern.dress.notCalled);
+          assert(vl.pattern.dress.notCalled);
           const datepicker = fixture('vl-datepicker-pattern-fixture');
           awaitUntil(() => datepicker._dressed).then(() => {
-            assert(window.vl.pattern.dress.calledWith(datepicker._inputElement));
+            assert(vl.pattern.dress.calledWith(datepicker._inputElement));
             done();
           });
         });
@@ -260,6 +260,16 @@
 
         test('bevat de form validation observed attributes om correcte formulier validatie te realiseren', () => {
           vlFormValidation._observedAttributes().forEach((attribute) => assert.include(VlDatepicker._observedAttributes, attribute));
+        });
+
+        test('de datepicker zal pas wanneer dress uitgevoerd werd de validation dress functie uitvoeren als het onderdeel van een formulier is', (done) => {
+          fixture('vl-datepicker-fixture');
+          assert(vl.formValidation.dress.notCalled); ;
+          const datepicker = fixture('vl-datepicker-form-fixture').querySelector('vl-datepicker');
+          awaitUntil(() => datepicker._dressed).then(() => {
+            assert(vl.formValidation.dress.calledWith(datepicker.form));
+            done();
+          });
         });
       });
     </script>
