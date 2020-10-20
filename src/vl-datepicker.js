@@ -5,8 +5,6 @@ import '/node_modules/vl-ui-input-field/dist/vl-input-field.js';
 import {vlFormValidation, vlFormValidationElement} from '/node_modules/vl-ui-form-validation/dist/vl-form-validation-all.js';
 import {vlPattern} from '/node_modules/vl-ui-pattern/dist/vl-pattern.js';
 import '/node_modules/vl-ui-icon/dist/vl-icon.js';
-import '/node_modules/@govflanders/vl-ui-util/dist/js/util.js';
-import '/node_modules/@govflanders/vl-ui-core/dist/js/core.js';
 import '/lib/datepicker.js';
 
 Promise.all([
