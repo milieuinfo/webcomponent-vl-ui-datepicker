@@ -258,10 +258,6 @@
           });
         });
 
-        test('de form validation element constructor wordt aangeroepen', () => {
-          new VlDatepicker().connectedCallback.toString().includes('super.connectedCallback();');
-        });
-
         test('bevat de form validation observed attributes om correcte formulier validatie te realiseren', () => {
           vlFormValidation._observedAttributes().forEach((attribute) => assert.include(VlDatepicker._observedAttributes, attribute));
         });
