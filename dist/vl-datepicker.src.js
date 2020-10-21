@@ -5,8 +5,6 @@ import 'vl-ui-input-field';
 import {vlFormValidation, vlFormValidationElement} from 'vl-ui-form-validation';
 import {vlPattern} from 'vl-ui-pattern';
 import 'vl-ui-icon';
-import '@govflanders/vl-ui-util/dist/js/util.js';
-import '@govflanders/vl-ui-core/dist/js/core.js';
 import 'vl-ui-datepicker/lib/datepicker.js';
 
 Promise.all([
@@ -84,6 +82,7 @@ export class VlDatepicker extends vlFormValidationElement(vlElement(HTMLElement)
   }
 
   connectedCallback() {
+    super.connectedCallback();
     this.dress();
     this._registerChangeEvent();
   }
