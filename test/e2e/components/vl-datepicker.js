@@ -38,7 +38,8 @@ class VlDatepicker extends VlElement {
 
   async open() {
     if (!(await this.isOpen())) {
-      (await this._getToggleButton()).click();
+      const button = await this._getToggleButton();
+      await button.click();
     }
   }
 
