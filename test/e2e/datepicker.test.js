@@ -1,14 +1,15 @@
-const {assert, driver} = require('vl-ui-core').Test.Setup;
+const {assert, getDriver} = require('vl-ui-core').Test.Setup;
 const {DateTime} = require('luxon');
 const VlDatepickerPage = require('./pages/vl-datepicker.page');
 
 describe('vl-datepicker', async () => {
-  const vlDatepickerPage = new VlDatepickerPage(driver);
+  let vlDatepickerPage;
 
   const now = DateTime.local();
   const tomorrow = now.plus({day: 1});
 
   beforeEach(async () => {
+    vlDatepickerPage = new VlDatepickerPage(getDriver());
     await vlDatepickerPage.load();
   });
 
