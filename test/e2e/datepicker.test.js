@@ -106,9 +106,9 @@ describe('vl-datepicker', async () => {
     await datepicker.selectYear(2018);
     await datepicker.selectMonth('augustus');
     await datepicker.selectDay(29);
+    await datepicker.selectMinutes(45);
     await datepicker.selectHour(19);
-    await datepicker.selectMinutes(0);
-    await assert.eventually.equal(datepicker.getInputValue(), '29-08-2018 19:00');
+    await assert.eventually.equal(datepicker.getInputValue(), '29-08-2018 19:45');
   });
 
   it('als gebruiker kan ik een datum kiezen door op een voorgedefinieerde knop te klikken', async () => {
