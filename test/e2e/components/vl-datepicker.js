@@ -1,32 +1,8 @@
 const {VlElement} = require('vl-ui-core').Test;
 const {By} = require('vl-ui-core').Test.Setup;
+const {VlInputField} = require('vl-ui-input-field').Test;
 
 class VlDatepicker extends VlElement {
-  async _getMonthSelect() {
-    const select = await this.shadowRoot.findElement(By.css('select.flatpickr-monthDropdown-months'));
-    return new VlMonthSelect(this.driver, select);
-  }
-
-  async _getToggleButton() {
-    return this.shadowRoot.findElement(By.css('#button'));
-  }
-
-  async _getFlatpicker() {
-    return this.shadowRoot.findElement(By.css('.flatpickr-calendar'));
-  }
-
-  async _getDayElements() {
-    return this.shadowRoot.findElements(By.css('span.flatpickr-day:not(.prevMonthDay):not(.nextMonthDay)'));
-  }
-
-  async _getYearElement() {
-    return this.shadowRoot.findElement(By.css('.cur-year'));
-  }
-
-  async _getMeridianElement() {
-    return this.shadowRoot.findElement(By.css('.flatpickr-am-pm'));
-  }
-
   async isOpen() {
     try {
       const flatpickr = await this._getFlatpicker();
@@ -47,87 +23,6 @@ class VlDatepicker extends VlElement {
     if (await this.isOpen()) {
       (await this._getToggleButton()).click();
     }
-  }
-
-  async _getDayElementByText(text) {
-    const dayElements = await this._getDayElements();
-    const dayMap = await Promise.all(dayElements.map(async (dayElement) => {
-      const text = await dayElement.getText();
-      return {
-        text: text,
-        webElement: dayElement,
-      };
-    }));
-    const match = dayMap.find((dayElement) => {
-      return dayElement.text == text;
-    });
-    if (match) {
-      return match.webElement;
-    } else {
-      throw new Error('Dag niet gevonden!');
-    }
-  }
-
-  async _getHourInput() {
-    return this.shadowRoot.findElement(By.css('input.flatpickr-hour'));
-  }
-
-  async _getMinuteInput() {
-    return this.shadowRoot.findElement(By.css('input.flatpickr-minute'));
-  }
-
-  async _increase(ticker) {
-    const tickerWrapper = await ticker.findElement(By.xpath('..'));
-    await tickerWrapper.hover();
-    const arrowUp = await tickerWrapper.findElement(By.css('span.arrowUp'));
-    await arrowUp.click();
-  }
-
-  async _increaseWith(ticker, times) {
-    for (let index = 0; index < times; index++) {
-      await this._increase(ticker);
-    }
-  }
-
-  async _decreaseWith(ticker, times) {
-    for (let index = 0; index < times; index++) {
-      await this._decrease(ticker);
-    }
-  }
-
-  async _decrease(ticker) {
-    const tickerWrapper = await ticker.findElement(By.xpath('..'));
-    await tickerWrapper.hover();
-    const arrowDown = await tickerWrapper.findElement(By.css('span.arrowDown'));
-    await arrowDown.click();
-  }
-
-  async _calculateDifference(value, originalValue) {
-    const difference = Math.floor(value - originalValue);
-    return Math.abs(difference);
-  }
-
-  async _setValueInTicker(ticker, value) {
-    const tickerStep = Number(await ticker.getAttribute('step')) || 1;
-    const originalValue = Number(await ticker.getAttribute('value'));
-    const difference = await this._calculateDifference(value, originalValue);
-    const times = difference / tickerStep;
-    if (value > originalValue) {
-      await this._increaseWith(ticker, times);
-    } else {
-      await this._decreaseWith(ticker, times);
-    }
-  }
-
-  async _getMeridian() {
-    const element = await this._getMeridianElement();
-    const meridian = await element.getText();
-    return meridian.toLowerCase();
-  }
-
-  async _toggleMeridian() {
-    const element = await this._getMeridianElement();
-    await element.click();
   }
 
   async setAm() {
@@ -224,9 +119,149 @@ class VlDatepicker extends VlElement {
   async isSuccess() {
     return this.hasAttribute('success');
   }
+
+  async getSelectedDay() {
+    const element = await this._getSelectedDayElement();
+    return element.getText();
+  }
+
+  async getSelectedMonth() {
+    const element = await this._getMonthSelect();
+    return element.value();
+  }
+
+  async getSelectedYear() {
+    const element = await this._getYearInput();
+    return element.value();
+  }
+
+  async _getMonthSelect() {
+    const select = await this.shadowRoot.findElement(By.css('select.flatpickr-monthDropdown-months'));
+    return new VlMonthSelect(this.driver, select);
+  }
+
+  async _getYearInput() {
+    const element = await this.shadowRoot.findElement(By.css('.numInput'));
+    return new VlYearInput(this.driver, element);
+  }
+
+  async _getToggleButton() {
+    return this.shadowRoot.findElement(By.css('#button'));
+  }
+
+  async _getFlatpicker() {
+    return this.shadowRoot.findElement(By.css('.flatpickr-calendar'));
+  }
+
+  async _getSelectedDayElement() {
+    return this.shadowRoot.findElement(By.css('span.flatpickr-day.selected'));
+  }
+
+  async _getDayElements() {
+    return this.shadowRoot.findElements(By.css('span.flatpickr-day:not(.prevMonthDay):not(.nextMonthDay)'));
+  }
+
+  async _getYearElement() {
+    return this.shadowRoot.findElement(By.css('.cur-year'));
+  }
+
+  async _getMeridianElement() {
+    return this.shadowRoot.findElement(By.css('.flatpickr-am-pm'));
+  }
+
+  async _getInputElement() {
+    return new VlInputField(this.driver, await this.shadowRoot.findElement(By.id('input')));
+  }
+
+  async _getDayElementByText(text) {
+    const dayElements = await this._getDayElements();
+    const dayMap = await Promise.all(dayElements.map(async (dayElement) => {
+      const text = await dayElement.getText();
+      return {
+        text: text,
+        webElement: dayElement,
+      };
+    }));
+    const match = dayMap.find((dayElement) => {
+      return dayElement.text == text;
+    });
+    if (match) {
+      return match.webElement;
+    } else {
+      throw new Error('Dag niet gevonden!');
+    }
+  }
+
+  async _getHourInput() {
+    return this.shadowRoot.findElement(By.css('input.flatpickr-hour'));
+  }
+
+  async _getMinuteInput() {
+    return this.shadowRoot.findElement(By.css('input.flatpickr-minute'));
+  }
+
+  async _increase(ticker) {
+    const tickerWrapper = await ticker.findElement(By.xpath('..'));
+    await tickerWrapper.hover();
+    const arrowUp = await tickerWrapper.findElement(By.css('span.arrowUp'));
+    await arrowUp.click();
+  }
+
+  async _increaseWith(ticker, times) {
+    for (let index = 0; index < times; index++) {
+      await this._increase(ticker);
+    }
+  }
+
+  async _decreaseWith(ticker, times) {
+    for (let index = 0; index < times; index++) {
+      await this._decrease(ticker);
+    }
+  }
+
+  async _decrease(ticker) {
+    const tickerWrapper = await ticker.findElement(By.xpath('..'));
+    await tickerWrapper.hover();
+    const arrowDown = await tickerWrapper.findElement(By.css('span.arrowDown'));
+    await arrowDown.click();
+  }
+
+  async _calculateDifference(value, originalValue) {
+    const difference = Math.floor(value - originalValue);
+    return Math.abs(difference);
+  }
+
+  async _setValueInTicker(ticker, value) {
+    const tickerStep = Number(await ticker.getAttribute('step')) || 1;
+    const originalValue = Number(await ticker.getAttribute('value'));
+    const difference = await this._calculateDifference(value, originalValue);
+    const times = difference / tickerStep;
+    if (value > originalValue) {
+      await this._increaseWith(ticker, times);
+    } else {
+      await this._decreaseWith(ticker, times);
+    }
+  }
+
+  async _getMeridian() {
+    const element = await this._getMeridianElement();
+    const meridian = await element.getText();
+    return meridian.toLowerCase();
+  }
+
+  async _toggleMeridian() {
+    const element = await this._getMeridianElement();
+    await element.click();
+  }
 }
 
 class VlMonthSelect extends VlElement {
+  async value() {
+    const value = await this.getAttribute('value');
+    const element = await this.findElement(By.css(`option[value="${value}"]`));
+    return element.getText();
+  }
+
   async select(month) {
     const options = await this.findElements(By.css(`option`));
     const option = (await this._mapVisibleText(options)).find((m) => m.visibleText === month);
@@ -239,6 +274,12 @@ class VlMonthSelect extends VlElement {
       const visibleText = textContent.replace(/\s+/g, ' ').trim();
       return {webElement: option, visibleText: visibleText};
     }));
+  }
+}
+
+class VlYearInput extends VlElement {
+  async value() {
+    return this.getAttribute('value');
   }
 }
 
