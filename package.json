@@ -39,14 +39,14 @@
   "dependencies": {
     "vl-ui-core": "^7.0.1",
     "vl-ui-icon": "^5.2.1",
-    "vl-ui-input-addon": "^3.1.6",
+    "vl-ui-input-addon": "^3.1.7",
     "vl-ui-input-field": "^3.2.6",
     "vl-ui-input-group": "^4.0.6"
   },
   "peerDependencies": {
     "vl-ui-core": "^7.0.0",
     "vl-ui-icon": "^5.2.1",
-    "vl-ui-input-addon": "^3.1.6",
+    "vl-ui-input-addon": "^3.1.7",
     "vl-ui-input-field": "^3.2.6",
     "vl-ui-input-group": "^4.0.6"
   },
