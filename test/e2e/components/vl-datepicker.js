@@ -154,12 +154,7 @@ class VlDatepicker extends VlElement {
   }
 
   async _getSelectedDayElement() {
-    const selector = '.flatpickr-day.selected';
-    await this.driver.wait(async () => {
-      const element = await this.shadowRoot.findElement(By.css(selector));
-      return element != undefined;
-    });
-    return this.shadowRoot.findElement(By.css(selector));
+    return this.shadowRoot.findElement(By.css('.flatpickr-day.selected'));
   }
 
   async _getDayElements() {

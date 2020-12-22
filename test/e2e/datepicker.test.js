@@ -149,13 +149,9 @@ describe('vl-datepicker', async () => {
   });
 
   it('als gebruiker kan in de datum aanpassen via het input element en zal bij het openen van de kalender de datum aangepast zijn', async () => {
-    const today = now.toFormat('dd.LL.yyyy');
-    let datepicker = await vlDatepickerPage.getDefaultDatepicker();
-    await datepicker.selectDay(now.day);
-    await assert.eventually.equal(datepicker.getInputValue(), today);
+    const datepicker = await vlDatepickerPage.getDefaultDatepicker();
     const input = await datepicker._getInputElement();
     await input.setValue('01.01.2021');
-    datepicker = await vlDatepickerPage.getDefaultDatepicker();
     await datepicker.open();
     await assert.eventually.equal(datepicker.getSelectedDay(), '1');
     await assert.eventually.equal(datepicker.getSelectedMonth(), 'januari');
