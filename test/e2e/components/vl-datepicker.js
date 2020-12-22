@@ -136,10 +136,10 @@ class VlDatepicker extends VlElement {
   }
 
   async setValue(value) {
-    const element = await this.shadowRoot.findElement(By.id('input'));
+    // const element = await this.shadowRoot.findElement(By.id('input'));
     const input = await this._getInputElement();
     await input.setValue(value);
-    await this.driver.executeScript(`arguments[0].dispatchEvent(new Event('change'))`, element);
+    await this.driver.executeScript(`arguments[0].dispatchEvent(new Event('change'))`, input);
   }
 
   async _getMonthSelect() {
