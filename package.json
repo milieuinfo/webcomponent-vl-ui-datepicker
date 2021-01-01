@@ -1,6 +1,6 @@
 {
   "name": "vl-ui-datepicker",
-  "version": "3.2.0",
+  "version": "3.2.2",
   "description": "Gebruik de datepicker om de gebruiker een datum te laten selecteren op een intuitïeve manier.",
   "author": "DIDM",
   "license": "MIT",
@@ -30,33 +30,39 @@
     "test:unit": "npm explore vl-ui-util -- npm run test:component:unit",
     "test:unit:grid": "npm explore vl-ui-util -- npm run test:component:unit:grid",
     "test:e2e": "npm explore vl-ui-util -- npm run test:component:e2e",
-    "test:e2e:grid": "npm explore vl-ui-util -- npm run test:component:e2e:grid",
+    "test:e2e:grid": "npm explore vl-ui-util -- npm run test:component:e2e:browserstack",
     "release": "npm explore vl-ui-util -- npm run release",
     "release:prepare": "npm explore vl-ui-util -- npm run release-component:prepare $(pwd) datepicker",
     "release:testless": "np --yolo",
     "demo": "http-server"
   },
   "dependencies": {
-    "vl-ui-core": "github:milieuinfo/webcomponent-vl-ui-core#form-validation",
+    "vl-ui-core": "^7.0.1",
     "vl-ui-form-validation": "github:milieuinfo/webcomponent-vl-ui-form-validation#form-validation",
-    "vl-ui-icon": "^5.2.0",
-    "vl-ui-input-addon": "^3.1.5",
-    "vl-ui-input-field": "^3.2.5",
-    "vl-ui-input-group": "^4.0.5"
+    "vl-ui-icon": "^5.2.1",
+    "vl-ui-input-addon": "^3.1.6",
+    "vl-ui-input-field": "^3.2.6",
+    "vl-ui-input-group": "^4.0.6"
   },
   "peerDependencies": {
-    "vl-ui-core": "milieuinfo/webcomponent-vl-ui-core#form-validation",
+    "vl-ui-core": "^7.0.0",
     "vl-ui-form-validation": "milieuinfo/webcomponent-vl-ui-form-validation#form-validation",
-    "vl-ui-icon": "^5.2.0",
-    "vl-ui-input-addon": "^3.1.5",
-    "vl-ui-input-field": "^3.2.5",
-    "vl-ui-input-group": "^4.0.5"
+    "vl-ui-icon": "^5.2.1",
+    "vl-ui-input-addon": "^3.1.6",
+    "vl-ui-input-field": "^3.2.6",
+    "vl-ui-input-group": "^4.0.6"
   },
   "devDependencies": {
-    "@govflanders/vl-ui-datepicker": "^3.11.5",
-    "vl-ui-body": "^1.0.5",
-    "vl-ui-button": "^5.0.6",
+    "@govflanders/vl-ui-core": "^4.1.3",
+    "@govflanders/vl-ui-datepicker": "^3.12.3",
+    "@govflanders/vl-ui-input-addon": "^3.12.3",
+    "@govflanders/vl-ui-input-field": "^3.12.3",
+    "@govflanders/vl-ui-input-group": "^3.12.3",
+    "@govflanders/vl-ui-tooltip": "^3.12.3",
+    "@govflanders/vl-ui-util": "^3.12.3",
+    "vl-ui-body": "^1.0.7",
+    "vl-ui-button": "^5.0.8",
     "vl-ui-form-grid": "^3.0.6",
-    "vl-ui-util": "^5.2.18"
+    "vl-ui-util": "^5.3.4"
   }
 }
