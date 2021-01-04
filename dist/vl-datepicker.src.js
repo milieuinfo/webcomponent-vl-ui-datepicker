@@ -2,11 +2,9 @@ import {vlElement, define, awaitUntil} from 'vl-ui-core';
 import 'vl-ui-input-addon';
 import 'vl-ui-input-group';
 import 'vl-ui-input-field';
-import {vlFormValidation} from 'vl-ui-form-validation';
+import {vlFormValidation, vlFormValidationElement} from 'vl-ui-form-validation';
 import {vlPattern} from 'vl-ui-pattern';
 import 'vl-ui-icon';
-import '@govflanders/vl-ui-util/dist/js/util.js';
-import '@govflanders/vl-ui-core/dist/js/core.js';
 import 'vl-ui-datepicker/lib/datepicker.js';
 
 Promise.all([
@@ -41,9 +39,9 @@ Promise.all([
  * @see {@link https://www.github.com/milieuinfo/webcomponent-vl-ui-datepicker/issues|Issues}
  * @see {@link https://webcomponenten.omgeving.vlaanderen.be/demo/vl-datepicker.html|Demo}
  */
-export class VlDatepicker extends vlElement(HTMLElement) {
+export class VlDatepicker extends vlFormValidationElement(vlElement(HTMLElement)) {
   static get _observedAttributes() {
-    return [
+    return vlFormValidation._observedAttributes().concat([
       'type',
       'format',
       'visual-format',
@@ -57,8 +55,7 @@ export class VlDatepicker extends vlElement(HTMLElement) {
       'success',
       'value',
       'pattern',
-      'name',
-    ];
+    ]);
   }
 
   constructor() {
@@ -87,30 +84,6 @@ export class VlDatepicker extends vlElement(HTMLElement) {
   connectedCallback() {
     this.dress();
     this._registerChangeEvent();
-  }
-
-  disconnectedCallback() {
-    if (this._observer) {
-      this._observer.disconnect();
-    }
-  }
-
-  /**
-   * Geeft de waarde van het naam attribuut terug.
-   *
-   * @return {string}
-   */
-  get name() {
-    return this.getAttribute('name');
-  }
-
-  /**
-   * Geeft het form element terug.
-   *
-   * @return {HTMLFormElement}
-   */
-  get form() {
-    return this.closest('form');
   }
 
   get value() {
@@ -240,26 +213,8 @@ export class VlDatepicker extends vlElement(HTMLElement) {
     this._inputElement.setAttribute('data-vl-pattern', newValue);
   }
 
-  _nameChangedCallback(oldValue, newValue) {
-    if (this._inputElement.name != newValue) {
-      this._inputElement.name = newValue;
-      this.setAttribute('name', newValue);
-    }
-  }
-
   _registerChangeEvent() {
     this._inputElement.addEventListener('change', () => this.dispatchEvent(new Event('change')));
-  }
-
-  _dressFormValidation() {
-    if (this.form) {
-      this.setAttribute('data-vl-success-class', 'vl-datepicker--success');
-      this.setAttribute('data-vl-error-class', 'vl-datepicker--error');
-      Object.assign(this, vlFormValidation);
-      this.dress(this.form);
-      this.dress = this._dress;
-      this._observer = this._observeFormValidationClasses();
-    }
   }
 
   _dressPattern() {
@@ -267,20 +222,6 @@ export class VlDatepicker extends vlElement(HTMLElement) {
     Object.assign(this, vlPattern);
     this.dress(this._inputElement);
     this.dress = this._dress;
-  }
-
-  _observeFormValidationClasses() {
-    const observer = new MutationObserver((mutations) => {
-      ['error', 'success'].forEach((type) => {
-        if (mutations.find((mutation) => mutation.target.classList.contains(`vl-datepicker--${type}`))) {
-          this.setAttribute(`data-vl-${type}`, '');
-        } else {
-          this.removeAttribute(`data-vl-${type}`);
-        }
-      });
-    });
-    observer.observe(this, {attributes: true, attributeFilter: ['class']});
-    return observer;
   }
 }
 
