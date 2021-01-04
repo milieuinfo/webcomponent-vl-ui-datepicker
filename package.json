@@ -38,7 +38,7 @@
   },
   "dependencies": {
     "vl-ui-core": "^7.0.1",
-    "vl-ui-form-validation": "github:milieuinfo/webcomponent-vl-ui-form-validation#form-validation",
+    "vl-ui-form-validation": "^3.4.0",
     "vl-ui-icon": "^5.2.1",
     "vl-ui-input-addon": "^3.1.6",
     "vl-ui-input-field": "^3.2.6",
@@ -46,7 +46,7 @@
   },
   "peerDependencies": {
     "vl-ui-core": "^7.0.0",
-    "vl-ui-form-validation": "milieuinfo/webcomponent-vl-ui-form-validation#form-validation",
+    "vl-ui-form-validation": "^3.4.0",
     "vl-ui-icon": "^5.2.1",
     "vl-ui-input-addon": "^3.1.6",
     "vl-ui-input-field": "^3.2.6",
