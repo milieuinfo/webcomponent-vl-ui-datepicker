@@ -147,4 +147,13 @@ describe('vl-datepicker', async () => {
     const datepicker = await vlDatepickerPage.getSuccessDatepicker();
     await assert.eventually.isTrue(datepicker.isSuccess());
   });
+
+  it('als gebruiker kan in de datum aanpassen via het input element en zal bij het openen van de kalender de datum aangepast zijn', async () => {
+    const datepicker = await vlDatepickerPage.getDefaultDatepicker();
+    await datepicker.setValue('01.01.2021');
+    await datepicker.open();
+    await assert.eventually.equal(datepicker.getSelectedDay(), '1');
+    await assert.eventually.equal(datepicker.getSelectedMonth(), 'januari');
+    await assert.eventually.equal(datepicker.getSelectedYear(), '2021');
+  });
 });
