@@ -220,7 +220,7 @@
             assert.equal(e.target.value, '20.11.2019');
             done();
           });
-          awaitUntil(() => datepicker._dressed).then(() => datepicker._inputElement._flatpickr.setDate(new Date(2019, 10, 20), true));
+          awaitUntil(() => datepicker._dressed).then(() => datepicker._flatpickr.setDate(new Date(2019, 10, 20), true));
         });
 
         test('geeft ook een change event voor een datum wijziging wanneer de datepicker visueel een ander formaat toont', (done) => {
@@ -229,7 +229,7 @@
             assert.equal(e.target.value, '20.11.2019');
             done();
           });
-          awaitUntil(() => datepicker._dressed).then(() => datepicker._inputElement._flatpickr.setDate(new Date(2019, 10, 20), true));
+          awaitUntil(() => datepicker._dressed).then(() => datepicker._flatpickr.setDate(new Date(2019, 10, 20), true));
         });
 
         test('de datepicker zal de pattern dress functie uitvoeren wanneer het data-vl-pattern attribuut aanwezig is', (done) => {
