@@ -197,13 +197,14 @@
           assert.equal(datepicker.value, date);
         });
 
-        test('zal het success en error attribuut doorgeven aan het input veld', () => {
+        test('zal het success en error attribuut doorgeven aan het input veld en de class toevoegen aan het zichtbaar input element', () => {
           ['success', 'error'].forEach((attribute) => {
             const datepicker = fixture('vl-datepicker-format-fixture');
-            const inputElement = datepicker._inputElement;
-            assert.isFalse(inputElement.hasAttribute(attribute));
+            assert.isFalse(datepicker._inputElement.hasAttribute(attribute));
+            assert.isFalse(datepicker._visibleInputElement.classList.contains(`vl-input-field--${attribute}`));
             datepicker.setAttribute(`data-vl-${attribute}`, '');
-            assert.isTrue(inputElement.hasAttribute(attribute));
+            assert.isTrue(datepicker._inputElement.hasAttribute(attribute));
+            assert.isTrue(datepicker._visibleInputElement.classList.contains(`vl-input-field--${attribute}`));
           });
         });
 
