@@ -194,11 +194,7 @@ export class VlDatepicker extends vlFormValidationElement(vlElement(HTMLElement)
   }
 
   _errorChangedCallback(oldValue, newValue) {
-    if (newValue != undefined) {
-      this._inputElement.setAttribute('data-vl-error', '');
-    } else {
-      this._inputElement.removeAttribute('data-vl-error');
-    }
+    this.__stateChanged({value: newValue, type: 'error'});
   }
 
   _valueChangedCallback(oldValue, newValue) {
@@ -206,11 +202,7 @@ export class VlDatepicker extends vlFormValidationElement(vlElement(HTMLElement)
   }
 
   _successChangedCallback(oldValue, newValue) {
-    if (newValue != undefined) {
-      this._inputElement.setAttribute('data-vl-success', '');
-    } else {
-      this._inputElement.removeAttribute('data-vl-success');
-    }
+    this.__stateChanged({value: newValue, type: 'success'});
   }
 
   _patternChangedCallback(oldValue, newValue) {
@@ -226,6 +218,16 @@ export class VlDatepicker extends vlFormValidationElement(vlElement(HTMLElement)
     Object.assign(this, vlPattern);
     this.dress(this._inputElement);
     this.dress = this._dress;
+  }
+
+  __stateChanged({value, type}) {
+    if (value != undefined) {
+      this._inputElement.setAttribute(`data-vl-${type}`, '');
+      this._visibleInputElement.classList.add(`vl-input-field--${type}`);
+    } else {
+      this._inputElement.removeAttribute(`data-vl-${type}`);
+      this._visibleInputElement.classList.remove(`vl-input-field--${type}`);
+    }
   }
 }
 
