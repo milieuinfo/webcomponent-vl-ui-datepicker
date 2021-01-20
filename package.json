@@ -1,6 +1,6 @@
 {
   "name": "vl-ui-datepicker",
-  "version": "3.2.2",
+  "version": "3.2.3",
   "description": "Gebruik de datepicker om de gebruiker een datum te laten selecteren op een intuitïeve manier.",
   "author": "DIDM",
   "license": "MIT",
@@ -38,6 +38,7 @@
   },
   "dependencies": {
     "vl-ui-core": "^7.0.3",
+    "vl-ui-form-validation": "^3.4.0",
     "vl-ui-icon": "^5.2.1",
     "vl-ui-input-addon": "^3.1.7",
     "vl-ui-input-field": "^3.2.7",
@@ -45,6 +46,7 @@
   },
   "peerDependencies": {
     "vl-ui-core": "^7.0.0",
+    "vl-ui-form-validation": "^3.4.0",
     "vl-ui-icon": "^5.2.1",
     "vl-ui-input-addon": "^3.1.7",
     "vl-ui-input-field": "^3.2.6",
