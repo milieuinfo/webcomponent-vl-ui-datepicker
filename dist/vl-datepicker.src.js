@@ -211,7 +211,7 @@ export class VlDatepicker extends vlFormValidationElement(vlElement(HTMLElement)
 
   _registerChangeEvent() {
     this._inputElement.addEventListener('change', () =>
-        this.dispatchEvent(new Event('change', {bubbles: true, composed: true})));
+      this.dispatchEvent(new Event('change', {bubbles: true, composed: true})));
   }
 
   _dressPattern() {
