@@ -22,11 +22,15 @@ describe('vl-datepicker', async () => {
 
   it('als gebruiker kan ik de volgende of vorige maand selecteren', async () => {
     const datepicker = await vlDatepickerPage.getDefaultDatepicker();
-    const difference = now.month == 12 ? -1 : 1;
-    const month = now.plus({month: difference}).setLocale('nl').toFormat('LLLL');
+    let month = now.plus({month: 1}).setLocale('nl').toFormat('LLLL');
     await datepicker.selectMonth(month);
-    await datepicker.selectDay(now.day);
-    await assert.eventually.equal(datepicker.getInputValue(), now.plus({month: difference}).toFormat('dd.LL.yyyy'));
+    await datepicker.selectDay(1);
+    await assert.eventually.equal(datepicker.getInputValue(), `01.${now.plus({month: 1}).toFormat('LL')}.${now.year}`);
+
+    month = now.setLocale('nl').toFormat('LLLL');
+    await datepicker.selectMonth(month);
+    await datepicker.selectDay(1);
+    await assert.eventually.equal(datepicker.getInputValue(), `01.${now.toFormat('LL')}.${now.year}`);
   });
 
   it('als gebruiker kan ik het volgende jaar selecteren', async () => {
