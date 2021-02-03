@@ -5,7 +5,7 @@ import 'vl-ui-input-field';
 import {vlFormValidation, vlFormValidationElement} from 'vl-ui-form-validation';
 import {vlPattern} from 'vl-ui-pattern';
 import 'vl-ui-icon';
-import 'vl-ui-datepicker/lib/datepicker.js';
+import '../lib/datepicker.js';
 
 Promise.all([
   vlFormValidation.ready(),
