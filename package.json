@@ -37,8 +37,8 @@
     "demo": "http-server"
   },
   "dependencies": {
-    "vl-ui-core": "^7.1.1",
-    "vl-ui-form-validation": "^3.4.3",
+    "vl-ui-core": "^7.2.1",
+    "vl-ui-form-validation": "^3.6.0",
     "vl-ui-icon": "^5.2.2",
     "vl-ui-input-addon": "^3.1.8",
     "vl-ui-input-field": "^3.2.8",
@@ -53,16 +53,16 @@
     "vl-ui-input-group": "^4.0.6"
   },
   "devDependencies": {
-    "@govflanders/vl-ui-core": "^4.1.3",
-    "@govflanders/vl-ui-datepicker": "^3.12.3",
-    "@govflanders/vl-ui-input-addon": "^3.12.3",
-    "@govflanders/vl-ui-input-field": "^3.12.3",
-    "@govflanders/vl-ui-input-group": "^3.12.3",
-    "@govflanders/vl-ui-tooltip": "^3.12.3",
-    "@govflanders/vl-ui-util": "^3.12.3",
-    "vl-ui-body": "^1.0.7",
-    "vl-ui-button": "^5.0.9",
-    "vl-ui-form-grid": "^3.0.8",
-    "vl-ui-util": "^5.3.7"
+    "@govflanders/vl-ui-core": "^4.1.17",
+    "@govflanders/vl-ui-datepicker": "^3.12.17",
+    "@govflanders/vl-ui-input-addon": "^3.12.17",
+    "@govflanders/vl-ui-input-field": "^3.12.17",
+    "@govflanders/vl-ui-input-group": "^3.12.17",
+    "@govflanders/vl-ui-tooltip": "^3.12.17",
+    "@govflanders/vl-ui-util": "^3.12.17",
+    "vl-ui-body": "^1.0.8",
+    "vl-ui-button": "^5.0.10",
+    "vl-ui-form-grid": "^3.0.9",
+    "vl-ui-util": "^5.3.10"
   }
 }
