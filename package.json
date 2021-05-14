@@ -37,11 +37,11 @@
     "demo": "http-server"
   },
   "dependencies": {
-    "vl-ui-core": "^7.2.1",
-    "vl-ui-form-validation": "^3.6.0",
+    "vl-ui-core": "^7.2.2",
+    "vl-ui-form-validation": "^3.6.3",
     "vl-ui-icon": "^5.2.2",
-    "vl-ui-input-addon": "^3.1.8",
-    "vl-ui-input-field": "^3.2.8",
+    "vl-ui-input-addon": "^3.1.9",
+    "vl-ui-input-field": "^3.2.10",
     "vl-ui-input-group": "^4.0.7"
   },
   "peerDependencies": {
@@ -63,6 +63,6 @@
     "vl-ui-body": "^1.0.8",
     "vl-ui-button": "^5.0.10",
     "vl-ui-form-grid": "^3.0.9",
-    "vl-ui-util": "^5.3.10"
+    "vl-ui-util": "^5.3.12"
   }
 }
