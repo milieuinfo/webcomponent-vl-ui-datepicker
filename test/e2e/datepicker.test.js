@@ -4,9 +4,7 @@ const VlDatepickerPage = require('./pages/vl-datepicker.page');
 
 describe('vl-datepicker', async () => {
   let vlDatepickerPage;
-
   const now = DateTime.local();
-  const tomorrow = now.plus({day: 1});
 
   beforeEach(async () => {
     vlDatepickerPage = new VlDatepickerPage(getDriver());
