@@ -58,7 +58,7 @@
     "@govflanders/vl-ui-input-addon": "^3.12.17",
     "@govflanders/vl-ui-input-field": "^3.12.17",
     "@govflanders/vl-ui-input-group": "^3.12.17",
-    "@govflanders/vl-ui-tooltip": "^3.12.17",
+    "@govflanders/vl-ui-tooltip": "^10.0.0",
     "@govflanders/vl-ui-util": "^3.12.17",
     "vl-ui-body": "^1.0.8",
     "vl-ui-button": "^5.0.10",
