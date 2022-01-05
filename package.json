@@ -54,7 +54,7 @@
   },
   "devDependencies": {
     "@govflanders/vl-ui-core": "^4.1.17",
-    "@govflanders/vl-ui-datepicker": "^3.12.17",
+    "@govflanders/vl-ui-datepicker": "^10.0.0",
     "@govflanders/vl-ui-input-addon": "^3.12.17",
     "@govflanders/vl-ui-input-field": "^3.12.17",
     "@govflanders/vl-ui-input-group": "^3.12.17",
